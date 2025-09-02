@@ -1,0 +1,15 @@
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
+    --color-primary: #0AA86F;
+    --color-secondary: #19D28F;
+    --color-light: #C5DFD6;
+    --color-lightest: #EBF6F2;
+    --color-black: #1E3C31;
+    --color-darkGrey: #666666;
+    --color-lightGrey: #DDDDDD;
+    --color-defaultGrey: #AAAAAA;
+    --color-purple: #7723FF;
+  }
