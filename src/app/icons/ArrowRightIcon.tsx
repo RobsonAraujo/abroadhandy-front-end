@@ -1,6 +1,12 @@
 import { IIconProps } from "@/app/types/generic";
 
-const MenuIcon = ({ height, width, fill, style, className }: IIconProps) => (
+const ArrowRightIcon = ({
+  height,
+  width,
+  fill,
+  style,
+  className,
+}: IIconProps) => (
   <svg
     width={width || "24"}
     height={height || "24"}
@@ -11,13 +17,13 @@ const MenuIcon = ({ height, width, fill, style, className }: IIconProps) => (
     className={className}
   >
     <path
-      d="M4 8h16M4 16h16"
+      d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
       stroke={fill || "currentColor"}
-      strokeWidth="2"
+      strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
   </svg>
 );
 
-export default MenuIcon;
+export default ArrowRightIcon;

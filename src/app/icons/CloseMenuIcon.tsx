@@ -1,6 +1,12 @@
 import { IIconProps } from "@/app/types/generic";
 
-const CloseIcon = ({ height, width, fill, style, className }: IIconProps) => (
+const CloseMenuIcon = ({
+  height,
+  width,
+  fill,
+  style,
+  className,
+}: IIconProps) => (
   <svg
     width={width || "24"}
     height={height || "24"}
@@ -11,7 +17,7 @@ const CloseIcon = ({ height, width, fill, style, className }: IIconProps) => (
     className={className}
   >
     <path
-      d="M18 6L6 18M6 6L18 18"
+      d="M6 18L18 6M6 6l12 12"
       stroke={fill || "currentColor"}
       strokeWidth="2"
       strokeLinecap="round"
@@ -20,4 +26,4 @@ const CloseIcon = ({ height, width, fill, style, className }: IIconProps) => (
   </svg>
 );
 
-export default CloseIcon;
+export default CloseMenuIcon;
