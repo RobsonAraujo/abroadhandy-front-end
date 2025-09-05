@@ -1,4 +1,4 @@
-import Button from "@/app/components/button/Button";
+import { Button } from "@/app/components/ui/button";
 import HomeIcon from "@/app/icons/HomeIcon";
 import UsersIcon from "@/app/icons/UsersIcon";
 
@@ -56,13 +56,7 @@ export default function NotFound() {
               <Button href="/become-a-mentor" variant="black" size="md">
                 Become a Mentor
               </Button>
-              <Button
-                href="/about-us"
-                size="md"
-                variant="white"
-                color="secondary"
-                className="border-2 border-secondary"
-              >
+              <Button href="/about-us" size="md" variant="outline">
                 About Us
               </Button>
             </div>

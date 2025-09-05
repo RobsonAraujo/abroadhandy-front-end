@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Button from "@/app/components/button/Button";
+import { Button } from "@/app/components/ui/button";
 import ArrowRightIcon from "@/app/icons/ArrowRightIcon";
 import CTA from "@/app/components/cta/CTA";
 

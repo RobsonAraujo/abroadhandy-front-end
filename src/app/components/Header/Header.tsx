@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import MenuIcon from "@/app/icons/MenuIcon";
 import CloseMenuIcon from "@/app/icons/CloseMenuIcon";
-import Button from "@/app/components/button/Button";
+import { Button } from "@/app/components/ui/button";
 import { MENU_ITEMS } from "@/app/constants/menu";
 
 export default function Header() {
@@ -83,7 +83,6 @@ export default function Header() {
                   key={item.href}
                   href={item.href}
                   variant="black"
-                  hoverVariant="primary"
                   size="md"
                   className="mt-4 w-full"
                   onClick={() => setIsMenuOpen(false)}

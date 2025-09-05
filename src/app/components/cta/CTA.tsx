@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import Button from "@/app/components/button/Button";
+import { Button } from "@/app/components/ui/button";
 import ArrowRightIcon from "@/app/icons/ArrowRightIcon";
 
 export interface CTAProps {

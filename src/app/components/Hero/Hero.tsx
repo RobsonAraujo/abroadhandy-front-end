@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import Button from "@/app/components/button/Button";
+import { Button } from "@/app/components/ui/button";
 import ArrowRightIcon from "@/app/icons/ArrowRightIcon";
 
 export default function Hero() {
