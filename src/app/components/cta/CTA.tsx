@@ -57,7 +57,7 @@ export default function CTA({
     href: "/mentors",
     text: "Browse Mentors",
     variant: "outline",
-    className: "border-white text-white hover:bg-white hover:text-black",
+    className: "border-white text-white hover:bg-white hover:text-secondary",
   },
   backgroundColor = "secondary",
   className = "",
