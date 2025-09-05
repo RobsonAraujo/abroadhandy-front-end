@@ -46,15 +46,15 @@ export default function Features() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group relative w-full bg-gray-100 rounded-2xl p-4 transition-all duration-500 max-md:max-w-md max-md:mx-auto md:w-2/5 xl:p-7 xl:w-1/4 hover:bg-secondary"
+              className="group relative w-full bg-gray-100 rounded-2xl p-4 transition-all duration-500 max-md:max-w-md max-md:mx-auto md:w-2/5 xl:p-7 xl:w-1/4 "
             >
               <div className="bg-white rounded-full flex justify-center items-center mb-5 w-14 h-14">
                 {feature.icon}
               </div>
-              <h4 className="text-xl font-semibold text-black mb-3 capitalize transition-all duration-500 group-hover:text-white">
+              <h4 className="text-xl font-semibold text-black mb-3 capitalize transition-all duration-500 ">
                 {feature.title}
               </h4>
-              <p className="text-sm font-normal text-gray-600 transition-all duration-500 leading-5 group-hover:text-white">
+              <p className="text-sm font-normal text-gray-600 transition-all duration-500 leading-5 ">
                 {feature.description}
               </p>
             </div>
