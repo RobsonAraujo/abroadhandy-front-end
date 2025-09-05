@@ -4,8 +4,6 @@ import "./globals.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { ThemeProvider, StyledEngineProvider } from "@mui/material/styles";
 import theme from "@/theme";
-import Header from "@/app/components/header/Header";
-import Footer from "@/app/components/footer/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,7 +21,7 @@ export const metadata: Metadata = {
     default: "Abroad Handy",
   },
   description:
-    "Conecte-se com mentores experientes para suas aplicações universitárias no exterior. Receba orientação personalizada e maximize suas chances de admissão.",
+    "Connect with experienced mentors for your university applications abroad. Receive personalized guidance and maximize your admission chances.",
 };
 
 export default function RootLayout({
@@ -44,9 +42,7 @@ export default function RootLayout({
         <StyledEngineProvider injectFirst>
           <AppRouterCacheProvider>
             <ThemeProvider theme={theme}>
-              <Header />
               <div className="px-[160px] max-md:px-4 ">{children}</div>
-              <Footer />
             </ThemeProvider>
           </AppRouterCacheProvider>
         </StyledEngineProvider>
