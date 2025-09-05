@@ -24,7 +24,7 @@ export default function NotFound() {
               href="/"
               variant="primary"
               size="lg"
-              className="shadow-lg hover:shadow-xl"
+              className="hover:opacity-90"
               iconStart={<HomeIcon className="w-5 h-5" />}
             >
               Back to Home
@@ -36,14 +36,14 @@ export default function NotFound() {
               href="/mentors"
               variant="secondary"
               size="lg"
-              className="shadow-lg hover:shadow-xl"
+              className="hover:opacity-90"
               iconStart={<UsersIcon className="w-5 h-5" />}
             >
               Find Top Students
             </Button>
           </div>
 
-          <div className="mt-12 p-6 bg-white rounded-2xl shadow-lg">
+          <div className="mt-12 p-6 bg-white rounded-2xl border border-gray-100">
             <h3 className="text-xl font-semibold text-black mb-4">
               Need Help?
             </h3>

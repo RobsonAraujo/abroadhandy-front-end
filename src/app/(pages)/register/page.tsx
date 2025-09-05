@@ -50,7 +50,7 @@ export default function Register() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {benefits.map((benefit, index) => (
                 <div key={index} className="flex items-start space-x-3">
-                  <div className="flex-shrink-0 p-2 bg-white rounded-lg shadow-sm">
+                  <div className="flex-shrink-0 p-2 bg-white rounded-lg border border-gray-100">
                     {benefit.icon}
                   </div>
                   <div>
@@ -68,7 +68,7 @@ export default function Register() {
 
           {/* Right Side - Registration Form */}
           <div className="order-1 lg:order-2">
-            <div className="bg-white rounded-2xl shadow-xl p-8 lg:p-10">
+            <div className="bg-white rounded-2xl border border-gray-100 p-8 lg:p-10">
               <div className="text-center mb-8">
                 <h2 className="text-3xl font-bold text-black mb-2">
                   Create your account
