@@ -1,4 +1,3 @@
-import { Typography } from "@mui/material";
 import Link from "next/link";
 
 export default function NotFound() {
@@ -267,16 +266,14 @@ export default function NotFound() {
                 </defs>
               </svg>
             </div>
-            <Typography color="darkGrey" padding={2} mb={4}>
-              Página não encontrada :/
-            </Typography>
+            <p color="darkGrey">Página não encontrada :/</p>
             <Link href="/" className="no-underline w-full flex justify-center">
-              <Typography
+              <p
                 color="white"
                 className="w-60 bg-darkGrey hover:bg-defaultGrey  text-white hover:text-white rounded shadow hover:shadow-lg py-2 px-4 border hover:border-transparent"
               >
                 Acessar Página Inicial
-              </Typography>
+              </p>
             </Link>
           </div>
         </div>

@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
-import { ThemeProvider, StyledEngineProvider } from "@mui/material/styles";
-import theme from "@/theme";
 import Header from "./components/Header/Header";
 
 const geistSans = Geist({
@@ -40,14 +37,8 @@ export default function RootLayout({
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
         />
 
-        <StyledEngineProvider injectFirst>
-          <AppRouterCacheProvider>
-            <ThemeProvider theme={theme}>
-              <Header />
-              {children}
-            </ThemeProvider>
-          </AppRouterCacheProvider>
-        </StyledEngineProvider>
+        <Header />
+        {children}
       </body>
     </html>
   );
