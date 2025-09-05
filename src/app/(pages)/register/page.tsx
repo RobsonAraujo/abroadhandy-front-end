@@ -96,9 +96,9 @@ export default function Register() {
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-secondary focus:border-secondary sm:text-sm"
                 >
                   <option value="">Select your role</option>
-                  <option value="student">Student seeking mentorship</option>
+                  <option value="student">Student seeking guidance</option>
                   <option value="mentor">
-                    Experienced professional wanting to mentor
+                    Top student wanting to guide others
                   </option>
                 </select>
               </div>

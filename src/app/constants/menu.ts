@@ -7,11 +7,11 @@ export interface MenuItem {
 export const MENU_ITEMS: MenuItem[] = [
   {
     href: "/mentors",
-    label: "Find Mentors",
+    label: "Find Top Students",
   },
   {
     href: "/become-a-mentor",
-    label: "Become a Mentor",
+    label: "Become a Guide",
   },
   {
     href: "/about-us",

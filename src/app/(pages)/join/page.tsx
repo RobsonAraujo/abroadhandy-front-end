@@ -6,7 +6,7 @@ import CTA from "@/app/components/cta/CTA";
 export default function Join() {
   const benefits = [
     {
-      title: "Expert Mentorship",
+      title: "Peer-to-Peer Guidance",
       description:
         "Connect with professionals who have successfully navigated university applications.",
       icon: "🎓",
@@ -34,8 +34,9 @@ export default function Join() {
               Start Your Journey Today
             </h1>
             <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
-              Join thousands of students who are already working with expert
-              mentors to achieve their university application dreams.
+              Join thousands of students who are already working with top
+              students from leading universities to achieve their university
+              application dreams.
             </p>
           </div>
         </div>
@@ -88,10 +89,10 @@ export default function Join() {
                   </div>
                   <div className="ml-4">
                     <h4 className="font-semibold text-black">
-                      Find Your Mentor
+                      Find Your Guide
                     </h4>
                     <p className="text-gray-600">
-                      Browse our expert mentors and find the perfect match for
+                      Browse our top students and find the perfect match for
                       your needs.
                     </p>
                   </div>
@@ -149,7 +150,7 @@ export default function Join() {
         }}
         secondaryButton={{
           href: "/mentors",
-          text: "Browse Mentors",
+          text: "Browse Top Students",
         }}
         backgroundColor="secondary"
       />

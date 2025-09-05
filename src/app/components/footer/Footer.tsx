@@ -10,8 +10,8 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">AbroadHandy</h3>
             <p className="text-gray-400 mb-4">
-              Connecting students with expert mentors to achieve their
-              university application dreams.
+              Connecting students with top students from leading universities to
+              achieve their university application dreams.
             </p>
           </div>
 
@@ -23,7 +23,7 @@ export default function Footer() {
                   href="/mentors"
                   className="text-gray-400 hover:text-white"
                 >
-                  Find Mentors
+                  Find Top Students
                 </Link>
               </li>
               <li>
@@ -54,14 +54,14 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-md font-semibold mb-4">For Mentors</h4>
+            <h4 className="text-md font-semibold mb-4">For Top Students</h4>
             <ul className="space-y-2">
               <li>
                 <Link
                   href="/become-a-mentor"
                   className="text-gray-400 hover:text-white"
                 >
-                  Become a Mentor
+                  Become a Guide
                 </Link>
               </li>
               <li>

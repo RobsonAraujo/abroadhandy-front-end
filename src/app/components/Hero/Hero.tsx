@@ -13,7 +13,7 @@ export default function Hero() {
               University application mentorship
             </p>
             <h1 className="mt-4 text-4xl font-bold text-black lg:mt-8 sm:text-6xl xl:text-8xl">
-              Connect with experienced mentors
+              Connect with top students
             </h1>
             <p className="mt-4 text-base text-black lg:mt-8 sm:text-xl">
               Get personalized guidance for your university applications abroad
@@ -27,7 +27,7 @@ export default function Hero() {
               className="mt-8 lg:mt-16"
               iconEnd={<ArrowRightIcon className="w-6 h-6" />}
             >
-              Find a mentor
+              Find a guide
             </Button>
 
             <p className="mt-5 text-gray-600">
@@ -46,7 +46,7 @@ export default function Hero() {
             <Image
               className="w-full"
               src="/hero-image.png"
-              alt="Students connecting with mentors for university applications abroad"
+              alt="Students connecting with top students for university applications abroad"
               width={600}
               height={400}
               priority

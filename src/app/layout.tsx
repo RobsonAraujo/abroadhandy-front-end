@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     default: "Abroad Handy",
   },
   description:
-    "Connect with experienced mentors for your university applications abroad. Receive personalized guidance and maximize your admission chances.",
+    "Connect with top students from leading universities for your university applications abroad. Receive personalized guidance and maximize your admission chances.",
 };
 
 export default function RootLayout({

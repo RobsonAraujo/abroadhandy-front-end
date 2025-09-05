@@ -46,7 +46,7 @@ export interface CTAProps {
 
 export default function CTA({
   title = "Ready to Start Your Journey?",
-  description = "Join thousands of students who are already working with expert mentors to achieve their university dreams.",
+  description = "Join thousands of students who are already working with top students from leading universities to achieve their university dreams.",
   primaryButton = {
     href: "/join",
     text: "Get Started Today",
@@ -55,7 +55,7 @@ export default function CTA({
   },
   secondaryButton = {
     href: "/mentors",
-    text: "Browse Mentors",
+    text: "Browse Top Students",
     variant: "outline",
     className: "border-white text-white hover:bg-white hover:text-secondary",
   },

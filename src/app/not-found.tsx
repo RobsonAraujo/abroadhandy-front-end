@@ -39,7 +39,7 @@ export default function NotFound() {
               className="shadow-lg hover:shadow-xl"
               iconStart={<UsersIcon className="w-5 h-5" />}
             >
-              Find Mentors
+              Find Top Students
             </Button>
           </div>
 
@@ -48,13 +48,13 @@ export default function NotFound() {
               Need Help?
             </h3>
             <p className="text-gray-600 mb-4">
-              If you&apos;re looking for a specific mentor or university
+              If you&apos;re looking for a specific guide or university
               information, try searching our platform or contact our support
               team.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button href="/become-a-mentor" variant="black" size="md">
-                Become a Mentor
+                Become a Guide
               </Button>
               <Button href="/about-us" size="md" variant="outline">
                 About Us
