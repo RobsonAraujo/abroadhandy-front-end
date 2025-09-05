@@ -36,8 +36,8 @@ export default function Features() {
             Why Students Choose Us
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Join thousands of students who have successfully navigated their
-            university applications with guidance from top students at leading
+            Join students who have successfully navigated their university
+            applications with guidance from top students at leading
             universities.
           </p>
         </div>

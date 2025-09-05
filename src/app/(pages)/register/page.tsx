@@ -25,12 +25,12 @@ export default function Register() {
     {
       icon: <Star className="w-6 h-6 text-[#4F46E5]" />,
       title: "Proven Results",
-      description: "Join 1,000+ students who achieved their dreams",
+      description: "Join students who are achieving their dreams",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-background-light py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-background-light py-12 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - Benefits */}

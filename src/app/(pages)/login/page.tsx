@@ -14,7 +14,7 @@ export default function Login() {
     {
       icon: <Users className="w-6 h-6 text-[#4F46E5]" />,
       title: "Peer Community",
-      description: "Join thousands of ambitious students worldwide",
+      description: "Join ambitious students worldwide",
     },
     {
       icon: <Shield className="w-6 h-6 text-[#4F46E5]" />,
@@ -24,12 +24,12 @@ export default function Login() {
     {
       icon: <Star className="w-6 h-6 text-[#4F46E5]" />,
       title: "Proven Success",
-      description: "1,000+ students achieved their university dreams",
+      description: "Students are achieving their university dreams",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-background-light py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-background-light py-12 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - Features */}

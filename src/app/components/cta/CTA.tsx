@@ -46,7 +46,7 @@ export interface CTAProps {
 
 export default function CTA({
   title = "Ready to Start Your Journey?",
-  description = "Join thousands of students who are already working with top students from leading universities to achieve their university dreams.",
+  description = "Join students who are already working with top students from leading universities to achieve their university dreams.",
   primaryButton = {
     href: "/join",
     text: "Get Started Today",

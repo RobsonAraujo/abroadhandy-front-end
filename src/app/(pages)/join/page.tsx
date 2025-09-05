@@ -21,7 +21,7 @@ export default function Join() {
     {
       title: "Proven Results",
       description:
-        "Join 1,000+ students who achieved their university dreams with our help.",
+        "Join students who are achieving their university dreams with our help.",
       icon: <Star className="w-8 h-8 text-[#4F46E5]" />,
     },
   ];
@@ -35,9 +35,9 @@ export default function Join() {
               Start Your Journey Today
             </h1>
             <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
-              Join thousands of students who are already working with top
-              students from leading universities to achieve their university
-              application dreams.
+              Join students who are already working with top students from
+              leading universities to achieve their university application
+              dreams.
             </p>
           </div>
         </div>
