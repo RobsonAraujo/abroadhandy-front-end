@@ -15,7 +15,7 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-[#FCF8F1] bg-opacity-30">
+    <header className="bg-background-light bg-opacity-30">
       <div className="px-4 mx-auto sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <div className="flex-shrink-0">
@@ -61,7 +61,7 @@ export default function Header() {
               key={item.href}
               href={item.href}
               title=""
-              className="hidden lg:inline-flex items-center justify-center px-5 py-2.5 text-base transition-all duration-200 hover:bg-yellow-300 hover:text-black focus:text-black focus:bg-yellow-300 font-semibold text-white bg-black rounded-full"
+              className="hidden lg:inline-flex items-center justify-center px-5 py-2.5 text-base transition-all duration-200 hover:bg-primary hover:text-black focus:text-black focus:bg-primary font-semibold text-white bg-accent rounded-full"
               role="button"
             >
               {item.label}
@@ -80,7 +80,7 @@ export default function Header() {
                 title=""
                 className={`block px-3 py-2 text-base transition-all duration-200 rounded-md ${
                   item.isCTA
-                    ? "mt-4 font-semibold text-white bg-black rounded-full text-center hover:bg-gray-800"
+                    ? "mt-4 font-semibold text-white bg-accent rounded-full text-center hover:bg-gray-800"
                     : "text-black hover:text-opacity-80 hover:bg-gray-50"
                 }`}
                 onClick={() => setIsMenuOpen(false)}
