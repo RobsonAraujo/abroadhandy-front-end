@@ -68,7 +68,7 @@ export default function Register() {
 
           {/* Right Side - Registration Form */}
           <div className="order-1 lg:order-2">
-            <div className="bg-white rounded-2xl border border-gray-100 p-8 lg:p-10">
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 lg:p-10">
               <div className="text-center mb-8">
                 <h2 className="text-3xl font-bold text-black mb-2">
                   Create your account
