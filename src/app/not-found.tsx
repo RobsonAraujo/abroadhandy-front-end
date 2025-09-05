@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Button from "@/app/components/button/Button";
 import HomeIcon from "@/app/icons/HomeIcon";
 import UsersIcon from "@/app/icons/UsersIcon";
@@ -14,9 +13,9 @@ export default function NotFound() {
               Page Not Found
             </h2>
             <p className="text-lg text-gray-600 mb-8">
-              Oops! It looks like this mentor or page has moved to a different
-              location. Don't worry, we'll help you find what you're looking
-              for.
+              Oops! It looks like this page has moved to a different location.
+              Don&apos;t worry, we&apos;ll help you find what you&apos;re
+              looking for.
             </p>
           </div>
 
@@ -49,8 +48,9 @@ export default function NotFound() {
               Need Help?
             </h3>
             <p className="text-gray-600 mb-4">
-              If you're looking for a specific mentor or university information,
-              try searching our platform or contact our support team.
+              If you&apos;re looking for a specific mentor or university
+              information, try searching our platform or contact our support
+              team.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button href="/become-a-mentor" variant="accent" size="md">
@@ -61,7 +61,7 @@ export default function NotFound() {
                 size="md"
                 variant="white"
                 color="secondary"
-                className="border-2 border-secondary "
+                className="border-2 border-secondary"
               >
                 About Us
               </Button>

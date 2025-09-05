@@ -12,7 +12,8 @@ export interface ButtonProps {
     | "success"
     | "error"
     | "purple"
-    | "white";
+    | "white"
+    | "outline";
   hoverVariant?:
     | "primary"
     | "secondary"
@@ -20,7 +21,8 @@ export interface ButtonProps {
     | "success"
     | "error"
     | "purple"
-    | "white";
+    | "white"
+    | "outline";
   hoverTextColor?: "black" | "white";
   color?:
     | "black"
@@ -69,6 +71,8 @@ const Button = ({
     error: "bg-error text-white focus:ring-error/50",
     purple: "bg-purple text-white focus:ring-purple/50",
     white: "bg-white text-black focus:ring-white/50",
+    outline:
+      "border-2 border-secondary text-secondary bg-transparent focus:ring-secondary/50",
   };
 
   const hoverClasses = {
@@ -79,6 +83,7 @@ const Button = ({
     error: "hover:bg-error/90",
     purple: "hover:bg-purple/90",
     white: "hover:bg-gray-100",
+    outline: "hover:bg-secondary hover:text-white",
   };
 
   const hoverTextClasses = {

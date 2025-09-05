@@ -77,7 +77,7 @@ export default function Header() {
       {isMenuOpen && (
         <div className="lg:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3  border-t border-gray-200">
-            {MENU_ITEMS.filter((item) => !item.desktopOnly).map((item) =>
+            {MENU_ITEMS.map((item) =>
               item.isCTA ? (
                 <Button
                   key={item.href}
