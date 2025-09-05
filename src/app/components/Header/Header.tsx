@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import MenuIcon from "@/app/icons/MenuIcon";
 import CloseMenuIcon from "@/app/icons/CloseMenuIcon";
+import Button from "@/app/components/button/Button";
 import { MENU_ITEMS } from "@/app/constants/menu";
 
 export default function Header() {
@@ -57,15 +58,19 @@ export default function Header() {
           </div>
 
           {MENU_ITEMS.filter((item) => item.isCTA).map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              title=""
-              className="hidden lg:inline-flex items-center justify-center px-5 py-2.5 text-base transition-all duration-200 hover:bg-primary hover:text-black focus:text-black focus:bg-primary font-semibold text-white bg-accent rounded-full"
-              role="button"
-            >
-              {item.label}
-            </Link>
+            <div className="hidden lg:inline-flex" key={item.href}>
+              <Button
+                key={item.href}
+                href={item.href}
+                variant="accent"
+                hoverVariant="primary"
+                hoverTextColor="black"
+                size="md"
+                className="hidden lg:inline-flex"
+              >
+                {item.label}
+              </Button>
+            </div>
           ))}
         </div>
       </div>
@@ -73,21 +78,31 @@ export default function Header() {
       {isMenuOpen && (
         <div className="lg:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3  border-t border-gray-200">
-            {MENU_ITEMS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                title=""
-                className={`block px-3 py-2 text-base transition-all duration-200 rounded-md ${
-                  item.isCTA
-                    ? "mt-4 font-semibold text-white bg-accent rounded-full text-center hover:bg-gray-800"
-                    : "text-black hover:text-opacity-80 hover:bg-gray-50"
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {MENU_ITEMS.filter((item) => !item.desktopOnly).map((item) =>
+              item.isCTA ? (
+                <Button
+                  key={item.href}
+                  href={item.href}
+                  variant="accent"
+                  hoverVariant="primary"
+                  size="md"
+                  className="mt-4 w-full"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.label}
+                </Button>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  title=""
+                  className="block px-3 py-2 text-base text-black transition-all duration-200 rounded-md hover:text-opacity-80 hover:bg-gray-50"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
           </div>
         </div>
       )}

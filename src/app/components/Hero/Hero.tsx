@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import Button from "@/app/components/button/Button";
 import ArrowRightIcon from "@/app/icons/ArrowRightIcon";
 
 export default function Hero() {
@@ -19,15 +20,15 @@ export default function Hero() {
               and maximize your admission chances.
             </p>
 
-            <Link
+            <Button
               href="/join"
-              title=""
-              className="inline-flex items-center px-6 py-4 mt-8 font-semibold text-black transition-all duration-200 bg-primary rounded-full lg:mt-16 hover:bg-primary/90 focus:bg-primary/90"
-              role="button"
+              variant="primary"
+              size="lg"
+              className="mt-8 lg:mt-16"
+              iconEnd={<ArrowRightIcon className="w-6 h-6" />}
             >
               Find a mentor
-              <ArrowRightIcon className="w-6 h-6 ml-8 -mr-2" />
-            </Link>
+            </Button>
 
             <p className="mt-5 text-gray-600">
               Already have an account?{" "}
