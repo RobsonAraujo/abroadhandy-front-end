@@ -53,7 +53,7 @@ export default function NotFound() {
               team.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href="/become-a-mentor" variant="accent" size="md">
+              <Button href="/become-a-mentor" variant="black" size="md">
                 Become a Mentor
               </Button>
               <Button

@@ -61,7 +61,7 @@ export default function Header() {
               <Button
                 key={item.href}
                 href={item.href}
-                variant="accent"
+                variant="black"
                 hoverVariant="primary"
                 hoverTextColor="black"
                 size="md"
@@ -82,7 +82,7 @@ export default function Header() {
                 <Button
                   key={item.href}
                   href={item.href}
-                  variant="accent"
+                  variant="black"
                   hoverVariant="primary"
                   size="md"
                   className="mt-4 w-full"

@@ -11,7 +11,7 @@ export interface CTAProps {
     variant?:
       | "primary"
       | "secondary"
-      | "accent"
+      | "black"
       | "success"
       | "error"
       | "purple"
@@ -25,7 +25,7 @@ export interface CTAProps {
     variant?:
       | "primary"
       | "secondary"
-      | "accent"
+      | "black"
       | "success"
       | "error"
       | "purple"
@@ -36,7 +36,7 @@ export interface CTAProps {
   backgroundColor?:
     | "secondary"
     | "primary"
-    | "accent"
+    | "black"
     | "success"
     | "error"
     | "purple"
@@ -57,7 +57,7 @@ export default function CTA({
     href: "/mentors",
     text: "Browse Mentors",
     variant: "outline",
-    className: "border-white text-white hover:bg-white hover:text-secondary",
+    className: "border-white text-white hover:bg-white hover:text-black",
   },
   backgroundColor = "secondary",
   className = "",
@@ -65,7 +65,7 @@ export default function CTA({
   const backgroundClasses = {
     secondary: "bg-secondary",
     primary: "bg-primary",
-    accent: "bg-accent",
+    black: "bg-black",
     success: "bg-success",
     error: "bg-error",
     purple: "bg-purple",
@@ -75,7 +75,7 @@ export default function CTA({
   const textColorClasses = {
     secondary: "text-white",
     primary: "text-black",
-    accent: "text-white",
+    black: "text-white",
     success: "text-black",
     error: "text-white",
     purple: "text-white",
@@ -85,7 +85,7 @@ export default function CTA({
   const descriptionColorClasses = {
     secondary: "text-blue-100",
     primary: "text-gray-600",
-    accent: "text-white/80",
+    black: "text-white/80",
     success: "text-gray-600",
     error: "text-white/80",
     purple: "text-white/80",
@@ -93,14 +93,22 @@ export default function CTA({
   };
 
   // Auto-assign button variants based on background color
-  const getDefaultPrimaryVariant = () => {
+  const getDefaultPrimaryVariant = ():
+    | "primary"
+    | "secondary"
+    | "black"
+    | "success"
+    | "error"
+    | "purple"
+    | "white"
+    | "outline" => {
     switch (backgroundColor) {
       case "secondary":
         return "secondary";
       case "primary":
         return "primary";
-      case "accent":
-        return "accent";
+      case "black":
+        return "primary";
       case "success":
         return "success";
       case "error":
@@ -114,13 +122,21 @@ export default function CTA({
     }
   };
 
-  const getDefaultSecondaryVariant = () => {
+  const getDefaultSecondaryVariant = ():
+    | "primary"
+    | "secondary"
+    | "black"
+    | "success"
+    | "error"
+    | "purple"
+    | "white"
+    | "outline" => {
     switch (backgroundColor) {
       case "secondary":
         return "outline";
       case "primary":
         return "outline";
-      case "accent":
+      case "black":
         return "outline";
       case "success":
         return "outline";
@@ -141,8 +157,8 @@ export default function CTA({
         return "border-white text-white hover:bg-white hover:text-secondary";
       case "primary":
         return "border-primary text-primary hover:bg-primary hover:text-white";
-      case "accent":
-        return "border-white text-white hover:bg-white hover:text-accent";
+      case "black":
+        return "border-white text-white hover:bg-white hover:text-black";
       case "success":
         return "border-success text-success hover:bg-success hover:text-white";
       case "error":
@@ -159,14 +175,13 @@ export default function CTA({
   // Use provided variant or auto-assign based on background
   const finalPrimaryButton = {
     ...primaryButton,
-    variant: primaryButton.variant || (getDefaultPrimaryVariant() as any),
+    variant: primaryButton.variant || getDefaultPrimaryVariant(),
   };
 
   const finalSecondaryButton = secondaryButton
     ? {
         ...secondaryButton,
-        variant:
-          secondaryButton.variant || (getDefaultSecondaryVariant() as any),
+        variant: secondaryButton.variant || getDefaultSecondaryVariant(),
         className: secondaryButton.className || getDefaultSecondaryClassName(),
       }
     : null;

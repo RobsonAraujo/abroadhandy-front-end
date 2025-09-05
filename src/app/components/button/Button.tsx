@@ -8,7 +8,7 @@ export interface ButtonProps {
   variant?:
     | "primary"
     | "secondary"
-    | "accent"
+    | "black"
     | "success"
     | "error"
     | "purple"
@@ -17,7 +17,7 @@ export interface ButtonProps {
   hoverVariant?:
     | "primary"
     | "secondary"
-    | "accent"
+    | "black"
     | "success"
     | "error"
     | "purple"
@@ -29,7 +29,7 @@ export interface ButtonProps {
     | "white"
     | "primary"
     | "secondary"
-    | "accent"
+    | "black"
     | "success"
     | "error"
     | "purple";
@@ -66,7 +66,7 @@ const Button = ({
   const variantClasses = {
     primary: "bg-primary text-black focus:ring-primary/50",
     secondary: "bg-secondary text-white focus:ring-secondary/50",
-    accent: "bg-accent text-white focus:ring-accent/50",
+    black: "bg-black text-white focus:ring-black/50",
     success: "bg-success text-black focus:ring-success/50",
     error: "bg-error text-white focus:ring-error/50",
     purple: "bg-purple text-white focus:ring-purple/50",
@@ -78,7 +78,7 @@ const Button = ({
   const hoverClasses = {
     primary: "hover:bg-primary/90",
     secondary: "hover:bg-secondary/90",
-    accent: "hover:bg-accent/90",
+    black: "hover:bg-black/90",
     success: "hover:bg-success/90",
     error: "hover:bg-error/90",
     purple: "hover:bg-purple/90",
@@ -96,7 +96,6 @@ const Button = ({
     white: "text-white",
     primary: "text-primary",
     secondary: "text-secondary",
-    accent: "text-accent",
     success: "text-success",
     error: "text-error",
     purple: "text-purple",
