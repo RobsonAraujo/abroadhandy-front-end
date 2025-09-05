@@ -22,12 +22,11 @@ export default function Header() {
           <div className="flex-shrink-0">
             <Link href="/" title="" className="flex">
               <Image
-                className="w-auto h-8"
+                className="w-auto h-10"
                 src="/logo.svg"
                 alt="Abroad Handy Logo"
-                width={120}
-                height={32}
-                priority
+                width={100}
+                height={200}
               />
             </Link>
           </div>
@@ -50,7 +49,7 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 title=""
-                className="text-base text-black transition-all duration-200 hover:text-opacity-80"
+                className="text-base font-medium text-black transition-all duration-200 hover:text-opacity-80"
               >
                 {item.label}
               </Link>
@@ -96,7 +95,7 @@ export default function Header() {
                   key={item.href}
                   href={item.href}
                   title=""
-                  className="block px-3 py-2 text-base text-black transition-all duration-200 rounded-md hover:text-opacity-80 hover:bg-gray-50"
+                  className="block px-3 py-2 text-base font-medium text-black transition-all duration-200 rounded-md hover:text-opacity-80 hover:bg-gray-50"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
