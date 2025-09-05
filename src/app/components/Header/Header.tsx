@@ -20,14 +20,17 @@ export default function Header() {
       <div className="px-4 mx-auto sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <div className="flex-shrink-0">
-            <Link href="/" title="" className="flex">
+            <Link href="/" title="" className="flex items-center space-x-3">
               <Image
                 className="w-auto h-10"
                 src="/logo.svg"
-                alt="Abroad Handy Logo"
+                alt="AbroadHandy Logo"
                 width={100}
                 height={200}
               />
+              <span className="text-xl lg:text-2xl font-bold text-black">
+                AbroadHandy
+              </span>
             </Link>
           </div>
 

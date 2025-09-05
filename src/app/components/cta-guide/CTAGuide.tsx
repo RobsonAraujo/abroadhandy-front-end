@@ -5,9 +5,9 @@ export default function CTAGuide() {
     <section className="py-20 bg-white">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="bg-white rounded-2xl overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[800px]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[400px] lg:min-h-[600px]">
             <div
-              className="relative bg-cover bg-center bg-no-repeat"
+              className="relative bg-cover bg-center bg-no-repeat h-[300px] lg:h-auto"
               style={{
                 backgroundImage: "url('/become-a-mentor.png')",
               }}
