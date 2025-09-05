@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/app/components/ui/button";
 import ArrowRightIcon from "@/app/icons/ArrowRightIcon";
 import CTA from "@/app/components/cta/CTA";
+import { GraduationCap, Target, Star } from "lucide-react";
 
 export default function Join() {
   const benefits = [
@@ -9,19 +10,19 @@ export default function Join() {
       title: "Peer-to-Peer Guidance",
       description:
         "Connect with professionals who have successfully navigated university applications.",
-      icon: "🎓",
+      icon: <GraduationCap className="w-8 h-8 text-[#4F46E5]" />,
     },
     {
       title: "Personalized Guidance",
       description:
         "Get tailored advice based on your specific goals and background.",
-      icon: "🎯",
+      icon: <Target className="w-8 h-8 text-[#4F46E5]" />,
     },
     {
       title: "Proven Results",
       description:
         "Join 1,000+ students who achieved their university dreams with our help.",
-      icon: "⭐",
+      icon: <Star className="w-8 h-8 text-[#4F46E5]" />,
     },
   ];
 
@@ -52,7 +53,9 @@ export default function Join() {
               <div className="space-y-6">
                 {benefits.map((benefit, index) => (
                   <div key={index} className="flex items-start">
-                    <div className="text-3xl mr-4">{benefit.icon}</div>
+                    <div className="flex-shrink-0 mr-4 mt-1">
+                      {benefit.icon}
+                    </div>
                     <div>
                       <h3 className="text-xl font-semibold text-black mb-2">
                         {benefit.title}
