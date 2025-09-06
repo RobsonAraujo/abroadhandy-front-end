@@ -22,13 +22,13 @@ export default function Header() {
           <div className="flex-shrink-0">
             <Link href="/" title="" className="flex items-center space-x-3">
               <Image
-                className="w-auto h-10"
+                className="w-auto h-5"
                 src="/logo.svg"
                 alt="AbroadHandy Logo"
-                width={100}
-                height={200}
+                width={1}
+                height={1}
               />
-              <span className="text-xl lg:text-2xl font-bold text-black">
+              <span className="text-sm lg:text-sm font-bold text-black">
                 AbroadHandy
               </span>
             </Link>
