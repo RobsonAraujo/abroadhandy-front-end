@@ -1,5 +1,8 @@
+"use client";
+
 import { Button } from "@/app/components/ui/button";
 import Image from "next/image";
+import { useState } from "react";
 import {
   CheckCircle,
   DollarSign,
@@ -10,9 +13,23 @@ import {
   CreditCard,
   BookOpen,
   MessageCircle,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 export default function BecomeAMentor() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % platformFeatures.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide(
+      (prev) => (prev - 1 + platformFeatures.length) % platformFeatures.length
+    );
+  };
+
   const benefits = [
     {
       title: "Flexible Schedule",
@@ -269,12 +286,13 @@ export default function BecomeAMentor() {
               Guide students from over 180 countries
             </h2>
             <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
-              AbroadHandy guides help students globally. Join us and you'll have
-              everything you need to guide successfully.
+              AbroadHandy guides help students globally. Join us and you&apos;ll
+              have everything you need to guide successfully.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Desktop Grid */}
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {platformFeatures.map((feature, index) => (
               <div
                 key={index}
@@ -291,6 +309,64 @@ export default function BecomeAMentor() {
                 <p className="text-gray-600">{feature.description}</p>
               </div>
             ))}
+          </div>
+
+          {/* Mobile Carousel */}
+          <div className="md:hidden">
+            <div className="relative">
+              <div className="overflow-hidden">
+                <div
+                  className="flex transition-transform duration-300 ease-in-out"
+                  style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                >
+                  {platformFeatures.map((feature, index) => (
+                    <div key={index} className="w-full flex-shrink-0 px-4">
+                      <div
+                        className={`${feature.bgColor} rounded-lg p-6 border ${feature.borderColor}`}
+                      >
+                        <div className="flex items-center mb-4">
+                          <div className="bg-white rounded-full flex justify-center items-center w-12 h-12 border border-gray-100 mr-4">
+                            {feature.icon}
+                          </div>
+                          <h3 className="text-lg font-semibold text-black">
+                            {feature.title}
+                          </h3>
+                        </div>
+                        <p className="text-gray-600">{feature.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Navigation Buttons */}
+              <button
+                onClick={prevSlide}
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg border border-gray-200 hover:bg-gray-50 transition-colors z-10"
+              >
+                <ChevronLeft className="w-5 h-5 text-gray-600" />
+              </button>
+
+              <button
+                onClick={nextSlide}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg border border-gray-200 hover:bg-gray-50 transition-colors z-10"
+              >
+                <ChevronRight className="w-5 h-5 text-gray-600" />
+              </button>
+            </div>
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center mt-6 space-x-2">
+              {platformFeatures.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    index === currentSlide ? "bg-primary" : "bg-gray-300"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -328,7 +404,7 @@ export default function BecomeAMentor() {
           </h2>
           <p className="mt-4 text-lg text-black max-w-2xl mx-auto">
             Join our community of top students and start making a difference in
-            students' lives while earning money.
+            students&apos; lives while earning money.
           </p>
           <div className="mt-8">
             <Button
