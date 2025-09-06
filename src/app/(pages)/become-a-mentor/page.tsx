@@ -19,24 +19,32 @@ export default function BecomeAMentor() {
       description:
         "Set your own hours and work from anywhere in the world. Teach when it's convenient for you.",
       icon: <CheckCircle className="w-8 h-8 text-[#4F46E5]" />,
+      bgColor: "bg-blue-50",
+      borderColor: "border-blue-200",
     },
     {
       title: "Competitive Earnings",
       description:
         "Earn money sharing your knowledge and experience with students who need guidance.",
-      icon: <DollarSign className="w-8 h-8 text-[#4F46E5]" />,
+      icon: <DollarSign className="w-8 h-8 text-[#10B981]" />,
+      bgColor: "bg-green-50",
+      borderColor: "border-green-200",
     },
     {
       title: "Global Impact",
       description:
         "Help students from around the world achieve their university application dreams.",
-      icon: <Globe className="w-8 h-8 text-[#4F46E5]" />,
+      icon: <Globe className="w-8 h-8 text-[#F59E0B]" />,
+      bgColor: "bg-yellow-50",
+      borderColor: "border-yellow-200",
     },
     {
       title: "Build Your Network",
       description:
         "Connect with other top students and expand your professional network.",
-      icon: <Users className="w-8 h-8 text-[#4F46E5]" />,
+      icon: <Users className="w-8 h-8 text-[#8B5CF6]" />,
+      bgColor: "bg-purple-50",
+      borderColor: "border-purple-200",
     },
   ];
 
@@ -46,18 +54,24 @@ export default function BecomeAMentor() {
       title: "Sign up to create your guide profile",
       description:
         "Complete your profile with your university information, achievements, and areas of expertise to help students find the perfect match.",
+      bgColor: "bg-primary",
+      textColor: "text-black",
     },
     {
       number: 2,
       title: "Get approved by our team in 5 business days",
       description:
         "Our team reviews your application to ensure quality and verify your credentials from top universities.",
+      bgColor: "bg-secondary",
+      textColor: "text-white",
     },
     {
       number: 3,
       title: "Start earning by guiding students worldwide",
       description:
         "Begin helping students with their university applications and earn money while making a real difference in their lives.",
+      bgColor: "bg-purple",
+      textColor: "text-white",
     },
   ];
 
@@ -67,36 +81,48 @@ export default function BecomeAMentor() {
       description:
         "Our platform connects you with students actively seeking guidance for their university applications.",
       icon: <Users className="w-6 h-6 text-[#4F46E5]" />,
+      bgColor: "bg-blue-50",
+      borderColor: "border-blue-200",
     },
     {
       title: "Smart calendar",
       description:
         "Manage your availability and schedule sessions with students from around the world.",
-      icon: <Calendar className="w-6 h-6 text-[#4F46E5]" />,
+      icon: <Calendar className="w-6 h-6 text-[#10B981]" />,
+      bgColor: "bg-green-50",
+      borderColor: "border-green-200",
     },
     {
       title: "Interactive classroom",
       description:
         "Use our built-in video platform with screen sharing and collaborative tools.",
-      icon: <MessageCircle className="w-6 h-6 text-[#4F46E5]" />,
+      icon: <MessageCircle className="w-6 h-6 text-[#F59E0B]" />,
+      bgColor: "bg-yellow-50",
+      borderColor: "border-yellow-200",
     },
     {
       title: "Convenient payment methods",
       description:
         "Get paid securely through multiple payment options with regular payouts.",
-      icon: <CreditCard className="w-6 h-6 text-[#4F46E5]" />,
+      icon: <CreditCard className="w-6 h-6 text-[#8B5CF6]" />,
+      bgColor: "bg-purple-50",
+      borderColor: "border-purple-200",
     },
     {
       title: "Professional development webinars",
       description:
         "Access training sessions and resources to improve your teaching skills.",
-      icon: <BookOpen className="w-6 h-6 text-[#4F46E5]" />,
+      icon: <BookOpen className="w-6 h-6 text-[#EF4444]" />,
+      bgColor: "bg-red-50",
+      borderColor: "border-red-200",
     },
     {
       title: "Supportive guide community",
       description:
         "Connect with other guides, share experiences, and learn from the community.",
-      icon: <Users className="w-6 h-6 text-[#4F46E5]" />,
+      icon: <Users className="w-6 h-6 text-[#06B6D4]" />,
+      bgColor: "bg-cyan-50",
+      borderColor: "border-cyan-200",
     },
   ];
 
@@ -148,7 +174,7 @@ export default function BecomeAMentor() {
                 className="text-lg px-8 py-4"
                 iconEnd={<ArrowRight className="w-6 h-6" />}
               >
-                Start Your Journey
+                Create your profile
               </Button>
             </div>
           </div>
@@ -171,7 +197,9 @@ export default function BecomeAMentor() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {benefits.map((benefit, index) => (
               <div key={index} className="text-center">
-                <div className="bg-white rounded-full flex justify-center items-center mb-6 w-16 h-16 border border-gray-100 mx-auto">
+                <div
+                  className={`${benefit.bgColor} rounded-full flex justify-center items-center mb-6 w-16 h-16 ${benefit.borderColor} border-2 mx-auto`}
+                >
                   {benefit.icon}
                 </div>
                 <h3 className="text-xl font-semibold text-black mb-3">
@@ -213,8 +241,10 @@ export default function BecomeAMentor() {
             <div className="relative grid grid-cols-1 text-center gap-y-12 md:grid-cols-3 gap-x-12">
               {steps.map((step, index) => (
                 <div key={index}>
-                  <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-200 rounded-full shadow">
-                    <span className="text-xl font-semibold text-gray-700">
+                  <div
+                    className={`flex items-center justify-center w-16 h-16 mx-auto ${step.bgColor} border-2 border-gray-200 rounded-full shadow`}
+                  >
+                    <span className={`text-xl font-semibold ${step.textColor}`}>
                       {step.number}
                     </span>
                   </div>
@@ -246,7 +276,10 @@ export default function BecomeAMentor() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {platformFeatures.map((feature, index) => (
-              <div key={index} className="bg-gray-50 rounded-lg p-6">
+              <div
+                key={index}
+                className={`${feature.bgColor} rounded-lg p-6 border ${feature.borderColor}`}
+              >
                 <div className="flex items-center mb-4">
                   <div className="bg-white rounded-full flex justify-center items-center w-12 h-12 border border-gray-100 mr-4">
                     {feature.icon}
