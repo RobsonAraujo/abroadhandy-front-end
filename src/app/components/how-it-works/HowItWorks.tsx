@@ -1,3 +1,5 @@
+import { Users, Calendar, Video } from "lucide-react";
+
 export default function HowItWorks() {
   const steps = [
     {
@@ -7,7 +9,7 @@ export default function HowItWorks() {
         "Browse our network of top students from leading universities like Harvard, MIT, Stanford, and more. Find the perfect match for your application goals.",
       bgColor: "bg-primary",
       textColor: "text-black",
-      image: "🎓",
+      icon: <Users className="w-8 h-8 text-[#4F46E5]" />,
     },
     {
       number: 2,
@@ -16,7 +18,7 @@ export default function HowItWorks() {
         "Book a personalized session for interview practice, essay review, application strategy, or any specific guidance you need for your university application.",
       bgColor: "bg-secondary",
       textColor: "text-white",
-      image: "📅",
+      icon: <Calendar className="w-8 h-8 text-[#4F46E5]" />,
     },
     {
       number: 3,
@@ -25,7 +27,7 @@ export default function HowItWorks() {
         "Join your video call and receive personalized, one-on-one guidance from someone who has successfully navigated the same application process you're going through.",
       bgColor: "bg-purple",
       textColor: "text-white",
-      image: "💬",
+      icon: <Video className="w-8 h-8 text-[#4F46E5]" />,
     },
   ];
 
@@ -48,7 +50,9 @@ export default function HowItWorks() {
                   >
                     {step.number}
                   </div>
-                  <div className="text-4xl">{step.image}</div>
+                  <div className="bg-white rounded-full flex justify-center items-center w-14 h-14 border border-gray-100">
+                    {step.icon}
+                  </div>
                 </div>
 
                 <h3 className="text-2xl font-bold text-black mb-4">
