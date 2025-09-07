@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SoonBadge from "../soon-badge/SoonBadge";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -20,7 +21,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="/mentors"
+                  href="/find-top-students"
                   className="text-gray-400 hover:text-white"
                 >
                   Find Top Students
@@ -35,20 +36,16 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/success-stories"
-                  className="text-gray-400 hover:text-white"
-                >
+                <span className="text-gray-500 cursor-not-allowed">
                   Success Stories
-                </Link>
+                </span>
+                <SoonBadge />
               </li>
               <li>
-                <Link
-                  href="/pricing"
-                  className="text-gray-400 hover:text-white"
-                >
+                <span className="text-gray-500 cursor-not-allowed">
                   Pricing
-                </Link>
+                </span>
+                <SoonBadge />
               </li>
             </ul>
           </div>
@@ -65,20 +62,16 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/mentor-guidelines"
-                  className="text-gray-400 hover:text-white"
-                >
+                <span className="text-gray-500 cursor-not-allowed">
                   Guidelines
-                </Link>
+                </span>
+                <SoonBadge />
               </li>
               <li>
-                <Link
-                  href="/mentor-resources"
-                  className="text-gray-400 hover:text-white"
-                >
+                <span className="text-gray-500 cursor-not-allowed">
                   Resources
-                </Link>
+                </span>
+                <SoonBadge />
               </li>
             </ul>
           </div>
@@ -87,30 +80,28 @@ export default function Footer() {
             <h4 className="text-md font-semibold mb-4">Support</h4>
             <ul className="space-y-2">
               <li>
-                <Link
-                  href="/contact"
-                  className="text-gray-400 hover:text-white"
-                >
+                <span className="text-gray-500 cursor-not-allowed">
                   Contact Us
-                </Link>
+                </span>
+                <SoonBadge />
               </li>
               <li>
-                <Link href="/help" className="text-gray-400 hover:text-white">
+                <span className="text-gray-500 cursor-not-allowed">
                   Help Center
-                </Link>
+                </span>
+                <SoonBadge />
               </li>
               <li>
-                <Link
-                  href="/privacy"
-                  className="text-gray-400 hover:text-white"
-                >
+                <span className="text-gray-500 cursor-not-allowed">
                   Privacy Policy
-                </Link>
+                </span>
+                <SoonBadge />
               </li>
               <li>
-                <Link href="/terms" className="text-gray-400 hover:text-white">
+                <span className="text-gray-500 cursor-not-allowed">
                   Terms of Service
-                </Link>
+                </span>
+                <SoonBadge />
               </li>
             </ul>
           </div>
