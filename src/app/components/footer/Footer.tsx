@@ -29,7 +29,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/about-us"
+                  href="/how-it-works"
                   className="text-gray-400 hover:text-white"
                 >
                   How It Works

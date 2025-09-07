@@ -40,7 +40,8 @@ export interface CTAProps {
     | "success"
     | "error"
     | "purple"
-    | "white";
+    | "white"
+    | string;
   className?: string;
 }
 
@@ -72,6 +73,28 @@ export default function CTA({
     white: "bg-white",
   };
 
+  const getBackgroundClass = () => {
+    if (
+      backgroundColor &&
+      backgroundClasses[backgroundColor as keyof typeof backgroundClasses]
+    ) {
+      return backgroundClasses[
+        backgroundColor as keyof typeof backgroundClasses
+      ];
+    }
+    if (backgroundColor && backgroundColor.startsWith("#")) {
+      return "";
+    }
+    return backgroundClasses.secondary;
+  };
+
+  const getBackgroundStyle = () => {
+    if (backgroundColor && backgroundColor.startsWith("#")) {
+      return { backgroundColor };
+    }
+    return {};
+  };
+
   const textColorClasses = {
     secondary: "text-white",
     primary: "text-black",
@@ -92,6 +115,36 @@ export default function CTA({
     white: "text-gray-600",
   };
 
+  const getTextColorClass = () => {
+    if (backgroundColor && backgroundColor.startsWith("#")) {
+      return "text-white";
+    }
+    if (
+      backgroundColor &&
+      textColorClasses[backgroundColor as keyof typeof textColorClasses]
+    ) {
+      return textColorClasses[backgroundColor as keyof typeof textColorClasses];
+    }
+    return textColorClasses.secondary;
+  };
+
+  const getDescriptionColorClass = () => {
+    if (backgroundColor && backgroundColor.startsWith("#")) {
+      return "text-white/80";
+    }
+    if (
+      backgroundColor &&
+      descriptionColorClasses[
+        backgroundColor as keyof typeof descriptionColorClasses
+      ]
+    ) {
+      return descriptionColorClasses[
+        backgroundColor as keyof typeof descriptionColorClasses
+      ];
+    }
+    return descriptionColorClasses.secondary;
+  };
+
   // Auto-assign button variants based on background color
   const getDefaultPrimaryVariant = ():
     | "primary"
@@ -102,6 +155,9 @@ export default function CTA({
     | "purple"
     | "white"
     | "outline" => {
+    if (backgroundColor && backgroundColor.startsWith("#")) {
+      return "white";
+    }
     switch (backgroundColor) {
       case "secondary":
         return "secondary";
@@ -131,27 +187,13 @@ export default function CTA({
     | "purple"
     | "white"
     | "outline" => {
-    switch (backgroundColor) {
-      case "secondary":
-        return "outline";
-      case "primary":
-        return "outline";
-      case "black":
-        return "outline";
-      case "success":
-        return "outline";
-      case "error":
-        return "outline";
-      case "purple":
-        return "outline";
-      case "white":
-        return "outline";
-      default:
-        return "outline";
-    }
+    return "outline";
   };
 
   const getDefaultSecondaryClassName = () => {
+    if (backgroundColor && backgroundColor.startsWith("#")) {
+      return `border-white text-white hover:bg-white hover:text-[${backgroundColor}]`;
+    }
     switch (backgroundColor) {
       case "secondary":
         return "border-white text-white hover:bg-white hover:text-secondary";
@@ -188,18 +230,17 @@ export default function CTA({
 
   return (
     <section
-      className={`py-16 ${backgroundClasses[backgroundColor]} ${className}`}
+      className={`py-16 ${getBackgroundClass()} ${className}`}
+      style={getBackgroundStyle()}
     >
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="text-center">
           <h2
-            className={`text-3xl font-bold lg:text-4xl ${textColorClasses[backgroundColor]}`}
+            className={`text-3xl font-bold lg:text-4xl ${getTextColorClass()}`}
           >
             {title}
           </h2>
-          <p
-            className={`mt-4 text-lg ${descriptionColorClasses[backgroundColor]}`}
-          >
+          <p className={`mt-4 text-lg ${getDescriptionColorClass()}`}>
             {description}
           </p>
 
