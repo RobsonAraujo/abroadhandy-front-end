@@ -34,17 +34,10 @@ export default function FindTopStudents() {
           <h1 className="text-4xl lg:text-5xl font-bold text-black mb-6">
             Find Top Students & Mentors
           </h1>
-          <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            Looking for an online mentor to guide your university application
-            journey?
-            <br />
-            AbroadHandy is the leading platform connecting students with top
-            university mentors worldwide. You can choose from thousands of
-            verified mentors from MIT, Stanford, Harvard, Oxford, and other
-            leading universities. Book a session with a private mentor today and
-            start your journey to success. Not entirely happy with your mentor?
-            No worries, we offer free mentor replacement until you&apos;re 100%
-            satisfied.
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Connect with verified mentors from MIT, Stanford, Harvard, Oxford,
+            and other top universities. Get personalized guidance for your
+            university application journey.
           </p>
         </div>
 
