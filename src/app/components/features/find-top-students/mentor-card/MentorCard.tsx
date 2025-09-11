@@ -43,7 +43,7 @@ export function MentorCard({
         <div className="flex-shrink-0 p-6">
           <div className="relative">
             <Image
-              src={mentor.avatar}
+              src={mentor.avatar || "/default-avatar.svg"}
               alt={`${mentor.name} profile`}
               width={96}
               height={96}
@@ -138,7 +138,7 @@ export function MentorCard({
         <div className="flex items-start gap-4 mb-4">
           <div className="flex-shrink-0">
             <Image
-              src={mentor.avatar}
+              src={mentor.avatar || "/default-avatar.svg"}
               alt={`${mentor.name} profile`}
               width={64}
               height={64}
