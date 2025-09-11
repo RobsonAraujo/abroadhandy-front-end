@@ -6,7 +6,7 @@ export interface MenuItem {
 
 export const MENU_ITEMS: MenuItem[] = [
   {
-    href: "/mentors",
+    href: "/find-top-students",
     label: "Find Top Students",
   },
   {

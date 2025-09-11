@@ -55,7 +55,7 @@ export default function CTA({
     icon: <ArrowRightIcon className="w-5 h-5" />,
   },
   secondaryButton = {
-    href: "/mentors",
+    href: "/find-top-students",
     text: "Browse Top Students",
     variant: "outline",
     className: "border-white text-white hover:bg-white hover:text-secondary",

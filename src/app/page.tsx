@@ -1,9 +1,9 @@
-import Hero from "./components/hero/Hero";
-import HowItWorks from "./components/how-it-works/HowItWorks";
-import CTASimple from "./components/cta-simple/CTASimple";
+import Hero from "./components/features/home/hero/Hero";
+import HowItWorks from "./components/features/home/how-it-works/HowItWorks";
+import CTASimple from "./components/features/home/cta-simple/CTASimple";
 import CTA from "./components/cta/CTA";
-import CTAGuide from "./components/cta-guide/CTAGuide";
-import Features from "./components/features/Features";
+import CTAGuide from "./components/features/home/cta-guide/CTAGuide";
+import WhyChooseUs from "./components/features/home/why-choose-us/WhyChooseUs";
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
       <HowItWorks />
       <CTASimple />
       <CTAGuide />
-      <Features />
+      <WhyChooseUs />
       <CTA />
     </>
   );

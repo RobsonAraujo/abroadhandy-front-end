@@ -1,6 +1,6 @@
 import { Users, Globe, Target, Trophy } from "lucide-react";
 
-export default function Features() {
+export default function WhyChooseUs() {
   const features = [
     {
       title: "One-on-One Mentorship",
