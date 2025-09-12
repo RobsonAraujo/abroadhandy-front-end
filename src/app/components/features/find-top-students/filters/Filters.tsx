@@ -81,7 +81,7 @@ export function Filters({ onFiltersChange }: FiltersProps) {
   });
   const [isSelectOpen, setIsSelectOpen] = useState(false);
 
-  const updateFilter = (key: keyof FilterState, value: any) => {
+  const updateFilter = (key: keyof FilterState, value: string | number) => {
     const newFilters = { ...filters, [key]: value };
     setFilters(newFilters);
     onFiltersChange(newFilters);
@@ -91,7 +91,7 @@ export function Filters({ onFiltersChange }: FiltersProps) {
     <>
       {isSelectOpen && (
         <div
-          className="fixed inset-0 bg-black/20 z-40"
+          className="fixed inset-0 bg-black/20 z-40 pointer-events-none"
           onClick={() => setIsSelectOpen(false)}
         />
       )}
