@@ -149,6 +149,7 @@ export default function FindTopStudents() {
                         e.preventDefault();
                         if (currentPage > 1) {
                           setCurrentPage(currentPage - 1);
+                          window.scrollTo(0, 0);
                         }
                       }}
                       className={
@@ -167,6 +168,7 @@ export default function FindTopStudents() {
                           onClick={(e) => {
                             e.preventDefault();
                             setCurrentPage(page);
+                            window.scrollTo(0, 0);
                           }}
                           isActive={currentPage === page}
                           className="cursor-pointer"
@@ -184,6 +186,7 @@ export default function FindTopStudents() {
                         e.preventDefault();
                         if (currentPage < totalPages) {
                           setCurrentPage(currentPage + 1);
+                          window.scrollTo(0, 0);
                         }
                       }}
                       className={
