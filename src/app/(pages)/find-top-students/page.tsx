@@ -4,6 +4,10 @@ import { useState } from "react";
 
 import { MentorCard } from "@/app/components/features/find-top-students/mentor-card/MentorCard";
 import { MentorSidebar } from "@/app/components/features/find-top-students/mentor-sidebar/MentorSidebar";
+import {
+  Filters,
+  FilterState,
+} from "@/app/components/features/find-top-students/filters/Filters";
 import { mentors } from "@/app/mocks";
 import {
   Pagination,
@@ -35,12 +39,64 @@ export default function FindTopStudents() {
   const [selectedMentor, setSelectedMentor] = useState<Mentor | null>(null);
   const [hoveredMentor, setHoveredMentor] = useState<Mentor | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [filters, setFilters] = useState<FilterState>({
+    search: "",
+    university: "All Universities",
+    course: "All Courses",
+    country: "All Countries",
+    maxPrice30min: 100,
+    maxPrice60min: 200,
+  });
+
+  // Filter mentors based on current filters
+  const filteredMentors = mentors.filter((mentor) => {
+    // Search filter
+    if (filters.search) {
+      const searchTerm = filters.search.toLowerCase();
+      const searchableText =
+        `${mentor.name} ${mentor.university} ${mentor.course} ${mentor.about}`.toLowerCase();
+      if (!searchableText.includes(searchTerm)) return false;
+    }
+
+    // University filter
+    if (
+      filters.university !== "All Universities" &&
+      mentor.university !== filters.university
+    ) {
+      return false;
+    }
+
+    // Course filter
+    if (filters.course !== "All Courses" && mentor.course !== filters.course) {
+      return false;
+    }
+
+    // Country filter
+    if (
+      filters.country !== "All Countries" &&
+      mentor.country !== filters.country
+    ) {
+      return false;
+    }
+
+    // Price filters
+    if (mentor.price30min > filters.maxPrice30min) return false;
+    if (mentor.price60min > filters.maxPrice60min) return false;
+
+    return true;
+  });
 
   const itemsPerPage = 10;
-  const totalPages = Math.ceil(mentors.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredMentors.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentMentors = mentors.slice(startIndex, endIndex);
+  const currentMentors = filteredMentors.slice(startIndex, endIndex);
+
+  // Reset to first page when filters change
+  const handleFiltersChange = (newFilters: FilterState) => {
+    setFilters(newFilters);
+    setCurrentPage(1);
+  };
 
   return (
     <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
@@ -56,13 +112,16 @@ export default function FindTopStudents() {
           </p>
         </div>
 
+        <Filters onFiltersChange={handleFiltersChange} />
+
         <div className="mb-8">
           <h2 className="text-2xl font-semibold text-black">
-            {mentors.length.toLocaleString()} Mentors Available
+            {filteredMentors.length.toLocaleString()} Mentors Available
           </h2>
           <p className="text-gray-600 mt-1">
-            Showing {startIndex + 1}-{Math.min(endIndex, mentors.length)} of{" "}
-            {mentors.length} mentors
+            Showing {startIndex + 1}-
+            {Math.min(endIndex, filteredMentors.length)} of{" "}
+            {filteredMentors.length} mentors
           </p>
         </div>
 
