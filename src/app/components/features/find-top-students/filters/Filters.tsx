@@ -2,15 +2,9 @@
 
 import { useState } from "react";
 import { Input } from "@/app/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/app/components/ui/select";
 import { Slider } from "@/app/components/ui/slider";
 import { Search, Filter } from "lucide-react";
+import { AutocompleteSelect } from "./AutocompleteSelect";
 
 interface FiltersProps {
   onFiltersChange: (filters: FilterState) => void;
@@ -98,7 +92,7 @@ export function Filters({ onFiltersChange }: FiltersProps) {
       <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 mb-8 relative z-50">
         <div className="flex items-center gap-2 mb-6">
           <Filter className="w-5 h-5 text-gray-600" />
-          <h3 className="text-lg font-semibold text-gray-900">
+          <h3 className="text-base font-normal text-gray-700">
             Filter Mentors
           </h3>
         </div>
@@ -122,71 +116,38 @@ export function Filters({ onFiltersChange }: FiltersProps) {
 
           {/* University Select */}
           <div className="lg:col-span-1">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              University
-            </label>
-            <Select
+            <AutocompleteSelect
+              options={universities}
               value={filters.university}
               onValueChange={(value) => updateFilter("university", value)}
+              placeholder="All"
+              label="University"
               onOpenChange={setIsSelectOpen}
-            >
-              <SelectTrigger className="h-14 text-base border-gray-300 focus:border-blue-500 focus:ring-blue-500">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {universities.map((university) => (
-                  <SelectItem key={university} value={university}>
-                    {university}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            />
           </div>
 
           {/* Course Select */}
           <div className="lg:col-span-1">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Course
-            </label>
-            <Select
+            <AutocompleteSelect
+              options={courses}
               value={filters.course}
               onValueChange={(value) => updateFilter("course", value)}
+              placeholder="All"
+              label="Course"
               onOpenChange={setIsSelectOpen}
-            >
-              <SelectTrigger className="h-14 text-base border-gray-300 focus:border-blue-500 focus:ring-blue-500">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {courses.map((course) => (
-                  <SelectItem key={course} value={course}>
-                    {course}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            />
           </div>
 
           {/* Country Select */}
           <div className="lg:col-span-1">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Country
-            </label>
-            <Select
+            <AutocompleteSelect
+              options={countries}
               value={filters.country}
               onValueChange={(value) => updateFilter("country", value)}
+              placeholder="All"
+              label="Country"
               onOpenChange={setIsSelectOpen}
-            >
-              <SelectTrigger className="h-14 text-base border-gray-300 focus:border-blue-500 focus:ring-blue-500">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {countries.map((country) => (
-                  <SelectItem key={country} value={country}>
-                    {country}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            />
           </div>
         </div>
 
