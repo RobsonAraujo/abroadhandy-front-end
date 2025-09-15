@@ -36,7 +36,7 @@ export default function Register() {
           {/* Left Side - Benefits */}
           <div className="order-2 lg:order-1">
             <div className="text-center lg:text-left">
-              <h1 className="text-4xl lg:text-5xl font-bold text-black mb-6">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-black mb-6">
                 Join the Future of
                 <span className="text-secondary"> University Applications</span>
               </h1>

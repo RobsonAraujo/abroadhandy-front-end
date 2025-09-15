@@ -35,7 +35,7 @@ export default function Login() {
           {/* Left Side - Features */}
           <div className="order-2 lg:order-1">
             <div className="text-center lg:text-left">
-              <h1 className="text-4xl lg:text-5xl font-bold text-black mb-6">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-black mb-6">
                 Welcome Back to
                 <span className="text-secondary"> AbroadHandy</span>
               </h1>

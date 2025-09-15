@@ -102,7 +102,7 @@ export default function FindTopStudents() {
     <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="text-center mb-12">
-          <h1 className="text-4xl lg:text-5xl font-bold text-black mb-6">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-black mb-6">
             Find Top Students & Mentors
           </h1>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">

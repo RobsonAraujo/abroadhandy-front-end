@@ -107,7 +107,7 @@ export default function HowItWorks() {
       <section className="bg-background-light bg-opacity-30 py-16 lg:py-24">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h1 className="text-4xl font-bold text-black lg:text-6xl xl:text-7xl leading-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-black leading-tight mb-6">
               How It Works
             </h1>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
