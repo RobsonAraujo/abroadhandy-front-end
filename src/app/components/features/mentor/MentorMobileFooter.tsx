@@ -25,7 +25,7 @@ export function MentorMobileFooter({}: MentorMobileFooterProps) {
         </Button>
 
         <Button
-          variant="secondary"
+          variant="primary"
           size="lg"
           className="h-12 flex-1 rounded-lg"
           iconStart={<Calendar className="w-5 h-5" />}
