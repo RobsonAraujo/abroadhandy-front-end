@@ -122,7 +122,9 @@ export function MentorCard({
 
             <div className="flex flex-col gap-3">
               <Button
-                className="w-full bg-secondary hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+                variant="secondary"
+                size="lg"
+                className="w-full"
                 onClick={(e) => e.stopPropagation()}
               >
                 Book Session
@@ -209,7 +211,9 @@ export function MentorCard({
             </div>
           </div>
           <Button
-            className="w-full bg-secondary hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+            variant="secondary"
+            size="lg"
+            className="w-full"
             onClick={(e) => e.stopPropagation()}
           >
             Book a Session
