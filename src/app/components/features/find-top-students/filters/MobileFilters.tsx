@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { Slider } from "@/app/components/ui/slider";
 import { Button } from "@/app/components/ui/button";
 import {
@@ -69,6 +70,8 @@ export function MobileFilters({
   onClose,
   isOpen,
 }: MobileFiltersProps) {
+  const [accordionValue, setAccordionValue] = React.useState<string>("");
+
   const updateFilter = (key: keyof FilterState, value: string | number) => {
     const newFilters = { ...filters, [key]: value };
     onFiltersChange(newFilters);
@@ -96,6 +99,7 @@ export function MobileFilters({
     value: string
   ) => {
     updateFilter(type, value);
+    setAccordionValue("");
   };
 
   if (!isOpen) return null;
@@ -123,7 +127,13 @@ export function MobileFilters({
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-4 space-y-6">
           {/* University Accordion */}
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion
+            type="single"
+            collapsible
+            className="w-full"
+            value={accordionValue}
+            onValueChange={setAccordionValue}
+          >
             <AccordionItem
               value="university"
               className="border border-gray-200 rounded-lg"
@@ -159,7 +169,13 @@ export function MobileFilters({
           </Accordion>
 
           {/* Course Accordion */}
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion
+            type="single"
+            collapsible
+            className="w-full"
+            value={accordionValue}
+            onValueChange={setAccordionValue}
+          >
             <AccordionItem
               value="course"
               className="border border-gray-200 rounded-lg"
@@ -193,7 +209,13 @@ export function MobileFilters({
           </Accordion>
 
           {/* Country Accordion */}
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion
+            type="single"
+            collapsible
+            className="w-full"
+            value={accordionValue}
+            onValueChange={setAccordionValue}
+          >
             <AccordionItem
               value="country"
               className="border border-gray-200 rounded-lg"
