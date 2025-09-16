@@ -1,6 +1,8 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import { MessageCircle } from "lucide-react";
+import { Button } from "@/app/components/ui/button";
 import { mentors } from "@/app/mocks/mentors";
 import { MentorProfile } from "@/app/components/features/mentor/MentorProfile";
 import { MentorAbout } from "@/app/components/features/mentor/MentorAbout";
@@ -39,6 +41,19 @@ export default function MentorPage() {
           <div className="lg:col-span-4 space-y-8">
             {/* Quick Profile */}
             <MentorProfile mentor={mentor} />
+
+            {/* Send Message Button - Mobile Only */}
+            <div className="py-4 md:hidden">
+              <Button
+                variant="outline"
+                size="lg"
+                className="w-full rounded"
+                color="white"
+                iconStart={<MessageCircle className="w-5 h-5" />}
+              >
+                Send message
+              </Button>
+            </div>
 
             {/* About Me */}
             <MentorAbout mentor={mentor} />

@@ -59,6 +59,7 @@ const generateWeeklySchedule = (weekOffset: number = 0) => {
 export function MentorSchedule({}: MentorScheduleProps) {
   const [currentWeek, setCurrentWeek] = useState(0);
   const [selectedTimezone, setSelectedTimezone] = useState("UTC-5");
+  const [showFullSchedule, setShowFullSchedule] = useState(false);
 
   const weekData = generateWeeklySchedule(currentWeek);
 
@@ -93,46 +94,86 @@ export function MentorSchedule({}: MentorScheduleProps) {
       <h2 className="text-2xl font-semibold text-gray-900 mb-6">Schedule</h2>
 
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        {/* Navigation */}
-        <div className="flex items-center gap-3">
-          <button
-            onClick={goToPreviousWeek}
-            disabled={currentWeek === 0}
-            className="p-2 rounded-lg border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={goToNextWeek}
-            className="p-2 rounded-lg border border-gray-300 hover:bg-gray-50"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-          <span className="text-lg font-semibold text-gray-900 ml-2">
-            {weekRange}
-          </span>
+      <div className="mb-6">
+        {/* Navigation - Desktop */}
+        <div className="hidden md:flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={goToPreviousWeek}
+              disabled={currentWeek === 0}
+              className="p-2 rounded-lg border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={goToNextWeek}
+              className="p-2 rounded-lg border border-gray-300 hover:bg-gray-50"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+            <span className="text-lg font-semibold text-gray-900 ml-2">
+              {weekRange}
+            </span>
+          </div>
+
+          {/* Timezone Selector */}
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-gray-600">Timezone:</span>
+            <select
+              value={selectedTimezone}
+              onChange={(e) => setSelectedTimezone(e.target.value)}
+              className="px-3 py-1 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            >
+              {timezones.map((tz) => (
+                <option key={tz.value} value={tz.value}>
+                  {tz.label}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
-        {/* Timezone Selector */}
-        <div className="flex items-center gap-2">
-          <span className="text-sm text-gray-600">Timezone:</span>
-          <select
-            value={selectedTimezone}
-            onChange={(e) => setSelectedTimezone(e.target.value)}
-            className="px-3 py-1 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          >
-            {timezones.map((tz) => (
-              <option key={tz.value} value={tz.value}>
-                {tz.label}
-              </option>
-            ))}
-          </select>
+        {/* Navigation - Mobile */}
+        <div className="md:hidden">
+          {/* Week Navigation */}
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <button
+              onClick={goToPreviousWeek}
+              disabled={currentWeek === 0}
+              className="p-2 rounded-lg border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <span className="text-lg font-semibold text-gray-900 text-center min-w-0 flex-1">
+              {weekRange}
+            </span>
+            <button
+              onClick={goToNextWeek}
+              className="p-2 rounded-lg border border-gray-300 hover:bg-gray-50"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Timezone Selector */}
+          <div className="text-center">
+            <select
+              value={selectedTimezone}
+              onChange={(e) => setSelectedTimezone(e.target.value)}
+              className="px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
+            >
+              {timezones.map((tz) => (
+                <option key={tz.value} value={tz.value}>
+                  {tz.label}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
 
-      {/* Schedule Grid */}
-      <div className="grid grid-cols-7 gap-4">
+      {/* Desktop Schedule Grid */}
+      <div className="hidden md:grid grid-cols-7 gap-4">
         {weekData.map((day, index) => (
           <div key={index} className="text-center">
             {/* Day Header with colored line */}
@@ -181,6 +222,77 @@ export function MentorSchedule({}: MentorScheduleProps) {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Mobile Schedule List */}
+      <div className="md:hidden space-y-4">
+        {weekData
+          .slice(0, showFullSchedule ? weekData.length : 2)
+          .map((day, index) => (
+            <div
+              key={index}
+              className="bg-gray-50 border border-gray-200 rounded-lg p-4"
+            >
+              {/* Day Header */}
+              <div className="flex items-center gap-3 mb-3">
+                <div
+                  className={`w-3 h-3 rounded-full ${
+                    day.times.length > 0 ? "bg-yellow-400" : "bg-gray-300"
+                  }`}
+                ></div>
+                <div
+                  className={`font-semibold ${
+                    day.times.length > 0 ? "text-gray-900" : "text-gray-500"
+                  }`}
+                >
+                  {day.dayName}, {day.fullDate}
+                </div>
+              </div>
+
+              {/* Time Slots */}
+              {day.times.length > 0 ? (
+                <div className="grid grid-cols-3 gap-2">
+                  {day.times.map((time, timeIndex) => (
+                    <button
+                      key={timeIndex}
+                      className="py-3 px-4 text-sm font-medium border border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors cursor-pointer bg-white"
+                      title="Click to schedule"
+                    >
+                      {time}
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-sm text-gray-500 italic text-center py-4">
+                  No available times
+                </div>
+              )}
+            </div>
+          ))}
+
+        {/* See Full Schedule Button */}
+        {!showFullSchedule && weekData.length > 2 && (
+          <div className="text-center pt-4">
+            <button
+              onClick={() => setShowFullSchedule(true)}
+              className="px-6 py-3 bg-white border border-gray-300 rounded-lg  hover:text-blue-700 hover:border-blue-300 hover:bg-blue-50 font-medium transition-colors"
+            >
+              See Full Schedule ({weekData.length - 2} more days)
+            </button>
+          </div>
+        )}
+
+        {/* Show Less Button */}
+        {showFullSchedule && (
+          <div className="text-center pt-4">
+            <button
+              onClick={() => setShowFullSchedule(false)}
+              className="text-blue-600 hover:text-blue-700 font-medium text-sm"
+            >
+              Show Less
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Note */}
