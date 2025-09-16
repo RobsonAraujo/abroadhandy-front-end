@@ -6,6 +6,7 @@ import { MentorProfile } from "@/app/components/features/mentor/MentorProfile";
 import { MentorAbout } from "@/app/components/features/mentor/MentorAbout";
 import { MentorLanguages } from "@/app/components/features/mentor/MentorLanguages";
 import { MentorSchedule } from "@/app/components/features/mentor/MentorSchedule";
+import { MentorReviews } from "@/app/components/features/mentor/MentorReviews";
 import { MentorSidebar } from "@/app/components/features/mentor/MentorSidebar";
 
 export default function MentorPage() {
@@ -46,6 +47,9 @@ export default function MentorPage() {
 
             {/* Schedule */}
             <MentorSchedule mentorId={mentor.id} />
+
+            {/* Reviews */}
+            <MentorReviews mentorId={mentor.id} />
           </div>
 
           {/* Sidebar - 33% (2 columns) */}

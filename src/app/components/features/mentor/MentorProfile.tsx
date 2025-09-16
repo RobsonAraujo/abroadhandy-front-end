@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Star, User } from "lucide-react";
 
 interface MentorProfileProps {
@@ -74,9 +75,11 @@ export function MentorProfile({ mentor }: MentorProfileProps) {
         <div className="flex-shrink-0">
           <div className="w-32 h-32 rounded-full overflow-hidden bg-gray-100">
             {mentor.avatar ? (
-              <img
+              <Image
                 src={mentor.avatar}
                 alt={mentor.name}
+                width={128}
+                height={128}
                 className="w-full h-full object-cover"
               />
             ) : (
@@ -124,12 +127,12 @@ export function MentorProfile({ mentor }: MentorProfileProps) {
               {mentor.university}
             </div>
             <div
-               className={`px-3 py-1 rounded-full text-sm font-medium ${
-                 mentor.status === "current"
-                   ? "bg-green-100 text-green-700"
-                   : "bg-yellow-100 text-yellow-700"
-               }`}
-             >
+              className={`px-3 py-1 rounded-full text-sm font-medium ${
+                mentor.status === "current"
+                  ? "bg-green-100 text-green-700"
+                  : "bg-yellow-100 text-yellow-700"
+              }`}
+            >
               {mentor.status === "current" ? "Current Student" : "Alumni"}
             </div>
             <div className="text-gray-600">{mentor.course}</div>
