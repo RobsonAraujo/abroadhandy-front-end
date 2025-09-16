@@ -43,12 +43,11 @@ export default function MentorPage() {
             <MentorProfile mentor={mentor} />
 
             {/* Send Message Button - Mobile Only */}
-            <div className="py-4 md:hidden">
+            <div className="py-4 md:hidden  ">
               <Button
                 variant="outline"
                 size="lg"
-                className="w-full rounded"
-                color="white"
+                className="w-full rounded "
                 iconStart={<MessageCircle className="w-5 h-5" />}
               >
                 Send message
