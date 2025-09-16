@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@/app/components/ui/input";
 import { Slider } from "@/app/components/ui/slider";
 import { Search, Filter } from "lucide-react";
 import { AutocompleteSelect } from "./AutocompleteSelect";
+import { MobileFilterHeader } from "./MobileFilterHeader";
+import { MobileFilters } from "./MobileFilters";
 
 interface FiltersProps {
   onFiltersChange: (filters: FilterState) => void;
@@ -74,9 +76,27 @@ export function Filters({ onFiltersChange }: FiltersProps) {
     maxPrice60min: 200,
   });
   const [isSelectOpen, setIsSelectOpen] = useState(false);
+  const [isMobileModalOpen, setIsMobileModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (isMobileModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMobileModalOpen]);
 
   const updateFilter = (key: keyof FilterState, value: string | number) => {
     const newFilters = { ...filters, [key]: value };
+    setFilters(newFilters);
+    onFiltersChange(newFilters);
+  };
+
+  const handleMobileFilterChange = (newFilters: FilterState) => {
     setFilters(newFilters);
     onFiltersChange(newFilters);
   };
@@ -89,7 +109,24 @@ export function Filters({ onFiltersChange }: FiltersProps) {
           onClick={() => setIsSelectOpen(false)}
         />
       )}
-      <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 mb-8 relative z-50">
+
+      {/* Mobile Version */}
+      <MobileFilterHeader
+        filters={filters}
+        onSearchChange={(value) => updateFilter("search", value)}
+        onFilterClick={() => setIsMobileModalOpen(true)}
+      />
+
+      {/* Mobile Modal */}
+      <MobileFilters
+        filters={filters}
+        onFiltersChange={handleMobileFilterChange}
+        onClose={() => setIsMobileModalOpen(false)}
+        isOpen={isMobileModalOpen}
+      />
+
+      {/* Desktop Version */}
+      <div className="hidden md:block bg-white rounded-2xl border border-gray-200 shadow-sm p-6 mb-8 relative z-50">
         <div className="flex items-center gap-2 mb-6">
           <Filter className="w-5 h-5 text-gray-600" />
           <h3 className="text-base font-normal text-gray-700">
