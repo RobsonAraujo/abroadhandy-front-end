@@ -81,11 +81,11 @@ export default function Login() {
                   </Link>
                 </p>
               </div>
-              <form className="space-y-6">
+              <form className="space-y-8 md:space-y-6">
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium text-gray-700 mb-2"
+                    className="block text-base md:text-sm font-medium text-gray-700 mb-3"
                   >
                     Email address
                   </label>
@@ -102,7 +102,7 @@ export default function Login() {
                 <div>
                   <label
                     htmlFor="password"
-                    className="block text-sm font-medium text-gray-700 mb-2"
+                    className="block text-base md:text-sm font-medium text-gray-700 mb-3"
                   >
                     Password
                   </label>
@@ -141,7 +141,7 @@ export default function Login() {
                   type="submit"
                   variant="primary"
                   size="lg"
-                  className="w-full"
+                  className="w-full h-14"
                 >
                   Sign in
                 </Button>

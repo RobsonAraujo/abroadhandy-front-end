@@ -83,12 +83,12 @@ export default function Register() {
                   </Link>
                 </p>
               </div>
-              <form className="space-y-6">
+              <form className="space-y-8 md:space-y-6">
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   <div>
                     <label
                       htmlFor="firstName"
-                      className="block text-sm font-medium text-gray-700 mb-2"
+                      className="block text-base md:text-sm font-medium text-gray-700 mb-3"
                     >
                       First name
                     </label>
@@ -105,7 +105,7 @@ export default function Register() {
                   <div>
                     <label
                       htmlFor="lastName"
-                      className="block text-sm font-medium text-gray-700 mb-2"
+                      className="block text-base md:text-sm font-medium text-gray-700 mb-3"
                     >
                       Last name
                     </label>
@@ -138,11 +138,11 @@ export default function Register() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-4">
+                  <label className="block text-base md:text-sm font-medium text-gray-700 mb-4">
                     I am a
                   </label>
                   <RadioGroup defaultValue="student" className="space-y-3">
-                    <div className="flex items-center space-x-3 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+                    <div className="flex items-center space-x-3 p-5 md:p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
                       <RadioGroupItem value="student" id="student" />
                       <label
                         htmlFor="student"
@@ -156,7 +156,7 @@ export default function Register() {
                         </div>
                       </label>
                     </div>
-                    <div className="flex items-center space-x-3 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+                    <div className="flex items-center space-x-3 p-5 md:p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
                       <RadioGroupItem value="mentor" id="mentor" />
                       <label htmlFor="mentor" className="flex-1 cursor-pointer">
                         <div className="font-medium text-gray-900">
@@ -231,7 +231,7 @@ export default function Register() {
                   type="submit"
                   variant="primary"
                   size="lg"
-                  className="w-full"
+                  className="w-full h-14"
                 >
                   Create account
                 </Button>
