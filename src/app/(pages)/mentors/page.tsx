@@ -103,7 +103,7 @@ export default function FindTopStudents() {
       <div className="mx-auto max-w-7xl">
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-black mb-6">
-            Find Top Students & Mentors
+            Find Top Student Mentors
           </h1>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Connect with verified mentors from MIT, Stanford, Harvard, Oxford,

@@ -9,7 +9,7 @@ import {
   GraduationCap,
   CheckCircle,
 } from "lucide-react";
-import { Mentor } from "@/app/(pages)/find-top-students/page";
+import { Mentor } from "@/app/(pages)/mentors/page";
 
 interface MentorSidebarProps {
   selectedMentor: Mentor | null;

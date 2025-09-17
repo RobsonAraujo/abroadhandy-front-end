@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/app/components/ui/button";
 import { Star, MapPin, GraduationCap } from "lucide-react";
-import { Mentor } from "@/app/(pages)/find-top-students/page";
+import { Mentor } from "@/app/(pages)/mentors/page";
 
 interface MentorCardProps {
   mentor: Mentor;

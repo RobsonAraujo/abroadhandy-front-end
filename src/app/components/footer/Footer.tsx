@@ -21,10 +21,10 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="/find-top-students"
+                  href="/mentors"
                   className="text-gray-400 hover:text-white"
                 >
-                  Find Top Students
+                  Find Mentors
                 </Link>
               </li>
               <li>
