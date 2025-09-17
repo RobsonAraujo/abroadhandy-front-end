@@ -152,8 +152,8 @@ export default function Join() {
           icon: <ArrowRightIcon className="w-5 h-5" />,
         }}
         secondaryButton={{
-          href: "/find-top-students",
-          text: "Browse Top Students",
+          href: "/mentors",
+          text: "Browse Top Student Mentors",
         }}
         backgroundColor="secondary"
       />
