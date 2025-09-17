@@ -27,7 +27,7 @@ export default function Hero() {
               className="mt-8 lg:mt-16"
               iconEnd={<ArrowRightIcon className="w-6 h-6" />}
             >
-              Find a guide
+              Find a mentor
             </Button>
 
             <p className="mt-5 text-gray-600">

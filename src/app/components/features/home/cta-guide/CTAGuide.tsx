@@ -15,7 +15,7 @@ export default function CTAGuide() {
 
             <div className="bg-success p-12 flex flex-col justify-center">
               <h2 className="text-5xl font-bold text-black lg:text-8xl xl:text-7xl mb-6">
-                Become a Guide
+                Become a Mentor
               </h2>
 
               <p className="text-sm text-black mb-8 leading-relaxed">
@@ -50,7 +50,7 @@ export default function CTAGuide() {
                 size="lg"
                 className="w-full"
               >
-                Become a Guide
+                Become a Mentor
               </Button>
             </div>
           </div>

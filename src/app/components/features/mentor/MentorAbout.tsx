@@ -27,7 +27,7 @@ During my time at ${
     mentor.university
   }, I've been involved in various research projects and extracurricular activities that have shaped my understanding of what admissions committees look for. I've helped over 100 students navigate the complex application process, and I'm proud to say that 95% of them were accepted into their target programs.
 
-My approach is highly personalized - I believe every student has a unique story to tell, and my job is to help you articulate that story in the most compelling way possible. Whether you're struggling with personal statements, preparing for interviews, or choosing the right programs to apply to, I'm here to guide you through every step of the process.
+My approach is highly personalized - I believe every student has a unique story to tell, and my job is to help you articulate that story in the most compelling way possible. Whether you're struggling with personal statements, preparing for interviews, or choosing the right programs to apply to, I'm here to mentor you through every step of the process.
 
 I look forward to working with you and helping you achieve your academic dreams!`;
 

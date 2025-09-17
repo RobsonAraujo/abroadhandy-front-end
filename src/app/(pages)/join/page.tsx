@@ -92,7 +92,7 @@ export default function Join() {
                   </div>
                   <div className="ml-4">
                     <h4 className="font-semibold text-black">
-                      Find Your Guide
+                      Find Your Mentor
                     </h4>
                     <p className="text-gray-600">
                       Browse our top students and find the perfect match for

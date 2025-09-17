@@ -160,7 +160,7 @@ export default function Register() {
                       <RadioGroupItem value="mentor" id="mentor" />
                       <label htmlFor="mentor" className="flex-1 cursor-pointer">
                         <div className="font-medium text-gray-900">
-                          Top student wanting to guide others
+                          Top student wanting to mentor others
                         </div>
                         <div className="text-sm text-gray-500">
                           Share your experience and help other students

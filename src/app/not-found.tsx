@@ -66,7 +66,7 @@ export default function NotFound() {
                 <UsersIcon className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-lg font-semibold text-black mb-3">
-                Become a Guide
+                Become a Mentor
               </h3>
               <p className="text-gray-600 text-sm mb-4">
                 Share your university experience and help students achieve their
@@ -90,7 +90,7 @@ export default function NotFound() {
                 Explore Platform
               </h3>
               <p className="text-gray-600 text-sm mb-4">
-                Discover guides, universities, and success stories from our
+                Discover mentors, universities, and success stories from our
                 community.
               </p>
               <Button

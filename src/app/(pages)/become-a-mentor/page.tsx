@@ -68,7 +68,7 @@ export default function BecomeAMentor() {
   const steps = [
     {
       number: 1,
-      title: "Sign up to create your guide profile",
+      title: "Sign up to create your mentor profile",
       description:
         "Complete your profile with your university information, achievements, and areas of expertise to help students find the perfect match.",
       bgColor: "bg-primary",
@@ -134,9 +134,9 @@ export default function BecomeAMentor() {
       borderColor: "border-red-200",
     },
     {
-      title: "Supportive guide community",
+      title: "Supportive mentor community",
       description:
-        "Connect with other guides, share experiences, and learn from the community.",
+        "Connect with other mentors, share experiences, and learn from the community.",
       icon: <Users className="w-6 h-6 text-[#06B6D4]" />,
       bgColor: "bg-cyan-50",
       borderColor: "border-cyan-200",
@@ -145,14 +145,14 @@ export default function BecomeAMentor() {
 
   const faqs = [
     {
-      question: "What qualifications do I need to become a guide?",
+      question: "What qualifications do I need to become a mentor?",
       answer:
         "You need to be a current student or recent graduate from a top university with a strong academic record.",
     },
     {
-      question: "How much can I earn as a guide?",
+      question: "How much can I earn as a mentor?",
       answer:
-        "Earnings vary based on your experience and the number of sessions you conduct. Top guides can earn significantly by helping multiple students.",
+        "Earnings vary based on your experience and the number of sessions you conduct. Top mentors can earn significantly by helping multiple students.",
     },
     {
       question: "How do I get paid?",
@@ -160,14 +160,14 @@ export default function BecomeAMentor() {
         "We offer secure payment processing with regular payouts to your preferred payment method.",
     },
     {
-      question: "Can I work part-time as a guide?",
+      question: "Can I work part-time as a mentor?",
       answer:
-        "Absolutely! You can set your own schedule and work as many or as few hours as you prefer. Many guides work part-time while studying.",
+        "Absolutely! You can set your own schedule and work as many or as few hours as you prefer. Many mentors work part-time while studying.",
     },
     {
       question: "How do students find me?",
       answer:
-        "Students can search for guides based on university, field of study, and expertise. Your profile will be visible to students looking for guidance in your areas.",
+        "Students can search for mentors based on university, field of study, and expertise. Your profile will be visible to students looking for mentorship in your areas.",
     },
   ];
 
@@ -177,7 +177,7 @@ export default function BecomeAMentor() {
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl font-bold text-black sm:text-5xl lg:text-6xl xl:text-7xl">
-              Become a Guide
+              Become a Mentor
             </h1>
             <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
               Share your university experience and help students achieve their
@@ -203,7 +203,7 @@ export default function BecomeAMentor() {
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-black sm:text-4xl lg:text-5xl">
-              Why Become a Guide?
+              Why Become a Mentor?
             </h2>
             <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
               Join our community of top students and make a real impact while
@@ -283,11 +283,11 @@ export default function BecomeAMentor() {
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-black sm:text-4xl lg:text-5xl">
-              Guide students from over 180 countries
+              Mentor students from over 180 countries
             </h2>
             <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
-              AbroadHandy guides help students globally. Join us and you&apos;ll
-              have everything you need to guide successfully.
+              AbroadHandy mentors help students globally. Join us and
+              you&apos;ll have everything you need to mentor successfully.
             </p>
           </div>
 
@@ -379,7 +379,7 @@ export default function BecomeAMentor() {
               Frequently Asked Questions
             </h2>
             <p className="mt-4 text-lg text-gray-600">
-              Everything you need to know about becoming a guide
+              Everything you need to know about becoming a mentor
             </p>
           </div>
 

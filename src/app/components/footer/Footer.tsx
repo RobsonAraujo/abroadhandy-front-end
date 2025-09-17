@@ -58,7 +58,7 @@ export default function Footer() {
                   href="/become-a-mentor"
                   className="text-gray-400 hover:text-white"
                 >
-                  Become a Guide
+                  Become a Mentor
                 </Link>
               </li>
               <li>
