@@ -21,7 +21,7 @@ export default function Hero() {
             </p>
 
             <Button
-              href="/join"
+              href="/mentors"
               variant="primary"
               size="lg"
               className="mt-8 lg:mt-16"

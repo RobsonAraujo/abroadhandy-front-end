@@ -252,7 +252,7 @@ export default function HowItWorks() {
         title="Ready to Get Started?"
         description="Join thousands of students and mentors who are already using AbroadHandy to achieve their university application goals."
         primaryButton={{
-          href: "/join",
+          href: "/mentors",
           text: "Find a Mentor",
           variant: "white",
           icon: <ArrowRight className="w-5 h-5" />,
