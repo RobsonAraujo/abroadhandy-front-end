@@ -5,7 +5,7 @@ import { Heart, MessageCircle, Calendar, Star } from "lucide-react";
 
 interface MentorSidebarProps {
   mentor: {
-    id: string;
+    id: number;
     name: string;
     price30min: number;
     price60min: number;

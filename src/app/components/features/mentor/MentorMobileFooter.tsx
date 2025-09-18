@@ -5,7 +5,7 @@ import { Heart, Calendar } from "lucide-react";
 
 interface MentorMobileFooterProps {
   mentor: {
-    id: string;
+    id: number;
     name: string;
     price30min: number;
   };

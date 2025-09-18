@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface MentorScheduleProps {
-  mentorId: string;
+  mentorId: number;
 }
 
 // Mock timezone options

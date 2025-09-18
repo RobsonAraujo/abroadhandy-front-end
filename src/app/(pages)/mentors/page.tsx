@@ -9,6 +9,7 @@ import {
   FilterState,
 } from "@/app/components/features/find-top-students/filters/Filters";
 import { mentors } from "@/app/mocks";
+
 import {
   Pagination,
   PaginationContent,
@@ -19,7 +20,7 @@ import {
 } from "@/app/components/ui/pagination";
 
 export interface Mentor {
-  id: string;
+  id: number | string;
   userId: string;
   name: string;
   university: string;

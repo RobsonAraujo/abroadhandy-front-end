@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Star, User } from "lucide-react";
 
 interface MentorReviewsProps {
-  mentorId: string;
+  mentorId: number;
 }
 
 // Mock reviews data

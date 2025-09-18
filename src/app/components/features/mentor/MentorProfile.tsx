@@ -5,7 +5,7 @@ import { Star, User } from "lucide-react";
 
 interface MentorProfileProps {
   mentor: {
-    id: string;
+    id: number;
     name: string;
     university: string;
     course: string;

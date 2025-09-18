@@ -16,7 +16,7 @@ export default function MentorPage() {
   const params = useParams();
   const mentorId = params.id as string;
 
-  const mentor = mentors.find((m) => m.id === mentorId);
+  const mentor = mentors.find((m) => m.id === parseInt(mentorId));
 
   if (!mentor) {
     return (
