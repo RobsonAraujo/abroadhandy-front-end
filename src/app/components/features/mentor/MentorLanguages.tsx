@@ -8,16 +8,16 @@ const languages = [
 ];
 
 export function MentorLanguages() {
-  const getLevelColor = (level: string) => {
+  const getLevelIndicator = (level: string) => {
     switch (level) {
       case "Native":
-        return "bg-purple-100 text-purple-800 border-purple-200";
+        return "bg-purple-500";
       case "Fluent":
-        return "bg-blue-100 text-blue-800 border-blue-200";
+        return "bg-blue-500";
       case "Conversational":
-        return "bg-yellow-100 text-yellow-800 border-yellow-200";
+        return "bg-yellow-500";
       default:
-        return "bg-gray-100 text-gray-800 border-gray-200";
+        return "bg-gray-400";
     }
   };
 
@@ -29,12 +29,17 @@ export function MentorLanguages() {
         {languages.map((language, index) => (
           <div
             key={index}
-            className={`px-3 py-1 rounded-full border text-sm font-medium ${getLevelColor(
-              language.level
-            )}`}
+            className="flex items-center px-3 py-1 rounded-full border border-gray-200 bg-white text-sm font-medium"
           >
-            <span className="font-semibold">{language.name}</span>
-            <span className="ml-2 opacity-80">{language.level}</span>
+            <div
+              className={`w-2 h-2 rounded-full mr-2 ${getLevelIndicator(
+                language.level
+              )}`}
+            ></div>
+            <span className="font-semibold text-gray-800">{language.name}</span>
+            <span className="ml-2 text-gray-600 font-normal">
+              {language.level}
+            </span>
           </div>
         ))}
       </div>
