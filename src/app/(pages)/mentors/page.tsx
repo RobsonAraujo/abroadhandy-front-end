@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { MentorCard } from "@/app/components/features/find-top-students/mentor-card/MentorCard";
 import { MentorSidebar } from "@/app/components/features/find-top-students/mentor-sidebar/MentorSidebar";
@@ -38,7 +38,6 @@ export interface Mentor {
 
 export default function FindTopStudents() {
   const [selectedMentor, setSelectedMentor] = useState<Mentor | null>(null);
-  const [hoveredMentor, setHoveredMentor] = useState<Mentor | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [filters, setFilters] = useState<FilterState>({
     search: "",
@@ -93,10 +92,18 @@ export default function FindTopStudents() {
   const endIndex = startIndex + itemsPerPage;
   const currentMentors = filteredMentors.slice(startIndex, endIndex);
 
-  // Reset to first page when filters change
+  // Set first mentor as selected when page loads or mentors change
+  useEffect(() => {
+    if (currentMentors.length > 0 && !selectedMentor) {
+      setSelectedMentor(currentMentors[0]);
+    }
+  }, [currentMentors, selectedMentor]);
+
+  // Reset to first page when filters change and select first mentor
   const handleFiltersChange = (newFilters: FilterState) => {
     setFilters(newFilters);
     setCurrentPage(1);
+    setSelectedMentor(null); // Will be set by useEffect
   };
 
   return (
@@ -135,7 +142,11 @@ export default function FindTopStudents() {
                   mentor={mentor}
                   isSelected={selectedMentor?.id === mentor.id}
                   onSelect={setSelectedMentor}
-                  onHover={setHoveredMentor}
+                  onHover={(mentor) => {
+                    if (mentor) {
+                      setSelectedMentor(mentor);
+                    }
+                  }}
                 />
               ))}
             </div>
@@ -204,7 +215,9 @@ export default function FindTopStudents() {
 
           <div className="hidden lg:block lg:col-span-3">
             <div className="sticky top-8">
-              <MentorSidebar selectedMentor={hoveredMentor || selectedMentor} />
+              {selectedMentor && (
+                <MentorSidebar selectedMentor={selectedMentor} />
+              )}
             </div>
           </div>
         </div>

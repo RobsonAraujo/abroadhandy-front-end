@@ -31,8 +31,8 @@ export function MentorCard({
     <div
       className={`bg-white rounded-2xl border transition-all duration-300 overflow-hidden cursor-pointer ${
         isSelected
-          ? "border-secondary shadow-md ring-2 ring-secondary ring-opacity-20"
-          : "border-gray-200 shadow-sm hover:shadow-md hover:border-secondary hover:ring-2 hover:ring-secondary hover:ring-opacity-20"
+          ? "md:border-secondary md:shadow-md md:ring-2 md:ring-secondary md:ring-opacity-20 border-gray-200 shadow-sm"
+          : "border-gray-200 shadow-sm hover:shadow-md md:hover:border-secondary md:hover:ring-2 md:hover:ring-secondary md:hover:ring-opacity-20"
       }`}
       onClick={() => onSelect?.(mentor)}
       onMouseEnter={() => onHover?.(mentor)}
