@@ -14,8 +14,8 @@ export const MENU_ITEMS: MenuItem[] = [
     label: "Become a Mentor",
   },
   {
-    href: "/about-us",
-    label: "About Us",
+    href: "/how-it-works",
+    label: "How It Works",
   },
   {
     href: "/join",
