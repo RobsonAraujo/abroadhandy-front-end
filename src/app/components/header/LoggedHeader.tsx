@@ -109,7 +109,7 @@ export default function LoggedHeader({ user, onLogout }: LoggedHeaderProps) {
                 </Link>
 
                 <Link
-                  href="/profile"
+                  href="/dashboard/profile"
                   className="block px-3 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-black hover:bg-gray-50"
                   onClick={() => setIsMenuOpen(false)}
                 >

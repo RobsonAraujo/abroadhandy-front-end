@@ -13,7 +13,7 @@ export default function SubMenu() {
     },
     {
       label: "Profile Settings",
-      href: "/profile",
+      href: "/dashboard/profile",
     },
   ];
 
