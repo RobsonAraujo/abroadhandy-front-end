@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import Link from "next/link";
-import Image from "next/image";
 
 export default function Dashboard() {
   const { isAuthenticated, user, isLoading } = useAuth();
@@ -35,34 +34,15 @@ export default function Dashboard() {
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
           <h1 className="text-2xl font-semibold text-gray-900">
-            Welcome back, {user.name.split(" ")[0]}
+            Welcome, {user.name.split(` `)[0]}
           </h1>
           <p className="text-gray-600 mt-1">
-            Here's what's happening with your mentoring journey today.
+            Here&apos;s what&apos;s happening with your mentoring journey today.
           </p>
         </div>
 
         <div className="space-y-8">
           <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <div className="relative h-48">
-              <Image
-                src="/dashboard-welcome.png"
-                alt="Welcome to AbroadHandy"
-                fill
-                className="object-cover"
-                priority
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-              <div className="relative p-8 h-full flex flex-col justify-center z-10">
-                <h2 className="text-2xl font-bold text-white mb-2">
-                  You're among our first mentors
-                </h2>
-                <p className="text-gray-100 text-lg">
-                  Welcome to the future of university mentoring!!
-                </p>
-              </div>
-            </div>
-
             <div className="p-6">
               <div className="mb-6">
                 <h3 className="text-lg font-medium text-gray-900 mb-4">
@@ -75,8 +55,8 @@ export default function Dashboard() {
               </div>
 
               <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-lg p-6 border-l-4 border-orange-500">
-                <div className="flex items-center justify-between">
-                  <div>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                  <div className="flex-1">
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
                       Ready to get started?
                     </h4>
@@ -86,11 +66,11 @@ export default function Dashboard() {
                   </div>
                   <Button
                     asChild
-                    className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white border-0 h-12 px-6 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                    className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white border-0 h-12 px-6 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 w-full sm:w-auto flex-shrink-0"
                   >
                     <Link
                       href="/profile"
-                      className="flex items-center justify-center"
+                      className="flex items-center justify-start sm:justify-center"
                     >
                       Complete Setup
                       <ArrowRight className="w-5 h-5 ml-2" />
@@ -108,8 +88,8 @@ export default function Dashboard() {
               </h3>
               <div className="space-y-4">
                 <p className="text-sm text-gray-600">
-                  You're part of our exclusive group of pioneer mentors. Help
-                  shape the future of university applications abroad.
+                  You&apos;re part of our exclusive group of pioneer mentors.
+                  Help shape the future of university applications abroad.
                 </p>
                 <div className="bg-blue-50 rounded-lg p-4">
                   <p className="text-sm text-blue-800 font-medium">
@@ -126,7 +106,7 @@ export default function Dashboard() {
 
             <div className="bg-white rounded-lg border border-gray-200 p-6">
               <h3 className="text-lg font-medium text-gray-900 mb-4">
-                What's Next?
+                What&apos;s Next?
               </h3>
               <div className="space-y-4">
                 <p className="text-sm text-gray-600">
@@ -153,12 +133,12 @@ export default function Dashboard() {
               </h3>
               <div className="space-y-4">
                 <p className="text-sm text-gray-600">
-                  As a pioneer mentor, you'll help students navigate their
+                  As a pioneer mentor, you&apos;ll help students navigate their
                   university application journey.
                 </p>
                 <div className="bg-green-50 rounded-lg p-4">
                   <p className="text-sm text-green-800 font-medium">
-                    You'll Help Students With
+                    You&apos;ll Help Students With
                   </p>
                   <ul className="text-xs text-green-700 mt-2 space-y-1">
                     <li>• University selection strategy</li>
