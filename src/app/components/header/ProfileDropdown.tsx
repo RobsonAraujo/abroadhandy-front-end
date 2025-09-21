@@ -106,9 +106,9 @@ export default function ProfileDropdown({
               onClick={() => setIsOpen(false)}
             >
               <Settings className="w-4 h-4 mr-3" />
-              Configurar perfil
+              Profile Settings
             </Link>
-
+            
             <button
               onClick={() => {
                 onLogout();
@@ -117,7 +117,7 @@ export default function ProfileDropdown({
               className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200"
             >
               <LogOut className="w-4 h-4 mr-3" />
-              Sair
+              Sign Out
             </button>
           </div>
         </div>

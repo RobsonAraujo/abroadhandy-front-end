@@ -8,11 +8,11 @@ export default function SubMenu() {
 
   const menuItems = [
     {
-      label: "Início",
+      label: "Home",
       href: "/dashboard",
     },
     {
-      label: "Configurar Perfil",
+      label: "Profile Settings",
       href: "/profile",
     },
   ];

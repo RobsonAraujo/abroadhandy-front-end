@@ -105,7 +105,7 @@ export default function LoggedHeader({ user, onLogout }: LoggedHeaderProps) {
                   className="block px-3 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-black hover:bg-gray-50"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Início
+                  Home
                 </Link>
 
                 <Link
@@ -113,7 +113,7 @@ export default function LoggedHeader({ user, onLogout }: LoggedHeaderProps) {
                   className="block px-3 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-black hover:bg-gray-50"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Configurar perfil
+                  Profile Settings
                 </Link>
 
                 <button
@@ -123,7 +123,7 @@ export default function LoggedHeader({ user, onLogout }: LoggedHeaderProps) {
                   }}
                   className="block w-full text-left px-3 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-black hover:bg-gray-50"
                 >
-                  Sair
+                  Sign Out
                 </button>
               </div>
             </div>
