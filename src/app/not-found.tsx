@@ -94,7 +94,7 @@ export default function NotFound() {
                 community.
               </p>
               <Button
-                href="/find-top-students"
+                href="/mentors"
                 variant="outline"
                 size="sm"
                 className="w-full"
