@@ -7,7 +7,6 @@ import {
   Star,
   MapPin,
   GraduationCap,
-  CheckCircle,
 } from "lucide-react";
 import { Mentor } from "@/app/(pages)/mentors/page";
 
@@ -19,15 +18,6 @@ export function MentorSidebar({ selectedMentor }: MentorSidebarProps) {
   if (!selectedMentor) {
     return null;
   }
-
-  // Mock data for universities - in real app this would come from the mentor data
-  const universities = selectedMentor.universities || [
-    "Harvard University",
-    "Stanford University",
-    "MIT",
-    "Oxford University",
-    "Cambridge University",
-  ];
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
@@ -77,27 +67,6 @@ export function MentorSidebar({ selectedMentor }: MentorSidebarProps) {
             <MapPin className="w-3 h-3" />
             <span>{selectedMentor.country}</span>
           </div>
-        </div>
-      </div>
-
-      {/* Universities List */}
-      <div className="mb-6">
-        <div className="flex items-center gap-2 mb-3">
-          <GraduationCap className="w-4 h-4 text-blue-600" />
-          <h5 className="font-semibold text-gray-900 text-sm">
-            Universities Accepted
-          </h5>
-        </div>
-        <div className="space-y-2">
-          {universities.map((university, index) => (
-            <div
-              key={index}
-              className={`flex items-center gap-2 p-2 rounded-lg text-sm transition-colors ${"bg-gray-50 text-gray-600 hover:bg-gray-100"}`}
-            >
-              <CheckCircle className={`w-4 h-4 text-gray-400 `} />
-              <span className="flex-1">{university}</span>
-            </div>
-          ))}
         </div>
       </div>
 
