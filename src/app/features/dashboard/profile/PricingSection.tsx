@@ -23,15 +23,9 @@ export default function PricingSection() {
               <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
                 $
               </span>
-              <Input
-                type="number"
-                placeholder="25"
-                className="pl-8"
-              />
+              <Input type="number" placeholder="25" className="pl-8" />
             </div>
-            <p className="text-sm text-gray-500 mt-1">
-              Recommended: $20-40
-            </p>
+            <p className="text-sm text-gray-500 mt-1">Recommended: $20-40</p>
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -41,21 +35,15 @@ export default function PricingSection() {
               <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
                 $
               </span>
-              <Input
-                type="number"
-                placeholder="45"
-                className="pl-8"
-              />
+              <Input type="number" placeholder="45" className="pl-8" />
             </div>
-            <p className="text-sm text-gray-500 mt-1">
-              Recommended: $35-70
-            </p>
+            <p className="text-sm text-gray-500 mt-1">Recommended: $35-70</p>
           </div>
         </div>
         <div className="mt-4 p-4 bg-blue-50 rounded-lg">
           <p className="text-sm text-blue-800">
-            💡 <strong>Tip:</strong> Start with competitive rates and
-            increase them as you gain more reviews and experience.
+            💡 <strong>Tip:</strong> Start with competitive rates and increase
+            them as you gain more reviews and experience.
           </p>
         </div>
       </div>
