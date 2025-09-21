@@ -1,6 +1,6 @@
 import Banner from "@/app/components/banner/Banner";
-import HeroSection from "@/app/components/features/join/HeroSection";
-import BenefitsAndStepsSection from "@/app/components/features/join/BenefitsAndStepsSection";
+import HeroSection from "@/app/features/join/HeroSection";
+import BenefitsAndStepsSection from "@/app/features/join/BenefitsAndStepsSection";
 import ArrowRightIcon from "@/app/icons/ArrowRightIcon";
 
 export default function Join() {

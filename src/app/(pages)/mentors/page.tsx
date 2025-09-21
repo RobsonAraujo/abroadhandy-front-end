@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from "react";
 
-import { MentorCard } from "@/app/components/features/find-top-students/MentorCard";
-import { MentorSidebar } from "@/app/components/features/find-top-students/MentorSidebar";
+import { MentorCard } from "@/app/features/find-top-students/MentorCard";
+import { MentorSidebar } from "@/app/features/find-top-students/MentorSidebar";
 import {
   Filters,
   FilterState,
-} from "@/app/components/features/find-top-students/filters/Filters";
+} from "@/app/features/find-top-students/filters/Filters";
 import { mentors } from "@/app/mocks/mentors";
 
 import {

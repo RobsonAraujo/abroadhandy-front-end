@@ -1,8 +1,8 @@
 import Banner from "@/app/components/banner/Banner";
-import HeroSection from "@/app/components/features/how-it-works/HeroSection";
-import StudentStepsSection from "@/app/components/features/how-it-works/StudentStepsSection";
-import MentorStepsSection from "@/app/components/features/how-it-works/MentorStepsSection";
-import BenefitsSection from "@/app/components/features/how-it-works/BenefitsSection";
+import HeroSection from "@/app/features/how-it-works/HeroSection";
+import StudentStepsSection from "@/app/features/how-it-works/StudentStepsSection";
+import MentorStepsSection from "@/app/features/how-it-works/MentorStepsSection";
+import BenefitsSection from "@/app/features/how-it-works/BenefitsSection";
 import { ArrowRight } from "lucide-react";
 
 export default function HowItWorks() {

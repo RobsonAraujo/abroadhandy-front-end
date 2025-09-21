@@ -1,5 +1,5 @@
-import HeroSection from "@/app/components/features/login/HeroSection";
-import LoginForm from "@/app/components/features/login/LoginForm";
+import HeroSection from "@/app/features/login/HeroSection";
+import LoginForm from "@/app/features/login/LoginForm";
 
 export default function Login() {
   return (

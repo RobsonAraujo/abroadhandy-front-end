@@ -4,13 +4,13 @@ import { useParams } from "next/navigation";
 import { MessageCircle } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { mentors } from "@/app/mocks/mentors";
-import { MentorProfile } from "@/app/components/features/mentor/MentorProfile";
-import { MentorAbout } from "@/app/components/features/mentor/MentorAbout";
-import { MentorLanguages } from "@/app/components/features/mentor/MentorLanguages";
-import { MentorSchedule } from "@/app/components/features/mentor/MentorSchedule";
-import { MentorReviews } from "@/app/components/features/mentor/MentorReviews";
-import { MentorSidebar } from "@/app/components/features/mentor/MentorSidebar";
-import { MentorMobileFooter } from "@/app/components/features/mentor/MentorMobileFooter";
+import { MentorProfile } from "@/app/features/mentor/MentorProfile";
+import { MentorAbout } from "@/app/features/mentor/MentorAbout";
+import { MentorLanguages } from "@/app/features/mentor/MentorLanguages";
+import { MentorSchedule } from "@/app/features/mentor/MentorSchedule";
+import { MentorReviews } from "@/app/features/mentor/MentorReviews";
+import { MentorSidebar } from "@/app/features/mentor/MentorSidebar";
+import { MentorMobileFooter } from "@/app/features/mentor/MentorMobileFooter";
 
 export default function MentorPage() {
   const params = useParams();
