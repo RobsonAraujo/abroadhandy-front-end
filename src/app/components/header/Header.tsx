@@ -18,7 +18,7 @@ export default function Header() {
   return (
     <header className="bg-background-light bg-opacity-30">
       <div className="px-4 mx-auto sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-18 lg:h-20">
           <div className="flex-shrink-0">
             <Link href="/" title="" className="flex items-center space-x-3">
               <Image
