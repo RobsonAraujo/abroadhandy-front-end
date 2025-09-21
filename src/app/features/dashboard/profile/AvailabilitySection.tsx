@@ -209,9 +209,9 @@ export default function AvailabilitySection() {
                     variant="outline"
                     size="sm"
                     onClick={() => addTimeSlot(dayIndex)}
-                    className="flex items-center gap-2 mt-3 h-10"
+                    className="mt-3 h-10"
+                    iconStart={<Plus className="w-4 h-4" />}
                   >
-                    <Plus className="w-4 h-4" />
                     Add Time Range
                   </Button>
                 </div>

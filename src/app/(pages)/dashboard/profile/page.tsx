@@ -3,15 +3,15 @@
 import { useAuth } from "@/app/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { 
-  User, 
-  GraduationCap, 
-  Globe, 
-  DollarSign, 
-  Calendar, 
+import {
+  User,
+  GraduationCap,
+  Globe,
+  DollarSign,
+  Calendar,
   Star,
   Save,
-  ArrowLeft
+  ArrowLeft,
 } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import Link from "next/link";
@@ -24,12 +24,12 @@ import PricingSection from "@/app/features/dashboard/profile/PricingSection";
 import AvailabilitySection from "@/app/features/dashboard/profile/AvailabilitySection";
 import LanguagesSection from "@/app/features/dashboard/profile/LanguagesSection";
 
-type ProfileSection = 
-  | "basic" 
-  | "education" 
-  | "about" 
-  | "pricing" 
-  | "availability" 
+type ProfileSection =
+  | "basic"
+  | "education"
+  | "about"
+  | "pricing"
+  | "availability"
   | "languages";
 
 export default function ProfileSettings() {
@@ -89,7 +89,7 @@ export default function ProfileSettings() {
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center space-x-4 mb-4">
-            <Link 
+            <Link
               href="/dashboard"
               className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
             >
@@ -113,7 +113,7 @@ export default function ProfileSettings() {
                 {menuItems.map((item) => {
                   const Icon = item.icon;
                   const isActive = activeSection === item.id;
-                  
+
                   return (
                     <button
                       key={item.id}
@@ -136,11 +136,10 @@ export default function ProfileSettings() {
           {/* Main Content */}
           <div className="lg:col-span-3">
             {renderContent()}
-            
+
             {/* Save Button */}
             <div className="mt-8 flex justify-end">
-              <Button className="flex items-center">
-                <Save className="w-4 h-4 mr-2" />
+              <Button iconStart={<Save className="w-4 h-4" />}>
                 Save Changes
               </Button>
             </div>

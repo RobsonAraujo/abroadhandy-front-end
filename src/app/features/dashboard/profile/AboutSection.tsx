@@ -56,11 +56,7 @@ export default function AboutSection() {
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Short Description
             </label>
-            <Input />
-            <p className="text-sm text-gray-500 mt-1">
-              A brief, compelling summary that appears on your profile card.
-              Keep it concise and impactful.
-            </p>
+            <Input placeholder="A brief, compelling summary that appears on your profile card. Keep it concise and impactful." />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">

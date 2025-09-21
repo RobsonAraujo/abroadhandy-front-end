@@ -103,21 +103,19 @@ export function MentorSidebar({ selectedMentor }: MentorSidebarProps) {
 
       {/* Action Buttons */}
       <div className="space-y-3">
-        <Button className="w-full  h-12 bg-secondary hover:bg-blue-600 text-white font-semibold">
-          <div className="flex items-center justify-center">
-            <Calendar className="w-5 h-5 mr-2" />
-            View Full Schedule
-          </div>
+        <Button
+          className="w-full h-12 bg-secondary hover:bg-blue-600 text-white font-semibold"
+          iconStart={<Calendar className="w-5 h-5" />}
+        >
+          View Full Schedule
         </Button>
 
         <Button
           variant="outline"
           className="w-full h-12 border-2 border-gray-200 hover:border-blue-500 hover:bg-blue-50 hover:text-blue-700 transition-all duration-200"
+          iconStart={<MessageCircle className="w-5 h-5" />}
         >
-          <div className="flex items-center justify-center">
-            <MessageCircle className="w-5 h-5 mr-2" />
-            View Profile
-          </div>
+          View Profile
         </Button>
       </div>
     </div>

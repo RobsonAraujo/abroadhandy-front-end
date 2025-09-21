@@ -67,13 +67,13 @@ export default function Dashboard() {
                   <Button
                     asChild
                     className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white border-0 h-12 px-6 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 w-full sm:w-auto flex-shrink-0"
+                    iconEnd={<ArrowRight className="w-5 h-5" />}
                   >
                     <Link
-                      href="/profile"
+                      href="/dashboard/profile"
                       className="flex items-center justify-start sm:justify-center"
                     >
                       Complete Setup
-                      <ArrowRight className="w-5 h-5 ml-2" />
                     </Link>
                   </Button>
                 </div>

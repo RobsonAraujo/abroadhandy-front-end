@@ -115,8 +115,8 @@ export default function LanguagesSection() {
               onClick={addLanguage}
               variant="outline"
               className="flex items-center gap-2"
+              iconStart={<Plus className="w-4 h-4" />}
             >
-              <Plus className="w-4 h-4" />
               Add Language
             </Button>
           </div>
