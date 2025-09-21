@@ -8,7 +8,11 @@ import CloseMenuIcon from "@/app/icons/CloseMenuIcon";
 import { Button } from "@/app/components/ui/button";
 import { MENU_ITEMS } from "@/app/constants/menu";
 
-export default function Header() {
+interface HeaderProps {
+  useWhiteBackground?: boolean;
+}
+
+export default function Header({ useWhiteBackground = false }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -16,7 +20,11 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-background-light bg-opacity-30">
+    <header
+      className={
+        useWhiteBackground ? "bg-white" : "bg-background-light bg-opacity-30"
+      }
+    >
       <div className="px-4 mx-auto sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18 lg:h-20">
           <div className="flex-shrink-0">
