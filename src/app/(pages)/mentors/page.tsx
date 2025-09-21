@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from "react";
 
-import { MentorCard } from "@/app/components/features/find-top-students/mentor-card/MentorCard";
-import { MentorSidebar } from "@/app/components/features/find-top-students/mentor-sidebar/MentorSidebar";
+import { MentorCard } from "@/app/components/features/find-top-students/MentorCard";
+import { MentorSidebar } from "@/app/components/features/find-top-students/MentorSidebar";
 import {
   Filters,
   FilterState,
 } from "@/app/components/features/find-top-students/filters/Filters";
-import { mentors } from "@/app/mocks";
+import { mentors } from "@/app/mocks/mentors";
 
 import {
   Pagination,

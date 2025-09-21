@@ -1,6 +1,6 @@
 import { Button } from "@/app/components/ui/button";
 
-export default function CTAGuide() {
+export default function BecomeAMentorSection() {
   return (
     <section className="py-20 bg-white">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">

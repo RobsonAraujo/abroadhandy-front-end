@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/app/components/ui/button";
 import ArrowRightIcon from "@/app/icons/ArrowRightIcon";
-import CTA from "@/app/components/cta/CTA";
+import Banner from "@/app/components/banner/Banner";
 import { GraduationCap, Target, Star } from "lucide-react";
 
 export default function Join() {
@@ -143,7 +143,7 @@ export default function Join() {
         </div>
       </section>
 
-      <CTA
+      <Banner
         title="Ready to Transform Your Future?"
         description="Don't let another day pass without taking action towards your university dreams."
         primaryButton={{

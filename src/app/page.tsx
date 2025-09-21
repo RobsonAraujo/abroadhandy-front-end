@@ -1,19 +1,19 @@
-import Hero from "./components/features/home/hero/Hero";
-import HowItWorks from "./components/features/home/how-it-works/HowItWorks";
-import CTASimple from "./components/features/home/cta-simple/CTASimple";
-import CTA from "./components/cta/CTA";
-import CTAGuide from "./components/features/home/cta-guide/CTAGuide";
-import WhyChooseUs from "./components/features/home/why-choose-us/WhyChooseUs";
+import Hero from "./components/features/home/Hero";
+import HowItWorks from "./components/features/home/HowItWorks";
+import LearnBanner from "./components/features/home/LearnBanner";
+import Banner from "./components/banner/Banner";
+import BecomeAMentorSection from "./components/features/home/BecomeAMentorSection";
+import WhyChooseUs from "./components/features/home/WhyChooseUs";
 
 export default function Home() {
   return (
     <>
       <Hero />
       <HowItWorks />
-      <CTASimple />
-      <CTAGuide />
+      <LearnBanner />
+      <BecomeAMentorSection />
       <WhyChooseUs />
-      <CTA />
+      <Banner />
     </>
   );
 }

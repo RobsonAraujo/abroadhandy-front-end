@@ -1,5 +1,5 @@
 import { Button } from "@/app/components/ui/button";
-import CTA from "@/app/components/cta/CTA";
+import Banner from "@/app/components/banner/Banner";
 import {
   ArrowRight,
   Users,
@@ -248,7 +248,7 @@ export default function HowItWorks() {
         </div>
       </section>
 
-      <CTA
+      <Banner
         title="Ready to Get Started?"
         description="Join thousands of students and mentors who are already using AbroadHandy to achieve their university application goals."
         primaryButton={{

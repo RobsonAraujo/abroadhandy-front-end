@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { Button } from "@/app/components/ui/button";
 import ArrowRightIcon from "@/app/icons/ArrowRightIcon";
 
-export interface CTAProps {
+export interface BannerProps {
   title?: string;
   description?: string;
   primaryButton?: {
@@ -45,7 +45,7 @@ export interface CTAProps {
   className?: string;
 }
 
-export default function CTA({
+export default function Banner({
   title = "Ready to Start Your Journey?",
   description = "Join students who are already working with top students from leading universities to achieve their university dreams.",
   primaryButton = {
@@ -62,7 +62,7 @@ export default function CTA({
   },
   backgroundColor = "secondary",
   className = "",
-}: CTAProps) {
+}: BannerProps) {
   const backgroundClasses = {
     secondary: "bg-secondary",
     primary: "bg-primary",
