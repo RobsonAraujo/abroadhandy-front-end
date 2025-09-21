@@ -12,6 +12,7 @@ import {
   Star,
   Save,
   ArrowLeft,
+  Shield,
 } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import Link from "next/link";
@@ -23,6 +24,7 @@ import AboutSection from "@/app/features/dashboard/profile/AboutSection";
 import PricingSection from "@/app/features/dashboard/profile/PricingSection";
 import AvailabilitySection from "@/app/features/dashboard/profile/AvailabilitySection";
 import LanguagesSection from "@/app/features/dashboard/profile/LanguagesSection";
+import VerificationSection from "@/app/features/dashboard/profile/VerificationSection";
 
 type ProfileSection =
   | "basic"
@@ -30,7 +32,8 @@ type ProfileSection =
   | "about"
   | "pricing"
   | "availability"
-  | "languages";
+  | "languages"
+  | "verification";
 
 export default function ProfileSettings() {
   const { isAuthenticated, user, isLoading } = useAuth();
@@ -62,6 +65,7 @@ export default function ProfileSettings() {
     { id: "pricing" as const, label: "Pricing", icon: DollarSign },
     { id: "availability" as const, label: "Availability", icon: Calendar },
     { id: "languages" as const, label: "Languages", icon: Star },
+    { id: "verification" as const, label: "Verification", icon: Shield },
   ];
 
   const renderContent = () => {
@@ -78,6 +82,8 @@ export default function ProfileSettings() {
         return <AvailabilitySection />;
       case "languages":
         return <LanguagesSection />;
+      case "verification":
+        return <VerificationSection />;
       default:
         return null;
     }
