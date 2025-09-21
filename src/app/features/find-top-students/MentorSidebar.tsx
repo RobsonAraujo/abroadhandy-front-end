@@ -92,25 +92,10 @@ export function MentorSidebar({ selectedMentor }: MentorSidebarProps) {
           {universities.map((university, index) => (
             <div
               key={index}
-              className={`flex items-center gap-2 p-2 rounded-lg text-sm transition-colors ${
-                university === selectedMentor.university
-                  ? "bg-blue-50 border border-blue-200 text-blue-700"
-                  : "bg-gray-50 text-gray-600 hover:bg-gray-100"
-              }`}
+              className={`flex items-center gap-2 p-2 rounded-lg text-sm transition-colors ${"bg-gray-50 text-gray-600 hover:bg-gray-100"}`}
             >
-              <CheckCircle
-                className={`w-4 h-4 ${
-                  university === selectedMentor.university
-                    ? "text-blue-600"
-                    : "text-gray-400"
-                }`}
-              />
+              <CheckCircle className={`w-4 h-4 text-gray-400 `} />
               <span className="flex-1">{university}</span>
-              {university === selectedMentor.university && (
-                <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full font-medium">
-                  Current
-                </span>
-              )}
             </div>
           ))}
         </div>
