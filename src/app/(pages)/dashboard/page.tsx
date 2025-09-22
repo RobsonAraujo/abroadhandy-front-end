@@ -81,70 +81,103 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-white rounded-xl border border-gray-200 p-8 shadow-sm hover:shadow-md transition-shadow duration-200">
+              <h3 className="text-xl font-semibold text-gray-900 mb-6">
                 Welcome to AbroadHandy
               </h3>
-              <div className="space-y-4">
-                <p className="text-sm text-gray-600">
+              <div className="space-y-6">
+                <p className="text-base text-gray-600 leading-relaxed">
                   You&apos;re part of our exclusive group of pioneer mentors.
                   Help shape the future of university applications abroad.
                 </p>
-                <div className="bg-blue-50 rounded-lg p-4">
-                  <p className="text-sm text-blue-800 font-medium">
+                <div className="bg-blue-50 rounded-xl p-6">
+                  <p className="text-base text-blue-900 font-semibold mb-3">
                     Early Access Benefits
                   </p>
-                  <ul className="text-xs text-blue-700 mt-2 space-y-1">
-                    <li>• Priority student matching</li>
-                    <li>• Direct feedback channel</li>
-                    <li>• Exclusive mentor community</li>
+                  <ul className="text-sm text-blue-800 space-y-2">
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-3 mt-1">•</span>
+                      Priority student matching
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-3 mt-1">•</span>
+                      Direct feedback channel
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-3 mt-1">•</span>
+                      Exclusive mentor community
+                    </li>
                   </ul>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">
+            <div className="bg-white rounded-xl border border-gray-200 p-8 shadow-sm hover:shadow-md transition-shadow duration-200">
+              <h3 className="text-xl font-semibold text-gray-900 mb-6">
                 What&apos;s Next?
               </h3>
-              <div className="space-y-4">
-                <p className="text-sm text-gray-600">
+              <div className="space-y-6">
+                <p className="text-base text-gray-600 leading-relaxed">
                   Set up your mentor profile to start receiving student requests
                   and begin your mentoring journey.
                 </p>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <p className="text-sm font-medium text-gray-900 mb-2">
+                <div className="bg-gray-50 rounded-xl p-6">
+                  <p className="text-base font-semibold text-gray-900 mb-3">
                     Profile Setup Tips
                   </p>
-                  <ul className="text-xs text-gray-600 space-y-1">
-                    <li>• Add a professional photo</li>
-                    <li>• Share your university story</li>
-                    <li>• Highlight your expertise</li>
-                    <li>• Set your availability</li>
+                  <ul className="text-sm text-gray-700 space-y-2">
+                    <li className="flex items-start">
+                      <span className="text-gray-400 mr-3 mt-1">•</span>
+                      Add a professional photo
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-gray-400 mr-3 mt-1">•</span>
+                      Share your university story
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-gray-400 mr-3 mt-1">•</span>
+                      Highlight your expertise
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-gray-400 mr-3 mt-1">•</span>
+                      Set your availability
+                    </li>
                   </ul>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">
+            <div className="bg-white rounded-xl border border-gray-200 p-8 shadow-sm hover:shadow-md transition-shadow duration-200">
+              <h3 className="text-xl font-semibold text-gray-900 mb-6">
                 Your Impact
               </h3>
-              <div className="space-y-4">
-                <p className="text-sm text-gray-600">
+              <div className="space-y-6">
+                <p className="text-base text-gray-600 leading-relaxed">
                   As a pioneer mentor, you&apos;ll help students navigate their
                   university application journey.
                 </p>
-                <div className="bg-green-50 rounded-lg p-4">
-                  <p className="text-sm text-green-800 font-medium">
+                <div className="bg-green-50 rounded-xl p-6">
+                  <p className="text-base text-green-900 font-semibold mb-3">
                     You&apos;ll Help Students With
                   </p>
-                  <ul className="text-xs text-green-700 mt-2 space-y-1">
-                    <li>• University selection strategy</li>
-                    <li>• Application essay guidance</li>
-                    <li>• Interview preparation</li>
-                    <li>• Scholarship opportunities</li>
+                  <ul className="text-sm text-green-800 space-y-2">
+                    <li className="flex items-start">
+                      <span className="text-green-500 mr-3 mt-1">•</span>
+                      University selection strategy
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-green-500 mr-3 mt-1">•</span>
+                      Application essay guidance
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-green-500 mr-3 mt-1">•</span>
+                      Interview preparation
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-green-500 mr-3 mt-1">•</span>
+                      Scholarship opportunities
+                    </li>
                   </ul>
                 </div>
               </div>
