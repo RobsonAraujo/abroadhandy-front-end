@@ -97,15 +97,13 @@ export default function LanguagesSection() {
                 </Select>
               </div>
               <div className="flex justify-end">
-                <Button
-                  variant="outline"
-                  size="icon"
+                <button
                   onClick={() => removeLanguage(lang.id)}
                   disabled={languages.length === 1}
-                  className="h-12 w-12"
+                  className="p-2 cursor-pointer text-gray-400 hover:text-red-600 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <X className="w-4 h-4" />
-                </Button>
+                  <X className="w-5 h-5" />
+                </button>
               </div>
             </div>
           ))}

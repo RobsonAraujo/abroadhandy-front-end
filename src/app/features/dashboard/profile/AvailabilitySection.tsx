@@ -193,15 +193,13 @@ export default function AvailabilitySection() {
                             className="w-32 sm:w-36 h-10 flex-shrink-0"
                           />
                         </div>
-                        <Button
-                          variant="outline"
-                          size="icon"
+                        <button
                           onClick={() => removeTimeSlot(dayIndex, slot.id)}
                           disabled={dayAvail.timeSlots.length === 1}
-                          className="h-10 w-10 self-end sm:self-auto flex-shrink-0"
+                          className="p-2 cursor-pointer text-gray-400 hover:text-red-600 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed self-end sm:self-auto flex-shrink-0"
                         >
-                          <X className="w-4 h-4" />
-                        </Button>
+                          <X className="w-5 h-5" />
+                        </button>
                       </div>
                     </div>
                   ))}

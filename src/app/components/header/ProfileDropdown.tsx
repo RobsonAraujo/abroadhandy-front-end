@@ -101,14 +101,14 @@ export default function ProfileDropdown({
 
           <div className="py-1">
             <Link
-              href="/profile"
+              href="/dashboard/profile"
               className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200"
               onClick={() => setIsOpen(false)}
             >
               <Settings className="w-4 h-4 mr-3" />
               Profile Settings
             </Link>
-            
+
             <button
               onClick={() => {
                 onLogout();
