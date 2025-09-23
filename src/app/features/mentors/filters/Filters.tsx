@@ -203,7 +203,7 @@ export function Filters({ onFiltersChange }: FiltersProps) {
               step={5}
               className="w-full"
             />
-            <div className="flex justify-between text-xs text-gray-500 mt-1">
+            <div className="flex mt-3  justify-between text-xs text-gray-500 mt-1">
               <span>$10</span>
               <span>$100</span>
             </div>
@@ -222,7 +222,7 @@ export function Filters({ onFiltersChange }: FiltersProps) {
               step={10}
               className="w-full"
             />
-            <div className="flex justify-between text-xs text-gray-500 mt-1">
+            <div className="flex  mt-3  justify-between text-xs text-gray-500 mt-1">
               <span>$20</span>
               <span>$200</span>
             </div>

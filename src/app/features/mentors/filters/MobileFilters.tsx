@@ -267,7 +267,7 @@ export function MobileFilters({
                 step={5}
                 className="w-full [&_[data-radix-slider-track]]:h-6 [&_[data-radix-slider-range]]:h-6 [&_[data-radix-slider-thumb]]:h-10 [&_[data-radix-slider-thumb]]:w-10 [&_[data-radix-slider-thumb]]:border-4"
               />
-              <div className="flex justify-between text-xs text-gray-500 mt-1">
+              <div className="flex mt-3 justify-between text-xs text-gray-500 mt-1">
                 <span>$10</span>
                 <span>$100</span>
               </div>
@@ -288,7 +288,7 @@ export function MobileFilters({
                 step={10}
                 className="w-full [&_[data-radix-slider-track]]:h-6 [&_[data-radix-slider-range]]:h-6 [&_[data-radix-slider-thumb]]:h-10 [&_[data-radix-slider-thumb]]:w-10 [&_[data-radix-slider-thumb]]:border-4"
               />
-              <div className="flex justify-between text-xs text-gray-500 mt-1">
+              <div className="flex mt-3 justify-between text-xs text-gray-500 mt-1">
                 <span>$20</span>
                 <span>$200</span>
               </div>
