@@ -83,7 +83,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const buttonContent = (
       <>
         {iconStart && <span className="flex-shrink-0">{iconStart}</span>}
-        <span>{children}</span>
+        <span className="w-full">{children}</span>
         {iconEnd && <span className="flex-shrink-0">{iconEnd}</span>}
       </>
     );

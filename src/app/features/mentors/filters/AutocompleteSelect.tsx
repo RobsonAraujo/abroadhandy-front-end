@@ -63,12 +63,13 @@ export function AutocompleteSelect({
             className="h-14   text-base justify-between items-center border-gray-300 focus:border-blue-500 focus:ring-blue-500 w-full bg-white text-gray-900 hover:bg-gray-50 hover:text-gray-900"
           >
             <div className="flex items-center justify-around w-full ">
-              <span className="text-sm font-normal">
+              <span className="text-sm font-normal flex items-center justify-between w-full">
                 {value || placeholder}
-              </span>
-              <span>
                 <ChevronsUpDown className="h-4 w-4  opacity-50" />
               </span>
+              {/* <span> */}
+
+              {/* </span> */}
             </div>
           </Button>
         </PopoverTrigger>
