@@ -133,85 +133,161 @@ export default function AvailabilitySection() {
         <h3 className="text-lg font-medium text-gray-900 mb-4">
           Weekly Schedule
         </h3>
-        <div className="space-y-6">
+        <div className="space-y-3">
           {availability.map((dayAvail, dayIndex) => (
             <div
               key={dayAvail.day}
-              className="border border-gray-200 rounded-lg p-4"
+              className={`transition-all duration-200 rounded-xl border-2 ${
+                dayAvail.enabled
+                  ? "border-gray-200 bg-gray-50 shadow-sm"
+                  : "border-gray-200 bg-white hover:border-gray-300"
+              }`}
             >
-              <div className="flex items-center space-x-4 mb-4">
-                <Checkbox
-                  id={`day-${dayIndex}`}
-                  checked={dayAvail.enabled}
-                  onCheckedChange={() => toggleDay(dayIndex)}
-                  className="h-5 w-5"
-                />
-                <label
-                  htmlFor={`day-${dayIndex}`}
-                  className="font-medium text-gray-900 text-lg cursor-pointer select-none"
-                >
-                  {dayAvail.day}
-                </label>
+              {/* Day Header */}
+              <div className="p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4">
+                    <Checkbox
+                      id={`day-${dayIndex}`}
+                      checked={dayAvail.enabled}
+                      onCheckedChange={() => toggleDay(dayIndex)}
+                      className="h-5 w-5"
+                    />
+                    <label
+                      htmlFor={`day-${dayIndex}`}
+                      className="font-semibold text-gray-900 cursor-pointer select-none"
+                    >
+                      {dayAvail.day}
+                    </label>
+                  </div>
+                </div>
               </div>
 
+              {/* Time Slots */}
               {dayAvail.enabled && (
-                <div className="space-y-3 ml-6 sm:ml-9">
-                  {dayAvail.timeSlots.map((slot) => (
-                    <div
-                      key={slot.id}
-                      className="bg-gray-50 p-2 sm:p-3 rounded-md"
-                    >
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-                        <div className="flex items-center gap-2 min-w-0 flex-1">
-                          <Input
-                            type="time"
-                            value={slot.startTime}
-                            onChange={(e) =>
-                              updateTimeSlot(
-                                dayIndex,
-                                slot.id,
-                                "startTime",
-                                e.target.value
-                              )
-                            }
-                            className="w-32 sm:w-36 h-10 flex-shrink-0"
-                          />
-                          <span className="text-gray-500 font-medium text-sm flex-shrink-0">
-                            to
-                          </span>
-                          <Input
-                            type="time"
-                            value={slot.endTime}
-                            onChange={(e) =>
-                              updateTimeSlot(
-                                dayIndex,
-                                slot.id,
-                                "endTime",
-                                e.target.value
-                              )
-                            }
-                            className="w-32 sm:w-36 h-10 flex-shrink-0"
-                          />
-                        </div>
-                        <button
-                          onClick={() => removeTimeSlot(dayIndex, slot.id)}
-                          disabled={dayAvail.timeSlots.length === 1}
-                          className="p-2 cursor-pointer text-gray-400 hover:text-red-600 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed self-end sm:self-auto flex-shrink-0"
+                <div className="px-4 pb-4">
+                  <div className="border-t border-gray-200 pt-4">
+                    <div className="space-y-3">
+                      {dayAvail.timeSlots.map((slot, slotIndex) => (
+                        <div
+                          key={slot.id}
+                          className="bg-white rounded-lg p-3 border border-gray-200 shadow-sm"
                         >
-                          <X className="w-5 h-5" />
-                        </button>
-                      </div>
+                          <div className="space-y-3">
+                            {/* Desktop Layout */}
+                            <div className="hidden sm:flex items-center gap-3">
+                              <div className="flex items-center text-xs text-gray-500 font-medium min-w-0">
+                                <span className="mr-2">
+                                  Time Range {slotIndex + 1}:
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-2 flex-1">
+                                <Input
+                                  type="time"
+                                  value={slot.startTime}
+                                  onChange={(e) =>
+                                    updateTimeSlot(
+                                      dayIndex,
+                                      slot.id,
+                                      "startTime",
+                                      e.target.value
+                                    )
+                                  }
+                                  className="w-32 h-9 text-sm"
+                                />
+                                <span className="text-gray-400 font-medium text-sm px-1">
+                                  →
+                                </span>
+                                <Input
+                                  type="time"
+                                  value={slot.endTime}
+                                  onChange={(e) =>
+                                    updateTimeSlot(
+                                      dayIndex,
+                                      slot.id,
+                                      "endTime",
+                                      e.target.value
+                                    )
+                                  }
+                                  className="w-32 h-9 text-sm"
+                                />
+                              </div>
+                              <button
+                                onClick={() =>
+                                  removeTimeSlot(dayIndex, slot.id)
+                                }
+                                disabled={dayAvail.timeSlots.length === 1}
+                                className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-md transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                              >
+                                <X className="w-4 h-4" />
+                              </button>
+                            </div>
+
+                            {/* Mobile Layout */}
+                            <div className="sm:hidden space-y-3">
+                              <div className="text-xs text-gray-500 font-medium">
+                                Time Range {slotIndex + 1}:
+                              </div>
+                              <div className="flex items-center gap-2 justify-center">
+                                <Input
+                                  type="time"
+                                  value={slot.startTime}
+                                  onChange={(e) =>
+                                    updateTimeSlot(
+                                      dayIndex,
+                                      slot.id,
+                                      "startTime",
+                                      e.target.value
+                                    )
+                                  }
+                                  className="w-28 h-9 text-sm"
+                                />
+                                <span className="text-gray-400 font-medium text-sm px-1">
+                                  →
+                                </span>
+                                <Input
+                                  type="time"
+                                  value={slot.endTime}
+                                  onChange={(e) =>
+                                    updateTimeSlot(
+                                      dayIndex,
+                                      slot.id,
+                                      "endTime",
+                                      e.target.value
+                                    )
+                                  }
+                                  className="w-28 h-9 text-sm"
+                                />
+                              </div>
+                              {dayAvail.timeSlots.length > 1 && (
+                                <div className="flex justify-center pt-2">
+                                  <button
+                                    onClick={() =>
+                                      removeTimeSlot(dayIndex, slot.id)
+                                    }
+                                    className="px-3 py-1.5 text-xs  hover:text-red-700 hover:bg-red-50 rounded-md transition-all duration-200 font-medium border border-gray-300"
+                                  >
+                                    Remove this time range
+                                  </button>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        hoverVariant="ghost"
+                        onClick={() => addTimeSlot(dayIndex)}
+                        className="h-8 text-xs border-gray-300 text-gray-600 cursor-pointer"
+                        iconStart={<Plus className="w-3 h-3" />}
+                      >
+                        Add Time Range
+                      </Button>
                     </div>
-                  ))}
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => addTimeSlot(dayIndex)}
-                    className="mt-3 h-10"
-                    iconStart={<Plus className="w-4 h-4" />}
-                  >
-                    Add Time Range
-                  </Button>
+                  </div>
                 </div>
               )}
             </div>
