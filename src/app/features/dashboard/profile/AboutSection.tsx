@@ -124,7 +124,7 @@ export default function AboutSection() {
             </div>
 
             {/* Custom Tag Input */}
-            <div className="flex gap-2">
+            <div className="flex gap-3">
               <Input
                 placeholder="Add custom specialization..."
                 value={customTag}
@@ -135,9 +135,11 @@ export default function AboutSection() {
               <Button
                 onClick={addCustomTag}
                 disabled={!customTag.trim()}
-                className="h-12 px-4"
+                variant="outline"
+                className="h-12 px-4 border-2  text-blue-600   disabled:border-gray-200 disabled:text-gray-400 disabled:hover:bg-white"
+                iconStart={<Plus className="w-5 h-5" />}
               >
-                <Plus className="w-4 h-4" />
+                Add
               </Button>
             </div>
 
