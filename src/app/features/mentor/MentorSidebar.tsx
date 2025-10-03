@@ -1,7 +1,8 @@
 "use client";
 
 import { Button } from "@/app/components/ui/button";
-import { Heart, MessageCircle, Calendar, Star } from "lucide-react";
+import { FavoriteButton } from "@/app/components/ui/favorite-button";
+import { MessageCircle, Calendar, Star } from "lucide-react";
 
 interface MentorSidebarProps {
   mentor: {
@@ -78,15 +79,12 @@ export function MentorSidebar({ mentor }: MentorSidebarProps) {
           Send message
         </Button>
 
-        <Button
-          variant="ghost"
-          size="lg"
-          className="w-full"
-          hoverVariant="white"
-          iconStart={<Heart className="w-5 h-5" />}
-        >
-          Save to my list
-        </Button>
+        <div className="flex items-center justify-center bg-gray-50 rounded-xl p-2 hover:bg-gray-100 transition-colors duration-200">
+          <div className="flex items-center space-x-3">
+            <FavoriteButton size="lg" />
+            <span className="text-gray-700 font-medium">Save to my list</span>
+          </div>
+        </div>
       </div>
 
       {/* Trust Badge */}
