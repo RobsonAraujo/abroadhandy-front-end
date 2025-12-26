@@ -10,19 +10,17 @@ export default function HeroSection() {
             How It Works
           </h1>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Our platform connects ambitious students with successful mentors
-            from top universities worldwide. Here&apos;s how we make university
-            applications more accessible and successful for everyone.
+            Our comprehensive platform provides end-to-end support for graduate school applications. From AI-powered essay assistance to test prep and expert guidance - we&apos;re your complete grad school consultancy.
           </p>
         </div>
         <div className="text-center mt-12">
           <Button
-            href="/register"
+            href="/essay-ai"
             variant="primary"
             size="lg"
             iconEnd={<ArrowRight className="w-5 h-5" />}
           >
-            Start Your Journey
+            Start with EssayAI
           </Button>
         </div>
       </div>

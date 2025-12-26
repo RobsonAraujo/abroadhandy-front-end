@@ -1,26 +1,26 @@
-import { GraduationCap, Users, Shield, Star } from "lucide-react";
+import { Bot, Target, Users, Trophy } from "lucide-react";
 
 export default function HeroSection() {
   const features = [
     {
-      icon: <GraduationCap className="w-6 h-6 text-[#4F46E5]" />,
-      title: "Expert Mentors",
-      description: "Connect with top students from leading universities",
+      icon: <Bot className="w-6 h-6 text-[#4F46E5]" />,
+      title: "AI-Powered Essays",
+      description: "Get intelligent writing assistance for all your applications",
+    },
+    {
+      icon: <Target className="w-6 h-6 text-[#4F46E5]" />,
+      title: "Complete Test Prep",
+      description: "English tests, GMAT/GRE preparation all in one platform",
     },
     {
       icon: <Users className="w-6 h-6 text-[#4F46E5]" />,
-      title: "Peer Community",
-      description: "Join ambitious students worldwide",
+      title: "Expert Mentors",
+      description: "Human guidance when you need that personal touch",
     },
     {
-      icon: <Shield className="w-6 h-6 text-[#4F46E5]" />,
-      title: "Secure Platform",
-      description: "Your data is protected with enterprise-grade security",
-    },
-    {
-      icon: <Star className="w-6 h-6 text-[#4F46E5]" />,
-      title: "Proven Success",
-      description: "Students are achieving their university dreams",
+      icon: <Trophy className="w-6 h-6 text-[#4F46E5]" />,
+      title: "End-to-End Success",
+      description: "Your complete grad school consultancy platform",
     },
   ];
 
@@ -32,8 +32,7 @@ export default function HeroSection() {
           <span className="text-secondary"> AbroadHandy</span>
         </h1>
         <p className="text-lg text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0">
-          Continue your journey towards university success. Connect with
-          mentors, track your progress, and achieve your academic goals.
+          Continue your graduate school journey. Access AI-powered essay assistance, test prep, and expert mentorship all in one comprehensive platform.
         </p>
       </div>
 

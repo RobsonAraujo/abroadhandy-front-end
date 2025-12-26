@@ -1,26 +1,26 @@
-import { GraduationCap, Users, Shield, Star } from "lucide-react";
+import { Bot, Target, Users, Trophy } from "lucide-react";
 
 export default function HeroSection() {
   const benefits = [
     {
-      icon: <GraduationCap className="w-6 h-6 text-[#4F46E5]" />,
-      title: "Expert Guidance",
-      description: "Connect with top students from leading universities",
+      icon: <Bot className="w-6 h-6 text-[#4F46E5]" />,
+      title: "AI Essay Assistant",
+      description: "Get intelligent writing help for all your grad applications",
+    },
+    {
+      icon: <Target className="w-6 h-6 text-[#4F46E5]" />,
+      title: "Complete Prep Suite",
+      description: "English tests, GMAT/GRE, and application support",
     },
     {
       icon: <Users className="w-6 h-6 text-[#4F46E5]" />,
-      title: "Peer Support",
-      description: "Join a community of ambitious students",
+      title: "Expert Mentors",
+      description: "Human guidance from Harvard, Stanford, Oxford graduates",
     },
     {
-      icon: <Shield className="w-6 h-6 text-[#4F46E5]" />,
-      title: "Secure Platform",
-      description: "Your data is protected with enterprise-grade security",
-    },
-    {
-      icon: <Star className="w-6 h-6 text-[#4F46E5]" />,
-      title: "Proven Results",
-      description: "Join students who are achieving their dreams",
+      icon: <Trophy className="w-6 h-6 text-[#4F46E5]" />,
+      title: "End-to-End Platform",
+      description: "Your complete grad school success solution",
     },
   ];
 
@@ -29,12 +29,10 @@ export default function HeroSection() {
       <div className="text-center lg:text-left">
         <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-black mb-6">
           Join the Future of
-          <span className="text-secondary"> University Applications</span>
+          <span className="text-secondary"> Grad School Success</span>
         </h1>
         <p className="text-lg text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0">
-          Connect with top students from Harvard, MIT, Stanford, and other
-          leading universities. Get personalized guidance to maximize your
-          admission chances.
+          Access our comprehensive platform with AI-powered essays, test preparation, and expert mentorship. Everything you need for graduate school success.
         </p>
       </div>
 

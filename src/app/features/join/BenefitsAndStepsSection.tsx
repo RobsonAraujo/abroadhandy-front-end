@@ -1,27 +1,27 @@
 import Link from "next/link";
 import { Button } from "@/app/components/ui/button";
 import ArrowRightIcon from "@/app/icons/ArrowRightIcon";
-import { GraduationCap, Target, Star } from "lucide-react";
+import { Bot, Target, Trophy } from "lucide-react";
 
 export default function BenefitsAndStepsSection() {
   const benefits = [
     {
-      title: "Peer-to-Peer Guidance",
+      title: "AI-Powered Platform",
       description:
-        "Connect with professionals who have successfully navigated university applications.",
-      icon: <GraduationCap className="w-8 h-8 text-[#4F46E5]" />,
+        "Get intelligent essay assistance and application guidance powered by advanced AI technology.",
+      icon: <Bot className="w-8 h-8 text-[#4F46E5]" />,
     },
     {
-      title: "Personalized Guidance",
+      title: "Complete Preparation Suite",
       description:
-        "Get tailored advice based on your specific goals and background.",
+        "Access everything you need: essay writing, test prep, and expert mentorship all in one place.",
       icon: <Target className="w-8 h-8 text-[#4F46E5]" />,
     },
     {
-      title: "Proven Results",
+      title: "End-to-End Success",
       description:
-        "Join students who are achieving their university dreams with our help.",
-      icon: <Star className="w-8 h-8 text-[#4F46E5]" />,
+        "From your first essay draft to final application submission - we support your entire grad school journey.",
+      icon: <Trophy className="w-8 h-8 text-[#4F46E5]" />,
     },
   ];
 
@@ -62,7 +62,8 @@ export default function BenefitsAndStepsSection() {
                     Create Your Account
                   </h4>
                   <p className="text-gray-600">
-                    Sign up and tell us about your goals and interests.
+                    Sign up and tell us about your grad school goals and target
+                    programs.
                   </p>
                 </div>
               </div>
@@ -72,10 +73,12 @@ export default function BenefitsAndStepsSection() {
                   2
                 </div>
                 <div className="ml-4">
-                  <h4 className="font-semibold text-black">Find Your Mentor</h4>
+                  <h4 className="font-semibold text-black">
+                    Start with EssayAI
+                  </h4>
                   <p className="text-gray-600">
-                    Browse our top students and find the perfect match for your
-                    needs.
+                    Use our AI-powered platform to craft compelling essays and
+                    personal statements.
                   </p>
                 </div>
               </div>
@@ -86,11 +89,11 @@ export default function BenefitsAndStepsSection() {
                 </div>
                 <div className="ml-4">
                   <h4 className="font-semibold text-black">
-                    Start Your Journey
+                    Get Expert Support
                   </h4>
                   <p className="text-gray-600">
-                    Book your first session and begin working towards your
-                    university goals.
+                    Access test prep, essay refinement, and human mentorship
+                    when you need that personal touch.
                   </p>
                 </div>
               </div>
@@ -98,13 +101,13 @@ export default function BenefitsAndStepsSection() {
 
             <div className="mt-8 space-y-4">
               <Button
-                href="/register"
+                href="/essay-ai"
                 variant="primary"
                 size="lg"
                 className="w-full"
                 iconEnd={<ArrowRightIcon className="w-5 h-5" />}
               >
-                Create Free Account
+                Start with EssayAI
               </Button>
 
               <p className="text-center text-sm text-gray-600">

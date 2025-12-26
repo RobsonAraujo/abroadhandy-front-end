@@ -1,34 +1,38 @@
-import { Users, Target, MessageCircle, CheckCircle } from "lucide-react";
+import { Globe, Calculator, PenTool, Users } from "lucide-react";
 
 export default function StudentStepsSection() {
   const studentSteps = [
     {
       step: "1",
-      title: "Create Your Profile",
+      title: "Prepare for English Exam",
       description:
-        "Sign up and create a detailed profile with your academic background, target universities, and application goals.",
-      icon: <Users className="w-8 h-8 text-[#4F46E5]" />,
+        "If needed, get ready for IELTS, TOEFL, or Duolingo with our comprehensive test preparation platform.",
+      icon: <Globe className="w-8 h-8 text-[#4F46E5]" />,
+      status: "Coming Soon",
     },
     {
       step: "2",
-      title: "Browse Top Mentors",
+      title: "Prepare for GMAT/GRE",
       description:
-        "Explore our network of successful students from top universities who match your field of study and target schools.",
-      icon: <Target className="w-8 h-8 text-[#4F46E5]" />,
+        "If required for your program, master the GMAT or GRE with our targeted preparation tools and strategies.",
+      icon: <Calculator className="w-8 h-8 text-[#4F46E5]" />,
+      status: "Coming Soon",
     },
     {
       step: "3",
-      title: "Connect & Chat",
+      title: "EssayAI - Refine Your Essays",
       description:
-        "Start conversations with potential mentors, ask questions, and find the perfect match for your needs.",
-      icon: <MessageCircle className="w-8 h-8 text-[#4F46E5]" />,
+        "Use our AI-powered platform to craft compelling personal statements and essays that stand out to admissions committees.",
+      icon: <PenTool className="w-8 h-8 text-[#4F46E5]" />,
+      status: "Available Now",
     },
     {
       step: "4",
-      title: "Get Personalized Guidance",
+      title: "Still Need Help? Human Touch",
       description:
-        "Receive one-on-one mentorship, essay reviews, interview prep, and strategic advice for your applications.",
-      icon: <CheckCircle className="w-8 h-8 text-[#4F46E5]" />,
+        "Connect with expert mentors from your target programs for personalized guidance and one-on-one support.",
+      icon: <Users className="w-8 h-8 text-[#4F46E5]" />,
+      status: "Available Now",
     },
   ];
 
@@ -37,11 +41,10 @@ export default function StudentStepsSection() {
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-black lg:text-4xl mb-4">
-            For Students
+            Your Complete Grad School Journey
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Get personalized guidance from students who have successfully
-            navigated the same application process you&apos;re going through.
+            From test preparation to essay refinement to expert guidance - we support you through every step of your graduate school application process.
           </p>
         </div>
 
@@ -57,9 +60,16 @@ export default function StudentStepsSection() {
               <h3 className="text-xl font-semibold text-black mb-3">
                 {step.title}
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed mb-3">
                 {step.description}
               </p>
+              <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
+                step.status === "Available Now" 
+                  ? "bg-green-100 text-green-800" 
+                  : "bg-orange-100 text-orange-800"
+              }`}>
+                {step.status}
+              </span>
             </div>
           ))}
         </div>

@@ -9,9 +9,9 @@ export default function WhyChooseUs() {
       icon: <Bot className="w-7 h-7 text-[#4F46E5]" />,
     },
     {
-      title: "Expert Mentorship",
+      title: "Human Touch Available",
       description:
-        "Connect with mentors from Harvard MBA, Stanford PhD, Oxford Master's, and other top graduate programs who've been through the process.",
+        "When you need that personal guidance, connect with experts from Harvard MBA, Stanford PhD, Oxford Master's, and other top programs.",
       icon: <Users className="w-7 h-7 text-[#4F46E5]" />,
     },
     {
@@ -33,10 +33,12 @@ export default function WhyChooseUs() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 lg:mb-16 text-center">
           <h2 className="text-5xl font-bold text-black lg:text-6xl xl:text-7xl leading-tight mb-6">
-            Why Grad Students Choose Us
+            Your All-in-One Grad School Platform
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Join thousands of graduate applicants who have successfully gotten into their dream programs with our AI-powered assistance and expert mentorship.
+            Join thousands of graduate applicants who chose our comprehensive
+            platform for end-to-end support - from AI essays to test prep to
+            expert guidance.
           </p>
         </div>
 

@@ -10,16 +10,16 @@ export default function Join() {
       <BenefitsAndStepsSection />
 
       <Banner
-        title="Ready to Transform Your Future?"
-        description="Don't let another day pass without taking action towards your university dreams."
+        title="Ready to Ace Your Grad School Applications?"
+        description="Join thousands using our AI-powered platform for complete graduate school success."
         primaryButton={{
-          href: "/register",
-          text: "Join Now - It's Free",
+          href: "/essay-ai",
+          text: "Start with EssayAI",
           icon: <ArrowRightIcon className="w-5 h-5" />,
         }}
         secondaryButton={{
-          href: "/mentors",
-          text: "Browse Top Student Mentors",
+          href: "/register",
+          text: "Create Free Account",
         }}
         backgroundColor="secondary"
       />

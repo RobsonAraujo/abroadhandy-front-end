@@ -22,7 +22,7 @@ export default function Hero() {
             </p>
 
             <Button
-              href="/mentors"
+              href="/essay-ai"
               variant="primary"
               size="lg"
               className="mt-8 lg:mt-16"

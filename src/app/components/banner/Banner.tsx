@@ -46,17 +46,17 @@ export interface BannerProps {
 }
 
 export default function Banner({
-  title = "Ready to Start Your Journey?",
-  description = "Join students who are already working with top students from leading universities to achieve their university dreams.",
+  title = "Ready to Refine Your Essays?",
+  description = "Join thousands of graduate applicants using our comprehensive AI platform for complete grad school success.",
   primaryButton = {
-    href: "/join",
-    text: "Get Started Today",
+    href: "/essay-ai",
+    text: "Start with EssayAI",
     variant: "secondary",
     icon: <ArrowRightIcon className="w-5 h-5" />,
   },
   secondaryButton = {
     href: "/mentors",
-    text: "Browse Top Mentors",
+    text: "Get Human Guidance",
     variant: "outline",
     className: "border-white text-white hover:bg-white hover:text-secondary",
   },

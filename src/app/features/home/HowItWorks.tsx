@@ -1,33 +1,33 @@
-import { PenTool, Users, GraduationCap } from "lucide-react";
+import { Bot, Target, Trophy } from "lucide-react";
 
 export default function HowItWorks() {
   const steps = [
     {
       number: 1,
-      title: "Get AI Essay Assistance",
+      title: "AI-Powered Application Support",
       description:
-        "Tell us about your grad school goals and get AI-powered suggestions for your personal statements, essays, and application materials. Perfect for MBA, Master's, PhD, and Medical School applications.",
+        "Our comprehensive AI platform guides you through every step - from essay writing and personal statements to application strategy. Get intelligent suggestions tailored to your target programs.",
       bgColor: "bg-primary",
       textColor: "text-black",
-      icon: <PenTool className="w-8 h-8 text-[#4F46E5]" />,
+      icon: <Bot className="w-8 h-8 text-[#4F46E5]" />,
     },
     {
       number: 2,
-      title: "Connect with Expert Mentors",
+      title: "Complete Preparation Suite",
       description:
-        "Get matched with mentors from your target programs - Harvard MBA, Stanford PhD, Oxford Master's, and more. Receive personalized guidance from those who've been there.",
+        "Access our full range of services: essay refinement, English test prep (IELTS, TOEFL, Duolingo), GMAT/GRE preparation, and expert human guidance when you need that personal touch.",
       bgColor: "bg-secondary",
       textColor: "text-white",
-      icon: <Users className="w-8 h-8 text-[#4F46E5]" />,
+      icon: <Target className="w-8 h-8 text-[#4F46E5]" />,
     },
     {
       number: 3,
-      title: "Submit Winning Applications",
+      title: "End-to-End Success",
       description:
-        "With AI-powered essay assistance, expert mentorship, and future English test prep (IELTS, TOEFL, Duolingo), you'll be ready to submit applications that stand out worldwide.",
+        "From your first essay draft to final application submission, we're your complete grad school consultancy. AI-driven efficiency with human expertise available at every step.",
       bgColor: "bg-purple",
       textColor: "text-white",
-      icon: <GraduationCap className="w-8 h-8 text-[#4F46E5]" />,
+      icon: <Trophy className="w-8 h-8 text-[#4F46E5]" />,
     },
   ];
 

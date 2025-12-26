@@ -13,17 +13,17 @@ export default function HowItWorks() {
       <MentorStepsSection />
       <BenefitsSection />
       <Banner
-        title="Ready to Get Started?"
-        description="Join thousands of students and mentors who are already using AbroadHandy to achieve their university application goals."
+        title="Ready to Refine Your Essays?"
+        description="Join thousands of graduate applicants using our comprehensive AI platform for end-to-end grad school success."
         primaryButton={{
-          href: "/mentors",
-          text: "Find a Mentor",
+          href: "/essay-ai",
+          text: "Start with EssayAI",
           variant: "white",
           icon: <ArrowRight className="w-5 h-5" />,
         }}
         secondaryButton={{
-          href: "/become-a-mentor",
-          text: "Become a Mentor",
+          href: "/mentors",
+          text: "Get Human Guidance",
           variant: "outline",
           className:
             "border-white text-white hover:bg-white hover:text-[#4F46E5]",
