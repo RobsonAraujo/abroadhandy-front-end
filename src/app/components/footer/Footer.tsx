@@ -11,20 +11,55 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">AbroadHandy</h3>
             <p className="text-gray-400 mb-4">
-              Connecting students with top students from leading universities to
-              achieve their university application dreams.
+              Your one-stop solution for graduate school applications.
+              AI-powered essay assistance and expert mentorship for MBA,
+              Master's, PhD, and Medical School programs worldwide.
             </p>
           </div>
 
           <div>
-            <h4 className="text-md font-semibold mb-4">For Students</h4>
+            <h4 className="text-md font-semibold mb-4">Services</h4>
             <ul className="space-y-2">
+              <li>
+                <Link
+                  href="/essay-ai"
+                  className="text-gray-400 hover:text-white"
+                >
+                  Essay MBA
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/mentors"
                   className="text-gray-400 hover:text-white"
                 >
                   Find Mentors
+                </Link>
+              </li>
+              <li>
+                <span className="text-gray-500 cursor-not-allowed">
+                  English Test Prep
+                </span>
+                <SoonBadge />
+              </li>
+              <li>
+                <span className="text-gray-500 cursor-not-allowed">
+                  GMAT/GRE Prep
+                </span>
+                <SoonBadge />
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-md font-semibold mb-4">For Mentors</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link
+                  href="/become-a-mentor"
+                  className="text-gray-400 hover:text-white"
+                >
+                  Become a Mentor
                 </Link>
               </li>
               <li>
@@ -37,48 +72,28 @@ export default function Footer() {
               </li>
               <li>
                 <span className="text-gray-500 cursor-not-allowed">
+                  Mentor Guidelines
+                </span>
+                <SoonBadge />
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-md font-semibold mb-4">Company</h4>
+            <ul className="space-y-2">
+              <li>
+                <span className="text-gray-500 cursor-not-allowed">
+                  About Us
+                </span>
+                <SoonBadge />
+              </li>
+              <li>
+                <span className="text-gray-500 cursor-not-allowed">
                   Success Stories
                 </span>
                 <SoonBadge />
               </li>
-              <li>
-                <span className="text-gray-500 cursor-not-allowed">
-                  Pricing
-                </span>
-                <SoonBadge />
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-md font-semibold mb-4">For Top Students</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/become-a-mentor"
-                  className="text-gray-400 hover:text-white"
-                >
-                  Become a Mentor
-                </Link>
-              </li>
-              <li>
-                <span className="text-gray-500 cursor-not-allowed">
-                  Guidelines
-                </span>
-                <SoonBadge />
-              </li>
-              <li>
-                <span className="text-gray-500 cursor-not-allowed">
-                  Resources
-                </span>
-                <SoonBadge />
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-md font-semibold mb-4">Support</h4>
-            <ul className="space-y-2">
               <li>
                 <span className="text-gray-500 cursor-not-allowed">
                   Contact Us
@@ -87,19 +102,7 @@ export default function Footer() {
               </li>
               <li>
                 <span className="text-gray-500 cursor-not-allowed">
-                  Help Center
-                </span>
-                <SoonBadge />
-              </li>
-              <li>
-                <span className="text-gray-500 cursor-not-allowed">
                   Privacy Policy
-                </span>
-                <SoonBadge />
-              </li>
-              <li>
-                <span className="text-gray-500 cursor-not-allowed">
-                  Terms of Service
                 </span>
                 <SoonBadge />
               </li>

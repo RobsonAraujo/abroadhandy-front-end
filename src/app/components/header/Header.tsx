@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import MenuIcon from "@/app/icons/MenuIcon";
 import CloseMenuIcon from "@/app/icons/CloseMenuIcon";
+import SparklesIcon from "@/app/icons/SparklesIcon";
 import { Button } from "@/app/components/ui/button";
 import { MENU_ITEMS } from "@/app/constants/menu";
 
@@ -74,9 +75,16 @@ export default function Header({ useWhiteBackground = false }: HeaderProps) {
                 key={item.href}
                 href={item.href}
                 title=""
-                className="text-base font-medium text-black transition-all duration-200 hover:text-opacity-80"
+                className={`text-base font-medium transition-all duration-200 flex items-center space-x-2 ${
+                  item.isHighlighted
+                    ? "text-blue-600 hover:text-blue-700 bg-blue-50 px-3 py-2 rounded-lg"
+                    : "text-black hover:text-opacity-80"
+                }`}
               >
-                {item.label}
+                {item.hasIcon && (
+                  <SparklesIcon className="w-4 h-4 text-blue-600" />
+                )}
+                <span>{item.label}</span>
               </Link>
             ))}
           </div>
@@ -143,10 +151,17 @@ export default function Header({ useWhiteBackground = false }: HeaderProps) {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="block px-3 py-3 text-base font-medium text-gray-900 transition-all duration-200 rounded-md hover:bg-gray-50"
+                      className={`block px-3 py-3 text-base font-medium transition-all duration-200 rounded-md flex items-center space-x-2 ${
+                        item.isHighlighted
+                          ? "text-blue-600 bg-blue-50 hover:bg-blue-100"
+                          : "text-gray-900 hover:bg-gray-50"
+                      }`}
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      {item.label}
+                      {item.hasIcon && (
+                        <SparklesIcon className="w-4 h-4 text-blue-600" />
+                      )}
+                      <span>{item.label}</span>
                     </Link>
                   ))}
                 </div>
