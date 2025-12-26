@@ -13,7 +13,7 @@ export default function Footer() {
             <p className="text-gray-400 mb-4">
               Your one-stop solution for graduate school applications.
               AI-powered essay assistance and expert mentorship for MBA,
-              Master's, PhD, and Medical School programs worldwide.
+              Master&apos;s, PhD, and Medical School programs worldwide.
             </p>
           </div>
 

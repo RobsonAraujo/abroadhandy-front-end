@@ -9,8 +9,10 @@ export default function HeaderWrapper() {
   const { isAuthenticated, user, logout, isLoading } = useAuth();
   const pathname = usePathname();
 
-  const shouldUseWhiteBackground =
+  const mentorPath =
     pathname === "/mentors" || pathname?.startsWith("/mentor/");
+  const essayAiPath = pathname === "/essay-ai";
+  const shouldUseWhiteBackground = mentorPath || essayAiPath;
 
   if (isLoading) {
     return (

@@ -3,7 +3,6 @@ import {
   ArrowRight,
   CheckCircle,
   DollarSign,
-  Clock,
   BookOpen,
   Users,
   MessageCircle,

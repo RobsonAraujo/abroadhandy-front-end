@@ -17,8 +17,8 @@ export default function Hero() {
             </h1>
             <p className="mt-4 text-base text-black lg:mt-8 sm:text-xl">
               Get into your dream graduate program worldwide with AI-powered
-              essay assistance and expert mentorship. MBA • Master's • PhD •
-              Medical School
+              essay assistance and expert mentorship. MBA • Master&apos;s • PhD
+              • Medical School
             </p>
 
             <Button
