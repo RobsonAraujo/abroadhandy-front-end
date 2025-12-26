@@ -19,27 +19,26 @@ export default function BecomeAMentorSection() {
               </h2>
 
               <p className="text-sm text-black mb-8 leading-relaxed">
-                Earn money sharing your expert knowledge with students. Sign up
-                to start guiding online with AbroadHandy.
+                Share your graduate school expertise with aspiring students. Help them with essays, applications, and get paid for your knowledge.
               </p>
 
               <div className="space-y-3 mb-8">
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-black rounded-full mr-4"></div>
                   <span className="text-black font-medium text-2xl text-bold">
-                    Find new students
+                    Help grad applicants
                   </span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-black rounded-full mr-4"></div>
                   <span className="text-black font-medium text-2xl ">
-                    Grow your network
+                    Share your expertise
                   </span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-black rounded-full mr-4"></div>
                   <span className="text-black font-medium text-2xl">
-                    Get paid securely
+                    Earn from anywhere
                   </span>
                 </div>
               </div>

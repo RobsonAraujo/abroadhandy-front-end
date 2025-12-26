@@ -1,33 +1,33 @@
-import { Users, Calendar, Video } from "lucide-react";
+import { PenTool, Users, GraduationCap } from "lucide-react";
 
 export default function HowItWorks() {
   const steps = [
     {
       number: 1,
-      title: "Connect with a Top Student",
+      title: "Get AI Essay Assistance",
       description:
-        "Browse our network of top students from leading universities like Harvard, MIT, Stanford, and more. Find the perfect match for your application goals.",
+        "Tell us about your grad school goals and get AI-powered suggestions for your personal statements, essays, and application materials. Perfect for MBA, Master's, PhD, and Medical School applications.",
       bgColor: "bg-primary",
       textColor: "text-black",
-      icon: <Users className="w-8 h-8 text-[#4F46E5]" />,
+      icon: <PenTool className="w-8 h-8 text-[#4F46E5]" />,
     },
     {
       number: 2,
-      title: "Schedule Your Session",
+      title: "Connect with Expert Mentors",
       description:
-        "Book a personalized session for interview practice, essay review, application strategy, or any specific guidance you need for your university application.",
+        "Get matched with mentors from your target programs - Harvard MBA, Stanford PhD, Oxford Master's, and more. Receive personalized guidance from those who've been there.",
       bgColor: "bg-secondary",
       textColor: "text-white",
-      icon: <Calendar className="w-8 h-8 text-[#4F46E5]" />,
+      icon: <Users className="w-8 h-8 text-[#4F46E5]" />,
     },
     {
       number: 3,
-      title: "Get Expert Guidance",
+      title: "Submit Winning Applications",
       description:
-        "Join your video call and receive personalized, one-on-one guidance from someone who has successfully navigated the same application process you're going through.",
+        "With AI-powered essay assistance, expert mentorship, and future English test prep (IELTS, TOEFL, Duolingo), you'll be ready to submit applications that stand out worldwide.",
       bgColor: "bg-purple",
       textColor: "text-white",
-      icon: <Video className="w-8 h-8 text-[#4F46E5]" />,
+      icon: <GraduationCap className="w-8 h-8 text-[#4F46E5]" />,
     },
   ];
 

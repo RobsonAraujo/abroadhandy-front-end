@@ -1,30 +1,30 @@
-import { Users, Globe, Target, Trophy } from "lucide-react";
+import { Bot, Users, Globe, BookOpen } from "lucide-react";
 
 export default function WhyChooseUs() {
   const features = [
     {
-      title: "One-on-One Mentorship",
+      title: "AI Essay Assistant",
       description:
-        "Get personalized support from top students who have successfully navigated the same application process you're going through.",
+        "Get AI-powered suggestions and feedback for your personal statements, essays, and application materials. Perfect for MBA, Master's, PhD applications.",
+      icon: <Bot className="w-7 h-7 text-[#4F46E5]" />,
+    },
+    {
+      title: "Expert Mentorship",
+      description:
+        "Connect with mentors from Harvard MBA, Stanford PhD, Oxford Master's, and other top graduate programs who've been through the process.",
       icon: <Users className="w-7 h-7 text-[#4F46E5]" />,
     },
     {
-      title: "Top University Network",
+      title: "Worldwide Programs",
       description:
-        "Connect with students from Harvard, MIT, Stanford, Oxford, and other leading universities who understand the application process inside and out.",
+        "Whether you're applying to US, UK, Canada, Australia, or anywhere else - we support applications to graduate programs worldwide.",
       icon: <Globe className="w-7 h-7 text-[#4F46E5]" />,
     },
     {
-      title: "Proven Strategies",
+      title: "Future Test Prep",
       description:
-        "Learn the exact strategies and techniques that helped our mentors get accepted to their dream universities, from essay writing to interview preparation.",
-      icon: <Target className="w-7 h-7 text-[#4F46E5]" />,
-    },
-    {
-      title: "Real Success Stories",
-      description:
-        "Get insights from students who have actually been accepted to top universities, sharing their real experiences and what made their applications stand out.",
-      icon: <Trophy className="w-7 h-7 text-[#4F46E5]" />,
+        "Coming soon: English test preparation for IELTS, TOEFL, Duolingo, plus GMAT and GRE prep to complete your grad school journey.",
+      icon: <BookOpen className="w-7 h-7 text-[#4F46E5]" />,
     },
   ];
 
@@ -33,12 +33,10 @@ export default function WhyChooseUs() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 lg:mb-16 text-center">
           <h2 className="text-5xl font-bold text-black lg:text-6xl xl:text-7xl leading-tight mb-6">
-            Why Students Choose Us
+            Why Grad Students Choose Us
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Join students who have successfully navigated their university
-            applications with guidance from top students at leading
-            universities.
+            Join thousands of graduate applicants who have successfully gotten into their dream programs with our AI-powered assistance and expert mentorship.
           </p>
         </div>
 

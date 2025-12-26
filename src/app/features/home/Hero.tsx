@@ -10,14 +10,15 @@ export default function Hero() {
         <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
           <div>
             <p className="text-base font-semibold tracking-wider text-secondary uppercase">
-              University application mentorship
+              Graduate application support
             </p>
             <h1 className="mt-4 text-4xl font-bold text-black lg:mt-8 sm:text-6xl xl:text-8xl">
-              Connect with top students
+              Grad apps, simplified
             </h1>
             <p className="mt-4 text-base text-black lg:mt-8 sm:text-xl">
-              Get personalized guidance for your university applications abroad
-              and maximize your admission chances.
+              Get into your dream graduate program worldwide with AI-powered
+              essay assistance and expert mentorship. MBA • Master's • PhD •
+              Medical School
             </p>
 
             <Button
@@ -27,7 +28,7 @@ export default function Hero() {
               className="mt-8 lg:mt-16"
               iconEnd={<ArrowRightIcon className="w-6 h-6" />}
             >
-              Find a mentor
+              Start Your Grad Journey
             </Button>
 
             <p className="mt-5 text-gray-600">
@@ -46,7 +47,7 @@ export default function Hero() {
             <Image
               className="w-full"
               src="/hero-image.png"
-              alt="Students connecting with top students for university applications abroad"
+              alt="Graduate students getting AI-powered essay assistance and mentorship for grad school applications"
               width={600}
               height={400}
               priority
