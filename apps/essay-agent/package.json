@@ -2,7 +2,25 @@
     "name": "essay-agent",
     "version": "1.0.0",
     "private": true,
-    "dependencies": {
-      "cross-env": "5.0.5"
-    }
+  "scripts": {
+    "dev": "next dev --turbopack --port 3001",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "cross-env": "5.0.5",
+    "next": "15.3.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
   }

@@ -1,6 +1,6 @@
 {
     "private": true,
-    "workspaces": ["apps/*"],
+    "workspaces": ["apps/*", "packages/*"],
     "scripts": {
       "dev:mentorship": "yarn workspace mentorship-platform dev",
       "dev:essay": "yarn workspace essay-agent dev"
