@@ -52,7 +52,10 @@ export default function AssistantLoading() {
         </h3>
 
         <div className="h-8 flex items-center justify-center mb-6">
-          <p key={currentIndex} className="text-gray-600 text-sm animate-fade-in">
+          <p
+            key={currentIndex}
+            className="text-gray-600 text-sm animate-fade-in"
+          >
             {loadingMessages[currentIndex].text}
           </p>
         </div>
@@ -84,4 +87,3 @@ export default function AssistantLoading() {
     </div>
   );
 }
-

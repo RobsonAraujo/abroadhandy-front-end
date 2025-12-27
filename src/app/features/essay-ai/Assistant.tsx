@@ -6,24 +6,33 @@ import EssayEditor from "@/app/components/essay-editor/EssayEditor";
 import { refinerService, RefinerFeedback } from "@/app/services/essay-ai";
 import AssistantFeedback from "./AssistantFeedback";
 import AssistantLoading from "./AssistantLoading";
-import { SCHOOLS } from "@/app/mocks/schools";
+import AssistantChat from "./AssistantChat";
 
 interface EditorHighlight {
   text: string;
   type: "error" | "warning" | "suggestion";
 }
 
+interface ChatMessage {
+  id: string;
+  question: string;
+  answer: string;
+  timestamp: Date;
+}
+
 export default function Assistant() {
   const [essay, setEssay] = useState("");
   const [essayPrompt, setEssayPrompt] = useState("");
-  const [question, setQuestion] = useState("");
-  const [school, setSchool] = useState(SCHOOLS[0]);
-  const [wordLimit, setWordLimit] = useState(500);
+  const [school, setSchool] = useState("");
+  const [wordLimit, setWordLimit] = useState<number | undefined>(undefined);
 
   const [isLoading, setIsLoading] = useState(false);
   const [feedback, setFeedback] = useState<RefinerFeedback | null>(null);
   const [wordCount, setWordCount] = useState(0);
   const [error, setError] = useState<string | null>(null);
+
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   const highlights = useMemo<EditorHighlight[]>(() => {
     if (!feedback) return [];
@@ -58,9 +67,9 @@ export default function Assistant() {
       const response = await refinerService.getfeedback({
         essay,
         essay_prompt: essayPrompt || "General essay review",
-        question: question || "Please review my essay",
-        school,
-        word_limit: wordLimit,
+        question: "Please review my essay",
+        school: school || "General",
+        word_limit: wordLimit || undefined,
       });
 
       setFeedback(response.feedback);
@@ -70,6 +79,28 @@ export default function Assistant() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleNewChatMessage = (message: ChatMessage) => {
+    setChatMessages((prev) => {
+      if (message.id.startsWith("temp-")) {
+        const existingIndex = prev.findIndex((m) => m.id === message.id);
+        if (existingIndex >= 0) {
+          const updated = [...prev];
+          updated[existingIndex] = message;
+          return updated;
+        }
+        return [...prev, message];
+      } else {
+        const tempIndex = prev.findIndex((m) => m.id.startsWith("temp-"));
+        if (tempIndex >= 0) {
+          const updated = [...prev];
+          updated.splice(tempIndex, 1);
+          return [...updated, message];
+        }
+        return [...prev, message];
+      }
+    });
   };
 
   const handleReset = () => {
@@ -96,48 +127,41 @@ export default function Assistant() {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Target School
-              </label>
-              <select
-                value={school}
-                onChange={(e) => setSchool(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-transparent text-sm"
-              >
-                {SCHOOLS.map((s) => (
-                  <option key={s} value={s}>
-                    {s}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Specific Question (optional)
+                Target School (optional)
               </label>
               <input
                 type="text"
-                value={question}
-                onChange={(e) => setQuestion(e.target.value)}
-                placeholder="e.g., Is my opening strong enough?"
+                value={school}
+                onChange={(e) => setSchool(e.target.value)}
+                placeholder="e.g., Stanford GSB"
                 className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-transparent text-sm"
               />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Word Limit
-              </label>
-              <input
-                type="number"
-                value={wordLimit}
-                onChange={(e) => setWordLimit(Number(e.target.value))}
-                min={100}
-                max={2000}
-                className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-transparent text-sm"
-              />
-            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Word Limit (optional)
+            </label>
+            <input
+              type="number"
+              value={wordLimit || ""}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (value === "") {
+                  setWordLimit(undefined);
+                } else {
+                  const num = parseInt(value, 10);
+                  if (!isNaN(num) && num > 0) {
+                    setWordLimit(num);
+                  }
+                }
+              }}
+              placeholder="e.g., 500"
+              min={1}
+              max={2000}
+              className="w-full sm:w-48 px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-transparent text-sm"
+            />
           </div>
 
           <EssayEditor
@@ -149,7 +173,7 @@ export default function Assistant() {
 
 Start with something like:
 'My journey into fintech began unexpectedly. As a product manager at a traditional bank, I noticed how many Brazilians lacked access to basic financial services...'"
-            minHeight="350px"
+            minHeight="500px"
           />
 
           {error && (
@@ -198,20 +222,58 @@ Start with something like:
           </div>
         </div>
 
-        <div className="lg:col-span-2 min-h-[500px]">
-          {isLoading ? (
-            <AssistantLoading />
-          ) : feedback ? (
-            <AssistantFeedback feedback={feedback} wordCount={wordCount} />
-          ) : (
-            <div className="h-full flex flex-col items-center justify-center bg-white rounded-2xl border-2 border-dashed border-gray-200 p-8 text-center">
-              <div className="w-16 h-16 rounded-2xl bg-gray-100 flex items-center justify-center mb-4">
+        <div className="lg:col-span-2 flex flex-col min-h-[500px] relative">
+          <div className="flex-1 mb-4">
+            {isLoading ? (
+              <AssistantLoading />
+            ) : feedback ? (
+              <AssistantFeedback
+                feedback={feedback}
+                wordCount={wordCount}
+                onOpenChat={() => setIsChatOpen(true)}
+              />
+            ) : (
+              <div className="h-full flex flex-col items-center justify-center bg-white rounded-2xl border-2 border-dashed border-gray-200 p-8 text-center relative">
+                <div className="w-16 h-16 rounded-2xl bg-gray-100 flex items-center justify-center mb-4">
+                  <svg
+                    className="w-8 h-8 text-gray-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={1.5}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  Ready to Analyze
+                </h3>
+                <p className="text-sm text-gray-500 max-w-xs">
+                  Write or paste your essay on the left, then click
+                  &quot;Analyze Essay&quot; to get AI-powered feedback.
+                </p>
+              </div>
+            )}
+          </div>
+
+          <button
+            onClick={() => setIsChatOpen(true)}
+            className="absolute bottom-4 right-4 w-14 h-14 rounded-full bg-gradient-to-br from-secondary via-blue-600 to-indigo-700 text-white shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-200 flex items-center justify-center z-10 cursor-pointer group"
+            aria-label="Open AI chat"
+          >
+            <div className="relative">
+              <div className="absolute inset-0 bg-white/20 rounded-full animate-ping opacity-75 group-hover:opacity-100" />
+              <div className="relative w-8 h-8 flex items-center justify-center">
                 <svg
-                  className="w-8 h-8 text-gray-400"
+                  className="w-5 h-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  strokeWidth={1.5}
+                  strokeWidth={2.5}
                 >
                   <path
                     strokeLinecap="round"
@@ -220,17 +282,21 @@ Start with something like:
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Ready to Analyze
-              </h3>
-              <p className="text-sm text-gray-500 max-w-xs">
-                Write or paste your essay on the left, then click "Analyze
-                Essay" to get AI-powered feedback.
-              </p>
             </div>
-          )}
+          </button>
         </div>
       </div>
+
+      <AssistantChat
+        open={isChatOpen}
+        onOpenChange={setIsChatOpen}
+        essay={essay}
+        essayPrompt={essayPrompt}
+        school={school}
+        wordLimit={wordLimit}
+        chatMessages={chatMessages}
+        onNewMessage={handleNewChatMessage}
+      />
     </div>
   );
 }
