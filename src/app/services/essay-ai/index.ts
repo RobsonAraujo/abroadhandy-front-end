@@ -1,3 +1,13 @@
 export { strategistService } from "./strategist";
-export type { StrategistRequest, StrategistResponse, EssayAngle } from "./types";
+export { refinerService } from "./refiner";
+export type {
+  StrategistRequest,
+  StrategistResponse,
+  EssayAngle,
+  RefinerRequest,
+  RefinerResponse,
+  RefinerFeedback,
+  Improvement,
+  GrammarCorrection,
+} from "./types";
 
