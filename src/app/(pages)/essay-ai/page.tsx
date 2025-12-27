@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Strategist from "@/app/features/essay-ai/Strategist";
+import Assistant from "@/app/features/essay-ai/Assistant";
 
 type ToolType = "strategist" | "assistant";
 
@@ -28,18 +30,17 @@ export default function EssayAIPage() {
               </svg>
               Powered by AI
             </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6">
-              Join students crafting their MBA/grad
-              <span className="block bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                school story.
-              </span>
+            <h1 className=" mx-auto text-center text-3xl sm:text-4xl font-semibold text-gray-900 leading-snug max-w-xl mb-5">
+              Craft your story for
+              <span className="text-blue-600"> MBA & Grad Schools</span>
             </h1>
+
             <p className="text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto mb-12">
               Select the tool that best fits your needs and start crafting your
               perfect application essay.
             </p>
 
-            <div className=" justify-center">
+            <div className=" max-w-lg mx-auto justify-center">
               <div className="relative flex flex-wrap rounded-lg bg-gray-100 p-1 shadow-[0_0_0_1px_rgba(0,0,0,0.06)] text-sm">
                 <label className="flex-1 text-center">
                   <input
@@ -82,6 +83,8 @@ export default function EssayAIPage() {
               </div>
             </div>
           </div>
+
+          {selectedTool === "strategist" ? <Strategist /> : <Assistant />}
         </div>
       </section>
     </div>
