@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import { Button } from "@/app/components/ui/button";
+import { strategistService, EssayAngle } from "@/app/services/essay-ai";
+import StrategistLoading from "./StrategistLoading";
+import StrategistResults from "./StrategistResults";
 
 interface Question {
   id: string;
@@ -121,9 +124,14 @@ const questions: Question[] = [
   },
 ];
 
+type ViewState = "form" | "loading" | "results";
+
 export default function Strategist() {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [viewState, setViewState] = useState<ViewState>("form");
+  const [results, setResults] = useState<EssayAngle[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   const totalSteps = Math.ceil(questions.length / 2);
   const startIndex = currentStep * 2;
@@ -137,9 +145,18 @@ export default function Strategist() {
 
   const canProceed = currentQuestions.every((q) => answers[q.id]?.trim());
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (isLastStep) {
-      console.log("Final answers:", answers);
+      setViewState("loading");
+      setError(null);
+      try {
+        const response = await strategistService.getSuggestions(answers);
+        setResults(response.angles);
+        setViewState("results");
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "An error occurred");
+        setViewState("form");
+      }
     } else {
       setCurrentStep((prev) => prev + 1);
     }
@@ -149,10 +166,32 @@ export default function Strategist() {
     setCurrentStep((prev) => Math.max(0, prev - 1));
   };
 
+  const handleReset = () => {
+    setCurrentStep(0);
+    setAnswers({});
+    setResults([]);
+    setViewState("form");
+    setError(null);
+  };
+
   const completedCount = Object.values(answers).filter((v) => v?.trim()).length;
+
+  if (viewState === "loading") {
+    return <StrategistLoading />;
+  }
+
+  if (viewState === "results") {
+    return <StrategistResults angles={results} onReset={handleReset} />;
+  }
 
   return (
     <div className="w-full max-w-2xl mx-auto">
+      {error && (
+        <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm">
+          {error}
+        </div>
+      )}
+
       <div className="mb-8">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
@@ -201,7 +240,7 @@ export default function Strategist() {
                 <div
                   className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
                     isAnswered
-                      ? "bg-secondary  text-white"
+                      ? "bg-secondary text-white"
                       : "bg-gray-100 text-gray-400"
                   }`}
                 >
