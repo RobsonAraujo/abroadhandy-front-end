@@ -6,7 +6,6 @@ import { RefinerFeedback } from "@/app/services/essay-ai";
 interface AssistantFeedbackProps {
   feedback: RefinerFeedback;
   wordCount: number;
-  onOpenChat?: () => void;
 }
 
 type TabType = "overview" | "improvements" | "grammar";
@@ -14,7 +13,6 @@ type TabType = "overview" | "improvements" | "grammar";
 export default function AssistantFeedback({
   feedback,
   wordCount,
-  onOpenChat,
 }: AssistantFeedbackProps) {
   const [activeTab, setActiveTab] = useState<TabType>("overview");
 
@@ -33,7 +31,7 @@ export default function AssistantFeedback({
   ];
 
   return (
-    <div className="h-full flex flex-col bg-white rounded-2xl border-2 border-gray-100 overflow-hidden relative">
+    <div className="h-full flex flex-col bg-white rounded-2xl border-2 border-gray-100 overflow-hidden">
       <div className="flex-shrink-0 p-4 border-b border-gray-100">
         <div className="flex items-center gap-2 mb-3">
           <div className="w-8 h-8 rounded-lg bg-secondary/10 flex items-center justify-center">
@@ -199,7 +197,7 @@ export default function AssistantFeedback({
                         Current
                       </p>
                       <p className="text-sm text-red-800 italic">
-                        &quot;{improvement.current}&quot;
+                        "{improvement.current}"
                       </p>
                     </div>
                   )}
@@ -267,33 +265,6 @@ export default function AssistantFeedback({
           </div>
         )}
       </div>
-
-      {onOpenChat && (
-        <button
-          onClick={onOpenChat}
-          className="absolute bottom-4 right-4 w-14 h-14 rounded-full bg-gradient-to-br from-secondary via-blue-600 to-indigo-700 text-white shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-200 flex items-center justify-center z-10 cursor-pointer group"
-          aria-label="Open AI chat"
-        >
-          <div className="relative">
-            <div className="absolute inset-0 bg-white/20 rounded-full animate-ping opacity-75 group-hover:opacity-100" />
-            <div className="relative w-8 h-8 flex items-center justify-center">
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2.5}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                />
-              </svg>
-            </div>
-          </div>
-        </button>
-      )}
     </div>
   );
 }

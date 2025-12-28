@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "../tailwind-theme.css";
 
+
+
 :root {
   --radius: 0.5rem;
   --background: #ffffff;
@@ -65,17 +67,12 @@ body {
   animation: slide-in-right 0.3s ease-in-out;
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-5px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in {
-  animation: fade-in 0.4s ease-out;
+  animation: fadeIn 1.0s ease-out forwards;
 }

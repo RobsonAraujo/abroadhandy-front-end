@@ -48,7 +48,7 @@ export default function StrategistLoading() {
         </div>
 
         <h3 className="text-xl font-semibold text-gray-900 mb-2">
-          Generating Your Essay Angles
+          Generating Creative Essay Ideas
         </h3>
 
         <div className="h-12 flex items-center justify-center">
