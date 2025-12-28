@@ -11,9 +11,13 @@ export default function SubMenu() {
       label: "Home",
       href: "/dashboard",
     },
+    // {
+    //   label: "Profile Settings",
+    //   href: "/dashboard/profile",
+    // },
     {
-      label: "Profile Settings",
-      href: "/dashboard/profile",
+      label: "Essay Assistant",
+      href: "/dashboard/essay-assistant",
     },
   ];
 

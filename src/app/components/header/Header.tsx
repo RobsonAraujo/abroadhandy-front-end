@@ -77,12 +77,12 @@ export default function Header({ useWhiteBackground = false }: HeaderProps) {
                 title=""
                 className={`text-base font-medium transition-all duration-200 flex items-center space-x-2 ${
                   item.isHighlighted
-                    ? "text-blue-600 hover:text-blue-700 bg-blue-50 px-3 py-2 rounded-lg"
+                    ? "text-purple-600 hover:text-purple-700 bg-purple-50 px-3 py-2 rounded-lg"
                     : "text-black hover:text-opacity-80"
                 }`}
               >
                 {item.hasIcon && (
-                  <SparklesIcon className="w-4 h-4 text-blue-600" />
+                  <SparklesIcon className="w-4 h-4 text-purple-600" />
                 )}
                 <span>{item.label}</span>
               </Link>
@@ -153,13 +153,13 @@ export default function Header({ useWhiteBackground = false }: HeaderProps) {
                       href={item.href}
                       className={`block px-3 py-3 text-base font-medium transition-all duration-200 rounded-md flex items-center space-x-2 ${
                         item.isHighlighted
-                          ? "text-blue-600 bg-blue-50 hover:bg-blue-100"
+                          ? "text-purple-600 bg-purple-50 hover:bg-purple-100"
                           : "text-gray-900 hover:bg-gray-50"
                       }`}
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {item.hasIcon && (
-                        <SparklesIcon className="w-4 h-4 text-blue-600" />
+                        <SparklesIcon className="w-4 h-4 text-purple-600" />
                       )}
                       <span>{item.label}</span>
                     </Link>

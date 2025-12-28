@@ -41,7 +41,7 @@ export default function Dashboard() {
           </p>
         </div>
 
-        <div className="space-y-8">
+        {/* <div className="space-y-8">
           <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
             <div className="p-6">
               <div className="mb-6">
@@ -183,7 +183,7 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

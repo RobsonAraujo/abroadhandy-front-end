@@ -159,6 +159,14 @@ export default function LoggedHeader({ user, onLogout }: LoggedHeaderProps) {
                       Profile Settings
                     </Link>
 
+                    <Link
+                      href="/dashboard/essay-assistant"
+                      className="block px-3 py-3 text-base font-medium text-gray-900 transition-all duration-200 rounded-md hover:bg-gray-50"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Essay Assistant
+                    </Link>
+
                     <button
                       onClick={() => {
                         onLogout();
