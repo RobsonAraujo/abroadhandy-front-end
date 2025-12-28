@@ -1,14 +1,30 @@
 "use client";
 
+import { Book, Lightbulb, Search, Star, Target, WholeWord } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const loadingMessages = [
-  { text: "Analyzing your profile...", icon: "🔍" },
-  { text: "Checking our database for similar essays...", icon: "📚" },
-  { text: "Scraping the web for latest university insights...", icon: "🌐" },
-  { text: "Finding the most compelling angles...", icon: "💡" },
-  { text: "Crafting personalized suggestions...", icon: "✨" },
-  { text: "Almost there! Finalizing your results...", icon: "🎯" },
+  { text: "Analyzing your profile...", icon: <Search color="#c87dff" /> },
+  {
+    text: "Checking our database for similar essays...",
+    icon: <Book color="#c87dff" />,
+  },
+  {
+    text: "Scraping the web for latest university insights...",
+    icon: <WholeWord color="#c87dff" />,
+  },
+  {
+    text: "Finding the most compelling angles...",
+    icon: <Lightbulb color="#c87dff" />,
+  },
+  {
+    text: "Crafting personalized suggestions...",
+    icon: <Star color="#c87dff" />,
+  },
+  {
+    text: "Almost there! Finalizing your results...",
+    icon: <Target color="#c87dff" />,
+  },
 ];
 
 export default function StrategistLoading() {
@@ -39,7 +55,7 @@ export default function StrategistLoading() {
         <div className="w-20 h-20 mx-auto mb-6 relative">
           <div className="absolute inset-0 rounded-full border-4 border-gray-100" />
           <div
-            className="absolute inset-0 rounded-full border-4 border-secondary border-t-transparent animate-spin"
+            className="absolute inset-0 rounded-full border-4 border-purple border-t-transparent animate-spin"
             style={{ animationDuration: "1s" }}
           />
           <div className="absolute inset-0 flex items-center justify-center text-3xl">
@@ -61,13 +77,13 @@ export default function StrategistLoading() {
       <div className="max-w-xs mx-auto">
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs font-medium text-gray-500">Progress</span>
-          <span className="text-xs font-semibold text-secondary">
+          <span className="text-xs font-semibold text-purple">
             {Math.round(progress)}%
           </span>
         </div>
         <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
           <div
-            className="h-full bg-secondary rounded-full transition-all duration-500 ease-out"
+            className="h-full bg-purple rounded-full transition-all duration-500 ease-out"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -79,9 +95,9 @@ export default function StrategistLoading() {
             key={index}
             className={`w-2 h-2 rounded-full transition-all duration-300 ${
               index === currentIndex
-                ? "bg-secondary scale-125"
+                ? "bg-purple scale-125"
                 : index < currentIndex
-                ? "bg-secondary/50"
+                ? "bg-purple/50"
                 : "bg-gray-200"
             }`}
           />

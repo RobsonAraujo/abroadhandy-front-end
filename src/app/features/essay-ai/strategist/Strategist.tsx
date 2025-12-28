@@ -87,16 +87,16 @@ export default function Strategist() {
               Step {currentStep + 1} of {totalSteps}
             </span>
           </div>
-          <div className="flex items-center gap-1.5 bg-blue-50 px-3 py-1.5 rounded-full">
-            <BadgeCheck className="text-blue-600" size={18} />
-            <span className="text-xs font-semibold text-blue-600">
+          <div className="flex items-center gap-1.5 bg-purple-50 px-3 py-1.5 rounded-full">
+            <BadgeCheck className="text-purple-600" size={18} />
+            <span className="text-xs font-semibold text-purple-600">
               {completedCount}/{questions.length} answered
             </span>
           </div>
         </div>
         <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
           <div
-            className="h-full bg-secondary to-indigo-500 rounded-full transition-all duration-500 ease-out"
+            className="h-full bg-purple to-indigo-500 rounded-full transition-all duration-500 ease-out"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -109,14 +109,14 @@ export default function Strategist() {
             <div
               key={item.id}
               className={`bg-white rounded-2xl p-6 border-2 transition-all duration-300 ${
-                isAnswered ? "border-blue-200 shadow-sm" : "border-gray-100"
+                isAnswered ? "border-purple-200 shadow-sm" : "border-gray-100"
               }`}
             >
               <div className="flex items-start gap-4">
                 <div
                   className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
                     isAnswered
-                      ? "bg-secondary text-white"
+                      ? "bg-purple text-white"
                       : "bg-gray-100 text-gray-400"
                   }`}
                 >
@@ -127,11 +127,11 @@ export default function Strategist() {
                     <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
                       {item.category}
                     </span>
-                    {isAnswered && (
+                    {/* {isAnswered && (
                       <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700">
                         Done
                       </span>
-                    )}
+                    )} */}
                   </div>
                   <label className="block text-gray-900 font-medium mb-3">
                     {item.question}
@@ -141,7 +141,7 @@ export default function Strategist() {
                     onChange={(e) => handleInputChange(item.id, e.target.value)}
                     placeholder={item.placeholder}
                     rows={3}
-                    className="w-full px-4 py-3 h-18 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:bg-white transition-all resize-none"
+                    className="w-full px-4 py-3 h-18 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:bg-white transition-all resize-none"
                   />
                 </div>
               </div>
@@ -175,7 +175,7 @@ export default function Strategist() {
         </Button>
 
         <Button
-          variant="secondary"
+          variant="white"
           onClick={handleNext}
           disabled={!canProceed}
           iconStart={isLastStep ? <Sparkles size={15} /> : undefined}

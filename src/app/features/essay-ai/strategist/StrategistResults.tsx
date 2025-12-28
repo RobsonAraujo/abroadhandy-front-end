@@ -69,7 +69,6 @@ export default function StrategistResults({
             key={index}
             className="group relative bg-gray-50 rounded-xl p-4 border border-gray-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 w-80"
           >
-            {/* Number badge outside card */}
             <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-[#c87dff]/20 flex items-center justify-center text-[#c87dff] font-bold text-lg shadow-md">
               {index + 1}
             </div>
@@ -81,7 +80,6 @@ export default function StrategistResults({
               {angle.description}
             </p>
 
-            {/* Accent shape */}
             <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-[#c87dff]/10 rounded-full opacity-50 group-hover:opacity-80 transition-opacity duration-300"></div>
           </div>
         ))}
