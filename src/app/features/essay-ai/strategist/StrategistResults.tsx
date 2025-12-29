@@ -36,9 +36,9 @@ export default function StrategistResults({
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto">
-      <div className="text-center mb-10">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 text-green-700 text-sm font-medium mb-4">
+    <div className="w-full max-w-5xl mx-auto">
+      <div className="text-center mb-12">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 text-green-700 text-sm font-medium mb-6 border border-green-200">
           <svg
             className="w-4 h-4"
             fill="none"
@@ -54,38 +54,36 @@ export default function StrategistResults({
           </svg>
           Analysis Complete
         </div>
-        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
           Your Essay Idea Suggestions
         </h2>
-        <p className="text-gray-600 max-w-lg mx-auto">
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
           We found {angles.length} compelling ideas for your essay. Each one is
           designed to highlight your unique story.
         </p>
       </div>
 
-      <div className="flex justify-center space-y-4 mb-8 flex flex-wrap gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
         {angles.map((angle, index) => (
           <div
             key={index}
-            className="group relative bg-gray-50 rounded-xl p-4 border border-gray-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 w-80"
+            className="group relative bg-white rounded-xl p-6 border border-gray-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
           >
-            <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-[#c87dff]/20 flex items-center justify-center text-[#c87dff] font-bold text-lg shadow-md">
+            <div className="absolute -top-3 -left-3 w-10 h-10 rounded-full bg-purple flex items-center justify-center text-white font-bold text-lg shadow-lg z-10">
               {index + 1}
             </div>
 
-            <h3 className="text-md font-semibold text-gray-900 group-hover:text-[#c87dff] transition-colors mb-1">
+            <h3 className="text-lg font-semibold text-gray-900 group-hover:text-purple transition-colors mb-3 mt-2">
               {angle.title}
             </h3>
             <p className="text-gray-600 text-sm leading-relaxed">
               {angle.description}
             </p>
-
-            <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-[#c87dff]/10 rounded-full opacity-50 group-hover:opacity-80 transition-opacity duration-300"></div>
           </div>
         ))}
       </div>
 
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6 border-t border-gray-200">
         <Button
           variant="white"
           onClick={handleDownloadPDF}

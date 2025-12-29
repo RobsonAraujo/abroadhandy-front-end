@@ -17,10 +17,10 @@ export default function EssayAIPage() {
   );
 
   return (
-    <div className="min-h-screen bg-white from-slate-50 via-white to-blue-50">
-      <section className="py-16 lg:py-24">
-        <div className="px-4 mx-auto max-w-5xl sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+    <div className="min-h-screen bg-gray-50">
+      <section className="py-12 lg:py-16">
+        <div className="px-4 mx-auto max-w-6xl sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple text-white text-sm font-medium mb-6">
               <svg
                 className="w-4 h-4"
@@ -40,12 +40,12 @@ export default function EssayAIPage() {
 
             <AnimatedTitle />
 
-            <p className="text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto mb-12">
+            <p className="text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto mb-8">
               Select the tool that best fits your needs and start crafting your
               perfect application essay.
             </p>
 
-            <div className=" max-w-lg mx-auto justify-center">
+            <div className="max-w-lg mx-auto justify-center mb-8">
               <div className="relative flex flex-wrap rounded-lg bg-gray-100 p-1 shadow-[0_0_0_1px_rgba(0,0,0,0.06)] text-sm">
                 <label className="flex-1 text-center">
                   <input
@@ -89,13 +89,13 @@ export default function EssayAIPage() {
             </div>
           </div>
 
-          {selectedTool === ToolType.STRATEGIST ? (
-            <Strategist />
-          ) : (
-            <div className="flex flex-col items-center justify-center py-16 px-4">
-              <div className="max-w-md w-full bg-white rounded-2xl border border-gray-200 shadow-lg p-8 text-center">
-                <div className="mb-6">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-purple/10 mb-4">
+          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-8 lg:p-12">
+            {selectedTool === ToolType.STRATEGIST ? (
+              <Strategist />
+            ) : (
+              <div className="flex flex-col items-center justify-center py-12 px-4">
+                <div className="max-w-md w-full text-center">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-purple/10 mb-6">
                     <svg
                       className="w-8 h-8 text-purple"
                       fill="none"
@@ -110,21 +110,25 @@ export default function EssayAIPage() {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
                     Please log in to continue
                   </h3>
-                  <p className="text-gray-600 text-lg leading-relaxed">
+                  <p className="text-gray-600 text-lg leading-relaxed mb-8">
                     This tool will be{" "}
                     <span className="font-semibold text-purple">free</span> when
                     you are logged in.
                   </p>
+                  <Button
+                    variant="purple"
+                    size="lg"
+                    className="w-full sm:w-auto"
+                  >
+                    <Link href="/login">Log in</Link>
+                  </Button>
                 </div>
-                <Button asChild variant="purple" size="lg" className="w-full">
-                  <Link href="/login">Log in</Link>
-                </Button>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </section>
     </div>

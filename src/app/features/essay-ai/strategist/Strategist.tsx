@@ -73,7 +73,7 @@ export default function Strategist() {
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-full max-w-4xl mx-auto">
       {error && (
         <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm">
           {error}
@@ -81,22 +81,22 @@ export default function Strategist() {
       )}
 
       <div className="mb-8">
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+            <span className="text-sm font-medium text-gray-600">
               Step {currentStep + 1} of {totalSteps}
             </span>
           </div>
-          <div className="flex items-center gap-1.5 bg-purple-50 px-3 py-1.5 rounded-full">
+          <div className="flex items-center gap-2 bg-purple-50 px-4 py-2 rounded-full border border-purple-100">
             <BadgeCheck className="text-purple-600" size={18} />
-            <span className="text-xs font-semibold text-purple-600">
+            <span className="text-sm font-semibold text-purple-700">
               {completedCount}/{questions.length} answered
             </span>
           </div>
         </div>
-        <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+        <div className="h-2.5 bg-gray-200 rounded-full overflow-hidden">
           <div
-            className="h-full bg-purple to-indigo-500 rounded-full transition-all duration-500 ease-out"
+            className="h-full bg-purple rounded-full transition-all duration-500 ease-out"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -108,40 +108,41 @@ export default function Strategist() {
           return (
             <div
               key={item.id}
-              className={`bg-white rounded-2xl p-6 border-2 transition-all duration-300 ${
-                isAnswered ? "border-purple-200 shadow-sm" : "border-gray-100"
+              className={`bg-gray-50 rounded-xl p-6 border transition-all duration-300 ${
+                isAnswered
+                  ? "border-purple-200 shadow-md bg-white"
+                  : "border-gray-200 hover:border-gray-300"
               }`}
             >
               <div className="flex items-start gap-4">
                 <div
-                  className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
+                  className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
                     isAnswered
-                      ? "bg-purple text-white"
-                      : "bg-gray-100 text-gray-400"
+                      ? "bg-purple text-white shadow-md"
+                      : "bg-white text-gray-400 border border-gray-200"
                   }`}
                 >
-                  {isAnswered ? <Check /> : item.icon}
+                  {isAnswered ? (
+                    <Check size={20} />
+                  ) : (
+                    <div className="w-5 h-5">{item.icon}</div>
+                  )}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-xs font-semibold text-purple-600 uppercase tracking-wide">
                       {item.category}
                     </span>
-                    {/* {isAnswered && (
-                      <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700">
-                        Done
-                      </span>
-                    )} */}
                   </div>
-                  <label className="block text-gray-900 font-medium mb-3">
+                  <label className="block text-gray-900 font-semibold text-lg mb-4">
                     {item.question}
                   </label>
                   <textarea
                     value={answers[item.id] || ""}
                     onChange={(e) => handleInputChange(item.id, e.target.value)}
                     placeholder={item.placeholder}
-                    rows={3}
-                    className="w-full px-4 py-3 h-18 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:bg-white transition-all resize-none"
+                    rows={4}
+                    className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all resize-none text-sm leading-relaxed"
                   />
                 </div>
               </div>
@@ -150,7 +151,7 @@ export default function Strategist() {
         })}
       </div>
 
-      <div className="mt-8 flex items-center justify-between">
+      <div className="mt-10 flex items-center justify-between pt-6 border-t border-gray-200">
         <Button
           variant="ghost"
           onClick={handleBack}
@@ -175,7 +176,7 @@ export default function Strategist() {
         </Button>
 
         <Button
-          variant="white"
+          variant="purple"
           onClick={handleNext}
           disabled={!canProceed}
           iconStart={isLastStep ? <Sparkles size={15} /> : undefined}
