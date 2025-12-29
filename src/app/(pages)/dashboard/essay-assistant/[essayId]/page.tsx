@@ -30,6 +30,7 @@ export default function EssayEdit({
     useState<EditorState | null>(null);
   const [feedback, setFeedback] = useState<RefinerFeedback | null>(null);
   const [isLoadingFeedback, setIsLoadingFeedback] = useState(false);
+  const [isEmpowerEnabled, setIsEmpowerEnabled] = useState(false);
   const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const USER_NOT_AUTHENTICATED = !isLoading && !isAuthenticated;
@@ -181,13 +182,16 @@ export default function EssayEdit({
   return (
     <div className="min-h-full flex bg-gray-50 p-6">
       <div className="flex-2">
-        <EmpowerEssayInfos />
-        <div className="flex justify-end mt-4 mr-4">
-          <EmpowerSwitch />
+        <div className="flex justify-end mt-4 mr-4 mb-4">
+          <EmpowerSwitch
+            checked={isEmpowerEnabled}
+            onChange={setIsEmpowerEnabled}
+          />
           <Button variant="ghost" disabled={isLoadingFeedback}>
             <GetFeedbackButton onClick={handleGenerateFeedback} />
           </Button>
         </div>
+        {isEmpowerEnabled && <EmpowerEssayInfos />}
         <EssayEditor
           initialState={getInitialState()}
           onChange={handleEditorChange}

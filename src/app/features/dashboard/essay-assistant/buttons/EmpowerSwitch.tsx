@@ -1,10 +1,29 @@
 import "./EmpowerSwitch.css";
 
-export default function EmpowerSwitch() {
+interface EmpowerSwitchProps {
+  checked?: boolean;
+  onChange?: (checked: boolean) => void;
+}
+
+export default function EmpowerSwitch({
+  checked = false,
+  onChange,
+}: EmpowerSwitchProps) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChange) {
+      onChange(e.target.checked);
+    }
+  };
+
   return (
     <div className="relative group">
       <label className="switch">
-        <input className="cb" type="checkbox" />
+        <input
+          className="cb"
+          type="checkbox"
+          checked={checked}
+          onChange={handleChange}
+        />
         <span className="toggle">
           <span className="left">off</span>
           <span className="right">on</span>
