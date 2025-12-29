@@ -1,8 +1,18 @@
 import { useEffect, useState } from "react";
 
 export default function AnimatedTitle() {
-  const words = ["MBA", "PHD", "MPH"];
-  const colors = ["success", "primary", "secondary"];
+  const words = ["MSc", "MS", "MA", "MEng", "MBA", "MPA", "MPH", "MEd", "LLM"];
+  const colorClasses = [
+    "bg-blue-200",
+    "bg-blue-300",
+    "bg-blue-400",
+    "bg-blue-500",
+    "bg-blue-600",
+    "bg-blue-700",
+    "bg-blue-500",
+    "bg-blue-400",
+    "bg-blue-600",
+  ];
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -19,7 +29,7 @@ export default function AnimatedTitle() {
         <span className="ml-2 relative z-10 block">
           <span
             key={index}
-            className={`inline-block px-2 py-0 rounded text-white bg-${colors[index]} transition-opacity duration-700 ease-out opacity-0 animate-fade-in text-3xl sm:text-4xl font-semibold`}
+            className={`inline-block px-2 py-0 rounded text-white ${colorClasses[index]} transition-opacity duration-700 ease-out opacity-0 animate-fade-in text-3xl sm:text-4xl font-semibold`}
           >
             {words[index]}
           </span>
