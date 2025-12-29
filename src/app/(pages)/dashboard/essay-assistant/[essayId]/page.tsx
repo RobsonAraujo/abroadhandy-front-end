@@ -6,6 +6,8 @@ import { useEffect, useState, use, useCallback, useRef } from "react";
 import { Essay } from "../page";
 import EssayEditor from "@/app/components/essay-editor/EssayEditor";
 import { EditorState } from "lexical";
+import EssayReview from "@/app/features/dashboard/essay-assistant/EssayReview";
+import GetFeedbackButton from "@/app/features/dashboard/essay-assistant/buttons/GetFeedbackButton";
 
 export default function EssayEdit({
   params,
@@ -118,11 +120,19 @@ export default function EssayEdit({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <EssayEditor
-        initialState={getInitialState()}
-        onChange={handleEditorChange}
-      />
+    <div className="min-h-full flex bg-gray-50 p-6">
+      <div className="flex-2">
+        <div className="flex justify-end mt-4 mr-4">
+          <GetFeedbackButton />
+        </div>
+        <EssayEditor
+          initialState={getInitialState()}
+          onChange={handleEditorChange}
+        />
+      </div>
+      <div className="flex-1">
+        <EssayReview />
+      </div>
     </div>
   );
 }

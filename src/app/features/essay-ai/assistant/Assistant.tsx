@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { Button } from "@/app/components/ui/button";
-import EssayEditor from "@/app/components/essay-editor/EssayEditor";
+import EssayEditor from "@/app/components/essay-editor-ai-temporary/EssayEditor";
 import { refinerService, RefinerFeedback } from "@/app/services/essay-ai";
 import AssistantFeedback from "./AssistantFeedback";
 import AssistantLoading from "../strategist/AssistantLoading";

@@ -42,6 +42,7 @@ h1 {
 .editor-inner {
   background: #fff;
   position: relative;
+  height: 100vh;
 }
 
 .editor-input {

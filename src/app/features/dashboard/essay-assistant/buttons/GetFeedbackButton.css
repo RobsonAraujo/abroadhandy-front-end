@@ -1,0 +1,66 @@
+.get-feedback-btn {
+  border: none;
+  width: 170px;
+  height: 45px;
+  border-radius: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background: #f0f0f0;
+  cursor: pointer;
+  transition: all 450ms ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.feedback-icon {
+  color: #AAAAAA;
+  transition: all 800ms ease;
+  z-index: 2;
+}
+
+.feedback-text {
+  font-weight: 600;
+  color: #AAAAAA;
+  font-size: medium;
+  transition: all 800ms ease;
+  z-index: 2;
+}
+
+.get-feedback-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, #A47CF3, #683FEA);
+  transition: left 450ms ease-in-out;
+  z-index: 1;
+}
+
+.get-feedback-btn:hover::before,
+.get-feedback-btn:active::before {
+  left: 0;
+}
+
+.get-feedback-btn:hover,
+.get-feedback-btn:active {
+  box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4),
+    inset 0px -4px 0px 0px rgba(0, 0, 0, 0.2),
+    0px 0px 20px 0px #9917FF;
+  transform: translateY(-2px);
+}
+
+.get-feedback-btn:hover .feedback-text,
+.get-feedback-btn:active .feedback-text {
+  color: white;
+}
+
+.get-feedback-btn:hover .feedback-icon,
+.get-feedback-btn:active .feedback-icon {
+  color: white;
+  transform: scale(1.2);
+}
+
