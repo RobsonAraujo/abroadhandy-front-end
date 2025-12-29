@@ -18,6 +18,7 @@ import {
   DOMExportOutput,
   DOMExportOutputMap,
   EditorState,
+  SerializedEditorState,
   isHTMLElement,
   Klass,
   LexicalEditor,
@@ -30,8 +31,9 @@ import { theme } from "./theme";
 import ToolbarPlugin from "./plugins/ToolbarPlugin";
 
 import { parseAllowedColor, parseAllowedFontSize } from "./styleConfig";
-import { useState } from "react";
+import { useMemo } from "react";
 import OnChangePlugin from "./plugins/OnChangePlugin";
+import InitialStatePlugin from "./plugins/InitialStatePlugin";
 
 const placeholder = "Start writing your essay here...";
 
@@ -128,7 +130,69 @@ const constructImportMap = (): DOMConversionMap => {
   return importMap;
 };
 
-const editorConfig = {
+function textToSerializedState(text: string): SerializedEditorState {
+  const paragraphs = text.split(/\n\n|\n/).filter((p) => p.trim().length > 0);
+
+  if (paragraphs.length === 0) {
+    return {
+      root: {
+        children: [
+          {
+            children: [],
+            direction: "ltr",
+            format: "",
+            indent: 0,
+            type: "paragraph",
+            version: 1,
+          },
+        ],
+        direction: "ltr",
+        format: "",
+        indent: 0,
+        type: "root",
+        version: 1,
+      },
+    } as unknown as SerializedEditorState;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const paragraphNodes: any[] = paragraphs.map((paragraph) => ({
+    children: [
+      {
+        detail: 0,
+        format: 0,
+        mode: "normal",
+        style: "",
+        text: paragraph.trim(),
+        type: "text",
+        version: 1,
+      },
+    ],
+    direction: "ltr",
+    format: "",
+    indent: 0,
+    type: "paragraph",
+    version: 1,
+  }));
+
+  return {
+    root: {
+      children: paragraphNodes,
+      direction: "ltr",
+      format: "",
+      indent: 0,
+      type: "root",
+      version: 1,
+    },
+  } as unknown as SerializedEditorState;
+}
+
+interface EssayEditorProps {
+  initialState?: string | SerializedEditorState;
+  onChange?: (editorState: EditorState) => void;
+}
+
+const createEditorConfig = () => ({
   html: {
     export: exportMap,
     import: constructImportMap(),
@@ -139,15 +203,33 @@ const editorConfig = {
     throw error;
   },
   theme,
-};
+});
 
-export default function App() {
-  const [editorState, setEditorState] = useState<EditorState | null>(null);
-  function onChange(editorState: EditorState) {
-    setEditorState(editorState);
+export default function EssayEditor({
+  initialState,
+  onChange,
+}: EssayEditorProps = {}) {
+  const serializedState = useMemo(() => {
+    if (initialState === undefined || initialState === null) {
+      return undefined;
+    }
+
+    if (typeof initialState === "string") {
+      return textToSerializedState(initialState);
+    }
+
+    return initialState;
+  }, [initialState]);
+
+  const shouldLoadInitialState =
+    serializedState !== undefined && serializedState !== null;
+
+  function handleChange(editorState: EditorState) {
+    onChange?.(editorState);
   }
-  const editorStateJSON = editorState?.toJSON();
-  console.log(JSON.stringify(editorStateJSON));
+
+  const editorConfig = useMemo(() => createEditorConfig(), []);
+
   return (
     <LexicalComposer initialConfig={editorConfig}>
       <div className="editor-container">
@@ -167,7 +249,10 @@ export default function App() {
           />
           <HistoryPlugin />
           <AutoFocusPlugin />
-          <OnChangePlugin onChange={onChange} />
+          {shouldLoadInitialState && serializedState && (
+            <InitialStatePlugin initialState={serializedState} />
+          )}
+          <OnChangePlugin onChange={handleChange} />
         </div>
       </div>
     </LexicalComposer>

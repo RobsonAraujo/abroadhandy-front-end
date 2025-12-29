@@ -14,12 +14,14 @@ import {
   DialogFooter,
   DialogDescription,
 } from "@/app/components/ui/dialog";
+import { SerializedEditorState } from "lexical";
 
 export type Essay = {
   id: string;
   title: string;
   body: string;
   createdAt: string;
+  editorState?: SerializedEditorState; // Opcional para compatibilidade com essays antigas
 };
 
 export default function EssayAssistant() {
