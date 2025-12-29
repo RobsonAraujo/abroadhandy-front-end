@@ -4,8 +4,9 @@ import { useAuth } from "@/app/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Trash2 } from "lucide-react";
+import { Trash2, Pencil, Check, X } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
+import { Input } from "@/app/components/ui/input";
 import {
   Dialog,
   DialogContent,
@@ -32,6 +33,8 @@ export default function EssayAssistant() {
   const [loadingEssays, setLoadingEssays] = useState(true);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [essayToDelete, setEssayToDelete] = useState<string | null>(null);
+  const [editingEssayId, setEditingEssayId] = useState<string | null>(null);
+  const [editingTitle, setEditingTitle] = useState<string>("");
 
   const USER_NOT_AUTHENTICATED = !isLoading && !isAuthenticated;
 
@@ -79,6 +82,44 @@ export default function EssayAssistant() {
     setDeleteModalOpen(false);
   };
 
+  const handleStartEdit = (essay: Essay, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setEditingEssayId(essay.id);
+    setEditingTitle(essay.title);
+  };
+
+  const handleSaveTitle = (essayId: string) => {
+    if (!editingTitle.trim()) {
+      setEditingEssayId(null);
+      return;
+    }
+
+    const updatedEssays = essays.map((essay) =>
+      essay.id === essayId ? { ...essay, title: editingTitle.trim() } : essay
+    );
+    setEssays(updatedEssays);
+    localStorage.setItem("essays", JSON.stringify(updatedEssays));
+    setEditingEssayId(null);
+    setEditingTitle("");
+  };
+
+  const handleCancelEdit = () => {
+    setEditingEssayId(null);
+    setEditingTitle("");
+  };
+
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    essayId: string
+  ) => {
+    if (e.key === "Enter") {
+      handleSaveTitle(essayId);
+    } else if (e.key === "Escape") {
+      handleCancelEdit();
+    }
+  };
+
   if (isLoading || loadingEssays) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -94,7 +135,7 @@ export default function EssayAssistant() {
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Your Essays</h1>
+        <h1 className="text-2xl font-bold text-gray-900">My Essays</h1>
         <Button onClick={handleNewEssay} variant="secondary">
           Create New Essay
         </Button>
@@ -115,24 +156,75 @@ export default function EssayAssistant() {
                 href={`/dashboard/essay-assistant/${essay.id}`}
                 className="block"
               >
-                <h3 className="text-md font-semibold text-gray-900 mb-1">
-                  {essay.title}
-                </h3>
+                {editingEssayId === essay.id ? (
+                  <div className="flex items-center gap-2 mb-1">
+                    <Input
+                      value={editingTitle}
+                      onChange={(e) => setEditingTitle(e.target.value)}
+                      onBlur={() => handleSaveTitle(essay.id)}
+                      onKeyDown={(e) => handleKeyDown(e, essay.id)}
+                      className="text-md font-semibold h-8 px-2 py-1"
+                      autoFocus
+                      onClick={(e) => e.stopPropagation()}
+                    />
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleSaveTitle(essay.id);
+                      }}
+                      className="h-8 w-8 p-0 text-green-600 hover:text-green-700 hover:bg-green-50"
+                    >
+                      <Check size={16} />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleCancelEdit();
+                      }}
+                      className="h-8 w-8 p-0 text-gray-400 hover:text-gray-600 hover:bg-gray-50"
+                    >
+                      <X size={16} />
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2 mb-1 group">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={(e) => handleStartEdit(essay, e)}
+                      className="h-6 w-6 p-0 text-gray-400  group-hover:opacity-100 hover:text-gray-600 transition-opacity"
+                    >
+                      <Pencil size={14} />
+                    </Button>
+                    <h3 className="text-md font-semibold text-gray-900 flex-1">
+                      {essay.title}
+                    </h3>
+                  </div>
+                )}
                 <p className="text-gray-500 text-sm">
                   Created on {essay.createdAt}
                 </p>
               </Link>
 
-              <Button
-                variant="ghost"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  confirmDeleteEssay(essay.id);
-                }}
-                className="absolute top-2 right-2 text-gray-400 hover:text-red-500"
-              >
-                <Trash2 size={18} />
-              </Button>
+              {!editingEssayId && (
+                <Button
+                  variant="ghost"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    confirmDeleteEssay(essay.id);
+                  }}
+                  className="absolute top-2 right-2 text-gray-400 hover:text-red-500"
+                >
+                  <Trash2 size={18} />
+                </Button>
+              )}
             </div>
           ))}
         </div>

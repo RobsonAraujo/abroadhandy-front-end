@@ -3,9 +3,6 @@
 import { useAuth } from "@/app/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/app/components/ui/button";
-import Link from "next/link";
 
 export default function Dashboard() {
   const { isAuthenticated, user, isLoading } = useAuth();
