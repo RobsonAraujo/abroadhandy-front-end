@@ -1,133 +1,175 @@
-"use client";
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+import "./style.css";
+import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
+import { LexicalComposer } from "@lexical/react/LexicalComposer";
+import { ContentEditable } from "@lexical/react/LexicalContentEditable";
+import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
+import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
+import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
+import {
+  $isTextNode,
+  DOMConversionMap,
+  DOMExportOutput,
+  DOMExportOutputMap,
+  EditorState,
+  isHTMLElement,
+  Klass,
+  LexicalEditor,
+  LexicalNode,
+  ParagraphNode,
+  TextNode,
+} from "lexical";
 
-import { useCallback, useMemo } from "react";
+import { theme } from "./theme";
+import ToolbarPlugin from "./plugins/ToolbarPlugin";
 
-interface EssayEditorProps {
-  value: string;
-  onChange: (value: string) => void;
-  placeholder?: string;
-  wordLimit?: number;
-  highlights?: HighlightItem[];
-  disabled?: boolean;
-  minHeight?: string;
-}
+import { parseAllowedColor, parseAllowedFontSize } from "./styleConfig";
+import { useState } from "react";
+import OnChangePlugin from "./plugins/OnChangePlugin";
 
-interface HighlightItem {
-  text: string;
-  type: "error" | "warning" | "suggestion";
-}
+const placeholder = "Start writing your essay here...";
 
-const highlightColors = {
-  error: "bg-red-100 text-red-900 border-b-2 border-red-400",
-  warning: "bg-yellow-100 text-yellow-900 border-b-2 border-yellow-400",
-  suggestion: "bg-blue-100 text-blue-900 border-b-2 border-blue-400",
+const removeStylesExportDOM = (
+  editor: LexicalEditor,
+  target: LexicalNode
+): DOMExportOutput => {
+  const output = target.exportDOM(editor);
+  if (output && isHTMLElement(output.element)) {
+    // Remove all inline styles and classes if the element is an HTMLElement
+    // Children are checked as well since TextNode can be nested
+    // in i, b, and strong tags.
+    for (const el of [
+      output.element,
+      ...output.element.querySelectorAll("[style],[class]"),
+    ]) {
+      el.removeAttribute("class");
+      el.removeAttribute("style");
+    }
+  }
+  return output;
 };
 
-export default function EssayEditor({
-  value,
-  onChange,
-  placeholder = "Start writing or paste your essay here...",
-  wordLimit,
-  highlights = [],
-  disabled = false,
-  minHeight = "400px",
-}: EssayEditorProps) {
-  const wordCount = useMemo(() => {
-    if (!value.trim()) return 0;
-    return value.trim().split(/\s+/).length;
-  }, [value]);
+const exportMap: DOMExportOutputMap = new Map<
+  Klass<LexicalNode>,
+  (editor: LexicalEditor, target: LexicalNode) => DOMExportOutput
+>([
+  [ParagraphNode, removeStylesExportDOM],
+  [TextNode, removeStylesExportDOM],
+]);
 
-  const getWordCountColor = useCallback(() => {
-    if (!wordLimit) return "text-gray-500";
-    const ratio = wordCount / wordLimit;
-    if (ratio > 1) return "text-red-600";
-    if (ratio > 0.9) return "text-yellow-600";
-    return "text-gray-500";
-  }, [wordCount, wordLimit]);
+const getExtraStyles = (element: HTMLElement): string => {
+  // Parse styles from pasted input, but only if they match exactly the
+  // sort of styles that would be produced by exportDOM
+  let extraStyles = "";
+  const fontSize = parseAllowedFontSize(element.style.fontSize);
+  const backgroundColor = parseAllowedColor(element.style.backgroundColor);
+  const color = parseAllowedColor(element.style.color);
+  if (fontSize !== "" && fontSize !== "15px") {
+    extraStyles += `font-size: ${fontSize};`;
+  }
+  if (backgroundColor !== "" && backgroundColor !== "rgb(255, 255, 255)") {
+    extraStyles += `background-color: ${backgroundColor};`;
+  }
+  if (color !== "" && color !== "rgb(0, 0, 0)") {
+    extraStyles += `color: ${color};`;
+  }
+  return extraStyles;
+};
 
-  const renderHighlightedText = useCallback(() => {
-    if (highlights.length === 0 || !value) return null;
+const constructImportMap = (): DOMConversionMap => {
+  const importMap: DOMConversionMap = {};
 
-    let result = value;
-    const parts: { text: string; highlight?: HighlightItem }[] = [];
-
-    highlights.forEach((highlight) => {
-      const index = result.toLowerCase().indexOf(highlight.text.toLowerCase());
-      if (index !== -1) {
-        if (index > 0) {
-          parts.push({ text: result.slice(0, index) });
-        }
-        parts.push({
-          text: result.slice(index, index + highlight.text.length),
-          highlight,
-        });
-        result = result.slice(index + highlight.text.length);
+  // Wrap all TextNode importers with a function that also imports
+  // the custom styles implemented by the playground
+  for (const [tag, fn] of Object.entries(TextNode.importDOM() || {})) {
+    importMap[tag] = (importNode) => {
+      const importer = fn(importNode);
+      if (!importer) {
+        return null;
       }
-    });
+      return {
+        ...importer,
+        conversion: (element) => {
+          const output = importer.conversion(element);
+          if (
+            output === null ||
+            output.forChild === undefined ||
+            output.after !== undefined ||
+            output.node !== null
+          ) {
+            return output;
+          }
+          const extraStyles = getExtraStyles(element);
+          if (extraStyles) {
+            const { forChild } = output;
+            return {
+              ...output,
+              forChild: (child, parent) => {
+                const textNode = forChild(child, parent);
+                if ($isTextNode(textNode)) {
+                  textNode.setStyle(textNode.getStyle() + extraStyles);
+                }
+                return textNode;
+              },
+            };
+          }
+          return output;
+        },
+      };
+    };
+  }
 
-    if (result) {
-      parts.push({ text: result });
-    }
+  return importMap;
+};
 
-    if (parts.length === 0) return null;
+const editorConfig = {
+  html: {
+    export: exportMap,
+    import: constructImportMap(),
+  },
+  namespace: "EssayEditor",
+  nodes: [ParagraphNode, TextNode],
+  onError(error: Error) {
+    throw error;
+  },
+  theme,
+};
 
-    return (
-      <div
-        className="absolute inset-0 p-4 pointer-events-none whitespace-pre-wrap break-words text-transparent"
-        style={{ minHeight }}
-      >
-        {parts.map((part, i) =>
-          part.highlight ? (
-            <span key={i} className={highlightColors[part.highlight.type]}>
-              {part.text}
-            </span>
-          ) : (
-            <span key={i}>{part.text}</span>
-          )
-        )}
-      </div>
-    );
-  }, [value, highlights, minHeight]);
-
+export default function App() {
+  const [editorState, setEditorState] = useState<EditorState | null>(null);
+  function onChange(editorState: EditorState) {
+    setEditorState(editorState);
+  }
+  const editorStateJSON = editorState?.toJSON();
+  console.log(JSON.stringify(editorStateJSON));
   return (
-    <div className="relative">
-      <div className="relative bg-white rounded-2xl border-2 border-gray-100 focus-within:border-secondary/30 transition-colors">
-        {renderHighlightedText()}
-        <textarea
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder={placeholder}
-          disabled={disabled}
-          className="w-full p-4 bg-transparent text-gray-900 placeholder-gray-400 focus:outline-none resize-none font-mono text-sm leading-relaxed"
-          style={{ minHeight }}
-        />
-      </div>
-
-      <div className="flex items-center justify-between mt-3 px-1">
-        <div className="flex items-center gap-4">
-          {highlights.length > 0 && (
-            <div className="flex items-center gap-3 text-xs">
-              <span className="flex items-center gap-1">
-                <span className="w-3 h-3 rounded bg-red-200 border border-red-400" />
-                <span className="text-gray-500">Errors</span>
-              </span>
-              <span className="flex items-center gap-1">
-                <span className="w-3 h-3 rounded bg-yellow-200 border border-yellow-400" />
-                <span className="text-gray-500">Warnings</span>
-              </span>
-              <span className="flex items-center gap-1">
-                <span className="w-3 h-3 rounded bg-blue-200 border border-blue-400" />
-                <span className="text-gray-500">Suggestions</span>
-              </span>
-            </div>
-          )}
-        </div>
-
-        <div className={`text-sm font-medium ${getWordCountColor()}`}>
-          {wordCount}
-          {wordLimit && ` / ${wordLimit}`} words
+    <LexicalComposer initialConfig={editorConfig}>
+      <div className="editor-container">
+        <ToolbarPlugin />
+        <div className="editor-inner">
+          <RichTextPlugin
+            contentEditable={
+              <ContentEditable
+                className="editor-input"
+                aria-placeholder={placeholder}
+                placeholder={
+                  <div className="editor-placeholder">{placeholder}</div>
+                }
+              />
+            }
+            ErrorBoundary={LexicalErrorBoundary}
+          />
+          <HistoryPlugin />
+          <AutoFocusPlugin />
+          <OnChangePlugin onChange={onChange} />
         </div>
       </div>
-    </div>
+    </LexicalComposer>
   );
 }
