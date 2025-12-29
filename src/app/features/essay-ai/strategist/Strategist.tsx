@@ -87,16 +87,16 @@ export default function Strategist() {
               Step {currentStep + 1} of {totalSteps}
             </span>
           </div>
-          <div className="flex items-center gap-2 bg-purple-50 px-4 py-2 rounded-full border border-purple-100">
-            <BadgeCheck className="text-purple-600" size={18} />
-            <span className="text-sm font-semibold text-purple-700">
+          <div className="flex items-center gap-2 bg-secondary/10 px-4 py-2 rounded-full border border-secondary/20">
+            <BadgeCheck className="text-secondary" size={18} />
+            <span className="text-sm font-semibold text-secondary">
               {completedCount}/{questions.length} answered
             </span>
           </div>
         </div>
         <div className="h-2.5 bg-gray-200 rounded-full overflow-hidden">
           <div
-            className="h-full bg-purple rounded-full transition-all duration-500 ease-out"
+            className="h-full bg-secondary rounded-full transition-all duration-500 ease-out"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -110,7 +110,7 @@ export default function Strategist() {
               key={item.id}
               className={`bg-gray-50 rounded-xl p-6 border transition-all duration-300 ${
                 isAnswered
-                  ? "border-purple-200 shadow-md bg-white"
+                  ? "border-secondary/30 shadow-md bg-white"
                   : "border-gray-200 hover:border-gray-300"
               }`}
             >
@@ -118,7 +118,7 @@ export default function Strategist() {
                 <div
                   className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
                     isAnswered
-                      ? "bg-purple text-white shadow-md"
+                      ? "bg-secondary text-white shadow-md"
                       : "bg-white text-gray-400 border border-gray-200"
                   }`}
                 >
@@ -130,7 +130,7 @@ export default function Strategist() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs font-semibold text-purple-600 uppercase tracking-wide">
+                    <span className="text-xs font-semibold text-secondary uppercase tracking-wide">
                       {item.category}
                     </span>
                   </div>
@@ -142,7 +142,7 @@ export default function Strategist() {
                     onChange={(e) => handleInputChange(item.id, e.target.value)}
                     placeholder={item.placeholder}
                     rows={4}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all resize-none text-sm leading-relaxed"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition-all resize-none text-sm leading-relaxed"
                   />
                 </div>
               </div>
@@ -176,7 +176,7 @@ export default function Strategist() {
         </Button>
 
         <Button
-          variant="purple"
+          variant="secondary"
           onClick={handleNext}
           disabled={!canProceed}
           iconStart={isLastStep ? <Sparkles size={15} /> : undefined}

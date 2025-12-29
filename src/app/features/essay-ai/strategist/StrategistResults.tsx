@@ -69,11 +69,11 @@ export default function StrategistResults({
             key={index}
             className="group relative bg-white rounded-xl p-6 border border-gray-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
           >
-            <div className="absolute -top-3 -left-3 w-10 h-10 rounded-full bg-purple flex items-center justify-center text-white font-bold text-lg shadow-lg z-10">
+            <div className="absolute -top-3 -left-3 w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white font-bold text-lg shadow-lg z-10">
               {index + 1}
             </div>
 
-            <h3 className="text-lg font-semibold text-gray-900 group-hover:text-purple transition-colors mb-3 mt-2">
+            <h3 className="text-lg font-semibold text-gray-900 group-hover:text-secondary transition-colors mb-3 mt-2">
               {angle.title}
             </h3>
             <p className="text-gray-600 text-sm leading-relaxed">
@@ -95,7 +95,7 @@ export default function StrategistResults({
           Start Over
         </Button>
         <Link href="/login">
-          <Button variant="purple" iconStart={<BookCheck />}>
+          <Button variant="secondary" iconStart={<BookCheck />}>
             Start Writing
           </Button>
         </Link>

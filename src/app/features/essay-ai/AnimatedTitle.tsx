@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export default function AnimatedTitle() {
   const words = ["MBA", "PHD", "MPH"];
-  const colors = ["success", "purple", "secondary"];
+  const colors = ["success", "primary", "secondary"];
   const [index, setIndex] = useState(0);
 
   useEffect(() => {

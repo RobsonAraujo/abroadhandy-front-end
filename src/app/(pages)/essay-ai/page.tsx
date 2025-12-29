@@ -21,7 +21,7 @@ export default function EssayAIPage() {
       <section className="py-12 lg:py-16">
         <div className="px-4 mx-auto max-w-6xl sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple text-white text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary text-white text-sm font-medium mb-6">
               <svg
                 className="w-4 h-4"
                 fill="none"
@@ -95,9 +95,9 @@ export default function EssayAIPage() {
             ) : (
               <div className="flex flex-col items-center justify-center py-12 px-4">
                 <div className="max-w-md w-full text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-purple/10 mb-6">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary/10 mb-6">
                     <svg
-                      className="w-8 h-8 text-purple"
+                      className="w-8 h-8 text-secondary"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -115,11 +115,11 @@ export default function EssayAIPage() {
                   </h3>
                   <p className="text-gray-600 text-lg leading-relaxed mb-8">
                     This tool will be{" "}
-                    <span className="font-semibold text-purple">free</span> when
-                    you are logged in.
+                    <span className="font-semibold text-secondary">free</span>{" "}
+                    when you are logged in.
                   </p>
                   <Button
-                    variant="purple"
+                    variant="secondary"
                     size="lg"
                     className="w-full sm:w-auto"
                   >
