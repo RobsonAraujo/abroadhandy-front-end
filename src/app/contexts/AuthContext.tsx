@@ -5,22 +5,31 @@ import {
   useContext,
   useState,
   useEffect,
+  useCallback,
   ReactNode,
 } from "react";
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  avatar?: string;
-}
+import {
+  User,
+  LoginRequest,
+  RegisterRequest,
+  RegisterResponse,
+  login as authLogin,
+  register as authRegister,
+  logout as authLogout,
+  validateToken,
+  getStoredUser,
+  AuthApiError,
+} from "@/app/services/auth";
 
 interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
-  login: (token: string, userData: User) => void;
-  logout: () => void;
   isLoading: boolean;
+  error: string | null;
+  login: (credentials: LoginRequest) => Promise<boolean>;
+  register: (data: RegisterRequest) => Promise<RegisterResponse>;
+  logout: () => void;
+  clearError: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -28,43 +37,114 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
+  // Validate token on app load
   useEffect(() => {
-    const token = localStorage.getItem("jwt_token");
-    const userData = localStorage.getItem("user_data");
-
-    if (token && userData) {
+    const initializeAuth = async () => {
       try {
-        const parsedUser = JSON.parse(userData);
-        setUser(parsedUser);
-      } catch (error) {
-        console.error("Error parsing user data:", error);
-        localStorage.removeItem("jwt_token");
-        localStorage.removeItem("user_data");
-      }
-    }
+        // First, check if we have stored user data for immediate UI
+        const storedUser = getStoredUser();
+        if (storedUser) {
+          setUser(storedUser);
+        }
 
-    setIsLoading(false);
+        // Then validate token with the API
+        const validatedUser = await validateToken();
+
+        if (validatedUser) {
+          setUser(validatedUser);
+        } else if (storedUser) {
+          // Token was invalid, clear the stored user
+          setUser(null);
+        }
+      } catch (err) {
+        console.error("Auth initialization error:", err);
+        setUser(null);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    initializeAuth();
   }, []);
 
-  const login = (token: string, userData: User) => {
-    localStorage.setItem("jwt_token", token);
-    localStorage.setItem("user_data", JSON.stringify(userData));
-    setUser(userData);
-  };
+  const login = useCallback(
+    async (credentials: LoginRequest): Promise<boolean> => {
+      setIsLoading(true);
+      setError(null);
 
-  const logout = () => {
-    localStorage.removeItem("jwt_token");
-    localStorage.removeItem("user_data");
+      try {
+        const response = await authLogin(credentials);
+        setUser(response.user);
+        return true;
+      } catch (err) {
+        if (err instanceof AuthApiError) {
+          if (err.statusCode === 401) {
+            setError("Invalid email or password");
+          } else if (err.statusCode === 429) {
+            setError("Too many attempts. Please try again later");
+          } else {
+            setError(err.message || "Login failed. Please try again");
+          }
+        } else {
+          setError("An unexpected error occurred");
+        }
+        return false;
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    []
+  );
+
+  const register = useCallback(
+    async (data: RegisterRequest): Promise<RegisterResponse> => {
+      setIsLoading(true);
+      setError(null);
+
+      try {
+        const response = await authRegister(data);
+        return response;
+      } catch (err) {
+        if (err instanceof AuthApiError) {
+          if (err.statusCode === 409) {
+            setError("Email already registered");
+          } else if (err.statusCode === 400) {
+            setError("Invalid registration data");
+          } else {
+            setError(err.message || "Registration failed. Please try again");
+          }
+        } else {
+          setError("An unexpected error occurred");
+        }
+        throw err;
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    []
+  );
+
+  const logout = useCallback(() => {
+    authLogout();
     setUser(null);
-  };
+    setError(null);
+  }, []);
 
-  const value = {
+  const clearError = useCallback(() => {
+    setError(null);
+  }, []);
+
+  const value: AuthContextType = {
     user,
     isAuthenticated: !!user,
-    login,
-    logout,
     isLoading,
+    error,
+    login,
+    register,
+    logout,
+    clearError,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

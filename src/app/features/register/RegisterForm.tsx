@@ -1,10 +1,85 @@
+"use client";
+
+import { useState, FormEvent, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/app/components/ui/radio-group";
 import { Checkbox } from "@/app/components/ui/checkbox";
+import { useAuth } from "@/app/contexts/AuthContext";
+import { UserRole } from "@/app/services/auth/types";
+import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 export default function RegisterForm() {
+  const router = useRouter();
+  const { register, isLoading, error, clearError } = useAuth();
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [role, setRole] = useState<UserRole>("STUDENT");
+  const [agreeTerms, setAgreeTerms] = useState(false);
+  const [validationError, setValidationError] = useState<string | null>(null);
+
+  const displayError = validationError || error;
+
+  useEffect(() => {
+    if (displayError) {
+      toast.error("Oops! Something went wrong", {
+        description: displayError,
+        duration: 4000,
+      });
+    }
+  }, [displayError]);
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    clearError();
+    setValidationError(null);
+
+    // Validate passwords match
+    if (password !== confirmPassword) {
+      setValidationError("Passwords do not match");
+      return;
+    }
+
+    // Validate password strength
+    if (password.length < 8) {
+      setValidationError("Password must be at least 8 characters");
+      return;
+    }
+
+    // Validate terms agreement
+    if (!agreeTerms) {
+      setValidationError(
+        "You must agree to the Terms of Service and Privacy Policy"
+      );
+      return;
+    }
+
+    try {
+      await register({
+        name: `${firstName} ${lastName}`.trim(),
+        email,
+        password,
+        role,
+      });
+
+      toast.success("Account created successfully!", {
+        description: "You can now sign in with your email and password.",
+        duration: 4000,
+      });
+
+      router.push("/login?registered=true");
+    } catch {
+      // Error is already handled in the AuthContext
+    }
+  };
+
   return (
     <div className="order-1 lg:order-2">
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 lg:p-10">
@@ -22,7 +97,8 @@ export default function RegisterForm() {
             </Link>
           </p>
         </div>
-        <form className="space-y-8 md:space-y-6">
+
+        <form onSubmit={handleSubmit} className="space-y-8 md:space-y-6">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div>
               <label
@@ -38,6 +114,9 @@ export default function RegisterForm() {
                 autoComplete="given-name"
                 required
                 placeholder="Enter your first name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                disabled={isLoading}
               />
             </div>
 
@@ -55,6 +134,9 @@ export default function RegisterForm() {
                 autoComplete="family-name"
                 required
                 placeholder="Enter your last name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                disabled={isLoading}
               />
             </div>
           </div>
@@ -73,6 +155,9 @@ export default function RegisterForm() {
               autoComplete="email"
               required
               placeholder="Enter your email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={isLoading}
             />
           </div>
 
@@ -80,9 +165,14 @@ export default function RegisterForm() {
             <label className="block text-base md:text-sm font-medium text-gray-700 mb-4">
               I am a
             </label>
-            <RadioGroup defaultValue="student" className="space-y-3">
+            <RadioGroup
+              value={role}
+              onValueChange={(value) => setRole(value as UserRole)}
+              className="space-y-3"
+              disabled={isLoading}
+            >
               <div className="flex items-center space-x-3 p-5 md:p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
-                <RadioGroupItem value="student" id="student" />
+                <RadioGroupItem value="STUDENT" id="student" />
                 <label htmlFor="student" className="flex-1 cursor-pointer">
                   <div className="font-medium text-gray-900">
                     Student seeking guidance
@@ -93,7 +183,7 @@ export default function RegisterForm() {
                 </label>
               </div>
               <div className="flex items-center space-x-3 p-5 md:p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
-                <RadioGroupItem value="mentor" id="mentor" />
+                <RadioGroupItem value="MENTOR" id="mentor" />
                 <label htmlFor="mentor" className="flex-1 cursor-pointer">
                   <div className="font-medium text-gray-900">
                     Top student wanting to mentor others
@@ -120,6 +210,9 @@ export default function RegisterForm() {
               autoComplete="new-password"
               required
               placeholder="Create a strong password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              disabled={isLoading}
             />
           </div>
 
@@ -137,11 +230,19 @@ export default function RegisterForm() {
               autoComplete="new-password"
               required
               placeholder="Confirm your password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              disabled={isLoading}
             />
           </div>
 
           <div className="flex items-start space-x-3">
-            <Checkbox id="agree-terms" required />
+            <Checkbox
+              id="agree-terms"
+              checked={agreeTerms}
+              onCheckedChange={(checked) => setAgreeTerms(checked === true)}
+              disabled={isLoading}
+            />
             <label
               htmlFor="agree-terms"
               className="text-sm text-gray-900 leading-5"
@@ -168,8 +269,14 @@ export default function RegisterForm() {
             variant="primary"
             size="lg"
             className="w-full h-14"
+            disabled={isLoading}
+            iconStart={
+              isLoading ? (
+                <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+              ) : null
+            }
           >
-            Create account
+            {isLoading ? <>Creating account...</> : "Create account"}
           </Button>
         </form>
       </div>

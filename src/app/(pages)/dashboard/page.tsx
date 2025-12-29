@@ -31,12 +31,13 @@ export default function Dashboard() {
     return null;
   }
 
+  console.log(user);
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
           <h1 className="text-2xl font-semibold text-gray-900">
-            Welcome, {user.name.split(` `)[0]}
+            Welcome, {user.name?.split(` `)[0]}
           </h1>
           <p className="text-gray-600 mt-1">
             Your gateway to university admissions success abroad.
