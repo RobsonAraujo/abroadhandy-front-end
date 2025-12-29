@@ -296,9 +296,11 @@ export default function EssayEdit({
             checked={isEmpowerEnabled}
             onChange={handleEmpowerToggle}
           />
-          <Button variant="ghost" disabled={isLoadingFeedback}>
-            <GetFeedbackButton onClick={handleGenerateFeedback} />
-          </Button>
+
+          <GetFeedbackButton
+            onClick={handleGenerateFeedback}
+            isLoading={isLoadingFeedback}
+          />
         </div>
         {isEmpowerEnabled && (
           <div className="empower-essay-fade-in">
@@ -315,7 +317,7 @@ export default function EssayEdit({
           onChange={handleEditorChange}
         />
       </div>
-      <div className="flex-1">
+      <div className="flex-1 h-[78vh]">
         <EssayReview
           feedback={feedback}
           isLoadingFeedback={isLoadingFeedback}
