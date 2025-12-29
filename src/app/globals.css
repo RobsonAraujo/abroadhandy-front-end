@@ -76,3 +76,18 @@ body {
 .animate-fade-in {
   animation: fadeIn 1.0s ease-out forwards;
 }
+
+@keyframes fadeInSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.empower-essay-fade-in {
+  animation: fadeInSlideDown 0.4s ease-out forwards;
+}

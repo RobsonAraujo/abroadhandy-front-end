@@ -17,7 +17,7 @@ export default function EmpowerEssayInfos() {
               <GraduationCap size={20} />
             </div>
             <div className="flex-1">
-              <span className="text-xs font-semibold text-secondary uppercase tracking-wide">
+              <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
                 University
               </span>
             </div>
@@ -36,7 +36,7 @@ export default function EmpowerEssayInfos() {
               <FileQuestion size={20} />
             </div>
             <div className="flex-1">
-              <span className="text-xs font-semibold text-secondary uppercase tracking-wide">
+              <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
                 The Essay Question
               </span>
             </div>

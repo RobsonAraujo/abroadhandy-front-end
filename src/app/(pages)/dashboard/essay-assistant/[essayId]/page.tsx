@@ -191,7 +191,11 @@ export default function EssayEdit({
             <GetFeedbackButton onClick={handleGenerateFeedback} />
           </Button>
         </div>
-        {isEmpowerEnabled && <EmpowerEssayInfos />}
+        {isEmpowerEnabled && (
+          <div className="empower-essay-fade-in">
+            <EmpowerEssayInfos />
+          </div>
+        )}
         <EssayEditor
           initialState={getInitialState()}
           onChange={handleEditorChange}
