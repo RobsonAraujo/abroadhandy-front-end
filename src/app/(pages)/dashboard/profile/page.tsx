@@ -42,7 +42,7 @@ export default function ProfileSettings() {
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
-      router.push("/");
+      router.push("/login");
     }
   }, [isAuthenticated, isLoading, router]);
 

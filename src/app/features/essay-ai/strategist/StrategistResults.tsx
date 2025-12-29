@@ -94,7 +94,7 @@ export default function StrategistResults({
         <Button variant="white" onClick={onReset} iconStart={<RotateCcw />}>
           Start Over
         </Button>
-        <Link href="/login">
+        <Link href="/dashboard/essay-assistant">
           <Button variant="secondary" iconStart={<BookCheck />}>
             Start Writing
           </Button>

@@ -34,7 +34,7 @@ export default function EssayEdit({
 
   useEffect(() => {
     if (USER_NOT_AUTHENTICATED) {
-      router.push("/");
+      router.push("/login");
     }
   }, [USER_NOT_AUTHENTICATED, router]);
 
