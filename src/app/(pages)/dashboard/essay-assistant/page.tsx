@@ -93,8 +93,8 @@ export default function EssayAssistant() {
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-gray-900">Your Essays</h1>
-        <Button onClick={handleNewEssay} variant="ghost">
-          New Essay
+        <Button onClick={handleNewEssay} variant="secondary">
+          Create New Essay
         </Button>
       </div>
 
