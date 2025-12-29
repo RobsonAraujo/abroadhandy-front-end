@@ -12,6 +12,8 @@ import { refinerService } from "@/app/services/essay-ai/refiner";
 import { RefinerFeedback } from "@/app/services/essay-ai/types";
 import { extractTextFromEditorState } from "@/app/utils/lexicalUtils";
 import { Button } from "@/app/components/ui/button";
+import EmpowerSwitch from "@/app/features/dashboard/essay-assistant/buttons/EmpowerSwitch";
+import EmpowerEssayInfos from "@/app/features/dashboard/essay-assistant/EmpowerEssayInfos";
 
 export default function EssayEdit({
   params,
@@ -179,7 +181,9 @@ export default function EssayEdit({
   return (
     <div className="min-h-full flex bg-gray-50 p-6">
       <div className="flex-2">
+        <EmpowerEssayInfos />
         <div className="flex justify-end mt-4 mr-4">
+          <EmpowerSwitch />
           <Button variant="ghost" disabled={isLoadingFeedback}>
             <GetFeedbackButton onClick={handleGenerateFeedback} />
           </Button>
