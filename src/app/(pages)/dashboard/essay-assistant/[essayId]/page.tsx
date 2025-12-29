@@ -31,7 +31,10 @@ export default function EssayEdit({
   const [feedback, setFeedback] = useState<RefinerFeedback | null>(null);
   const [isLoadingFeedback, setIsLoadingFeedback] = useState(false);
   const [isEmpowerEnabled, setIsEmpowerEnabled] = useState(false);
+  const [university, setUniversity] = useState("");
+  const [essayPrompt, setEssayPrompt] = useState("");
   const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const empowerSaveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const USER_NOT_AUTHENTICATED = !isLoading && !isAuthenticated;
 
@@ -48,6 +51,14 @@ export default function EssayEdit({
         const essays: Essay[] = JSON.parse(storedEssays);
         const currentEssay = essays.find((item) => item.id === essayId) || null;
         setEssay(currentEssay);
+
+        if (currentEssay) {
+          setUniversity(currentEssay.university || "");
+          setEssayPrompt(currentEssay.essay_prompt || "");
+          setIsEmpowerEnabled(
+            !!(currentEssay.university || currentEssay.essay_prompt)
+          );
+        }
       } else {
         setEssay(null);
       }
@@ -134,10 +145,15 @@ export default function EssayEdit({
         return;
       }
 
+      // Use saved values from essay or empty strings
+      const essayPromptValue = essay?.essay_prompt || "";
+      const universityValue = essay?.university || "";
+
       const response = await refinerService.getfeedback({
         essay: essayText,
-        essay_prompt: "",
+        essay_prompt: essayPromptValue,
         question: "",
+        school: universityValue,
       });
 
       setFeedback(response.feedback);
@@ -149,10 +165,103 @@ export default function EssayEdit({
     }
   }, [currentEditorState, essay, isLoadingFeedback]);
 
+  const saveEmpowerValues = useCallback(
+    (universityValue: string, essayPromptValue: string) => {
+      if (!essayId) return;
+
+      if (empowerSaveTimeoutRef.current) {
+        clearTimeout(empowerSaveTimeoutRef.current);
+      }
+
+      empowerSaveTimeoutRef.current = setTimeout(() => {
+        try {
+          const storedEssays = localStorage.getItem("essays");
+          const essays: Essay[] = storedEssays ? JSON.parse(storedEssays) : [];
+
+          const existingEssayIndex = essays.findIndex((e) => e.id === essayId);
+
+          if (existingEssayIndex >= 0) {
+            essays[existingEssayIndex] = {
+              ...essays[existingEssayIndex],
+              university: universityValue || undefined,
+              essay_prompt: essayPromptValue || undefined,
+            };
+          }
+
+          localStorage.setItem("essays", JSON.stringify(essays));
+          const updatedEssay = essays.find((e) => e.id === essayId) || null;
+          setEssay(updatedEssay);
+        } catch (error) {
+          console.error("error saving empower values:", error);
+        }
+      }, 500);
+    },
+    [essayId]
+  );
+
+  // Handle university change
+  const handleUniversityChange = useCallback(
+    (value: string) => {
+      setUniversity(value);
+      if (isEmpowerEnabled) {
+        saveEmpowerValues(value, essayPrompt);
+      }
+    },
+    [isEmpowerEnabled, essayPrompt, saveEmpowerValues]
+  );
+
+  // Handle essay prompt change
+  const handleEssayPromptChange = useCallback(
+    (value: string) => {
+      setEssayPrompt(value);
+      if (isEmpowerEnabled) {
+        saveEmpowerValues(university, value);
+      }
+    },
+    [isEmpowerEnabled, university, saveEmpowerValues]
+  );
+
+  // Handle empower toggle
+  const handleEmpowerToggle = useCallback(
+    (enabled: boolean) => {
+      setIsEmpowerEnabled(enabled);
+
+      if (enabled) {
+        // Save current values when enabling
+        saveEmpowerValues(university, essayPrompt);
+      } else {
+        // Clear values when disabling
+        if (essayId) {
+          const storedEssays = localStorage.getItem("essays");
+          const essays: Essay[] = storedEssays ? JSON.parse(storedEssays) : [];
+
+          const existingEssayIndex = essays.findIndex((e) => e.id === essayId);
+
+          if (existingEssayIndex >= 0) {
+            essays[existingEssayIndex] = {
+              ...essays[existingEssayIndex],
+              university: undefined,
+              essay_prompt: undefined,
+            };
+            localStorage.setItem("essays", JSON.stringify(essays));
+            const updatedEssay = essays.find((e) => e.id === essayId) || null;
+            setEssay(updatedEssay);
+          }
+        }
+        setUniversity("");
+        setEssayPrompt("");
+      }
+    },
+    [essayId, university, essayPrompt, saveEmpowerValues]
+  );
+
   useEffect(() => {
     return () => {
       if (saveTimeoutRef.current) {
         clearTimeout(saveTimeoutRef.current);
+      }
+      if (empowerSaveTimeoutRef.current) {
+        clearTimeout(empowerSaveTimeoutRef.current);
       }
     };
   }, []);
@@ -185,7 +294,7 @@ export default function EssayEdit({
         <div className="flex justify-end mt-4 mr-4 mb-4">
           <EmpowerSwitch
             checked={isEmpowerEnabled}
-            onChange={setIsEmpowerEnabled}
+            onChange={handleEmpowerToggle}
           />
           <Button variant="ghost" disabled={isLoadingFeedback}>
             <GetFeedbackButton onClick={handleGenerateFeedback} />
@@ -193,7 +302,12 @@ export default function EssayEdit({
         </div>
         {isEmpowerEnabled && (
           <div className="empower-essay-fade-in">
-            <EmpowerEssayInfos />
+            <EmpowerEssayInfos
+              university={university}
+              essayPrompt={essayPrompt}
+              onUniversityChange={handleUniversityChange}
+              onEssayPromptChange={handleEssayPromptChange}
+            />
           </div>
         )}
         <EssayEditor

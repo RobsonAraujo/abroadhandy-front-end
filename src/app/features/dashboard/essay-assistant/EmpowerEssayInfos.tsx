@@ -1,13 +1,21 @@
 "use client";
 
-import { useState } from "react";
 import Input from "./buttons/input";
 import { GraduationCap, FileQuestion } from "lucide-react";
 
-export default function EmpowerEssayInfos() {
-  const [schoolValue, setSchoolValue] = useState("");
-  const [questionValue, setQuestionValue] = useState("");
+interface EmpowerEssayInfosProps {
+  university: string;
+  essayPrompt: string;
+  onUniversityChange: (value: string) => void;
+  onEssayPromptChange: (value: string) => void;
+}
 
+export default function EmpowerEssayInfos({
+  university,
+  essayPrompt,
+  onUniversityChange,
+  onEssayPromptChange,
+}: EmpowerEssayInfosProps) {
   return (
     <div className="mb-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -25,8 +33,8 @@ export default function EmpowerEssayInfos() {
           <Input
             label="Which school is this essay for?"
             placeholder="Harvard University"
-            value={schoolValue}
-            onChange={(e) => setSchoolValue(e.target.value)}
+            value={university}
+            onChange={(e) => onUniversityChange(e.target.value)}
           />
         </div>
 
@@ -44,8 +52,8 @@ export default function EmpowerEssayInfos() {
           <Input
             label="Which question does your essay answer?"
             placeholder="What experiences have shaped ?"
-            value={questionValue}
-            onChange={(e) => setQuestionValue(e.target.value)}
+            value={essayPrompt}
+            onChange={(e) => onEssayPromptChange(e.target.value)}
           />
         </div>
       </div>

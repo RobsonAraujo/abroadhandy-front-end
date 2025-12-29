@@ -23,6 +23,8 @@ export type Essay = {
   body: string;
   createdAt: string;
   editorState?: SerializedEditorState; // Opcional para compatibilidade com essays antigas
+  university?: string;
+  essay_prompt?: string;
 };
 
 export default function EssayAssistant() {
