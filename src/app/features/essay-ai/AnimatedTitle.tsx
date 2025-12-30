@@ -3,15 +3,15 @@ import { useEffect, useState } from "react";
 export default function AnimatedTitle() {
   const words = ["MSc", "MS", "MA", "MEng", "MBA", "MPA", "MPH", "MEd", "LLM"];
   const colorClasses = [
-    "bg-blue-200",
-    "bg-blue-300",
-    "bg-blue-400",
+    "bg-purple-500",
     "bg-blue-500",
-    "bg-blue-600",
-    "bg-blue-700",
-    "bg-blue-500",
-    "bg-blue-400",
-    "bg-blue-600",
+    "bg-emerald-500",
+    "bg-orange-500",
+    "bg-indigo-500",
+    "bg-rose-500",
+    "bg-amber-500",
+    "bg-violet-500",
+    "bg-slate-700",
   ];
   const [index, setIndex] = useState(0);
 
