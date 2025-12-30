@@ -20,6 +20,7 @@ interface EssayReviewProps {
   essay?: string;
   essayPrompt?: string;
   school?: string;
+  onGenerateFeedback?: () => void;
 }
 
 export default function EssayReview({
@@ -28,6 +29,7 @@ export default function EssayReview({
   essay = "",
   essayPrompt = "",
   school = "",
+  onGenerateFeedback,
 }: EssayReviewProps) {
   const [currentView, setCurrentView] = useState<ReviewView>(ReviewView.REVIEW);
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([
@@ -35,7 +37,7 @@ export default function EssayReview({
   ]);
 
   return (
-    <div className="relative w-full h-full m-2 bg-white rounded-2xl border-2 border-gray-100 overflow-hidden">
+    <div className="relative w-full h-full m-2 bg-white rounded-2xl border border-[#ddd] overflow-hidden">
       <div className="fixed bottom-30 right-6 z-20">
         {currentView === ReviewView.REVIEW ? (
           <Button
@@ -61,7 +63,11 @@ export default function EssayReview({
           isLoadingFeedback ? (
             <LoadingFeedback />
           ) : (
-            <EssayReviewFeedback feedback={feedback || undefined} />
+            <EssayReviewFeedback
+              feedback={feedback || undefined}
+              onGenerateFeedback={onGenerateFeedback}
+              isLoadingFeedback={isLoadingFeedback}
+            />
           )
         ) : (
           <EssayAssistantChat

@@ -37,11 +37,15 @@ h1 {
   text-align: left;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
 }
 
 .editor-inner {
   background: #fff;
   position: relative;
+ 
+  border-radius: 12px
 
 }
 

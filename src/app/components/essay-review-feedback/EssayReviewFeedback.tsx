@@ -1,6 +1,12 @@
 "use client";
 
-import { RefreshCw, FileText, CheckCircle2 } from "lucide-react";
+import {
+  RefreshCw,
+  FileText,
+  CheckCircle2,
+  Sparkles,
+  Loader2,
+} from "lucide-react";
 import { useState } from "react";
 import { RefinerFeedback } from "@/app/services/essay-ai/types";
 import { Button } from "../ui/button";
@@ -14,10 +20,14 @@ enum FEEDBACK_SECTIONS {
 
 interface EssayReviewFeedbackProps {
   feedback?: RefinerFeedback;
+  onGenerateFeedback?: () => void;
+  isLoadingFeedback?: boolean;
 }
 
 export default function EssayReviewFeedback({
   feedback,
+  onGenerateFeedback,
+  isLoadingFeedback = false,
 }: EssayReviewFeedbackProps) {
   const [hiddenSections, setHiddenSections] = useState<Set<string>>(new Set());
 
@@ -62,11 +72,36 @@ export default function EssayReviewFeedback({
     return (
       <div className="w-full h-full flex flex-col bg-white">
         <div className="px-6 py-4 border-b border-gray-200">
-          <div>
-            <h2 className="text-lg font-semibold text-gray-900">
-              Essay Review
-            </h2>
-            <p className="text-sm text-gray-600 mt-1">AI-powered feedback</p>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-secondary/10">
+                <FileText className="w-5 h-5 text-secondary" />
+              </div>
+              <div>
+                <h2 className="text-lg font-bold text-gray-900">
+                  Essay Review
+                </h2>
+                <p className="text-xs text-gray-500 mt-0.5">
+                  AI-powered feedback
+                </p>
+              </div>
+            </div>
+            {onGenerateFeedback && (
+              <Button
+                onClick={onGenerateFeedback}
+                disabled={isLoadingFeedback}
+                className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-white bg-secondary hover:bg-secondary/90 rounded-lg transition-colors duration-200"
+                iconStart={
+                  isLoadingFeedback ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Sparkles className="w-4 h-4" />
+                  )
+                }
+              >
+                {isLoadingFeedback ? "Analyzing..." : "Analyze Essay"}
+              </Button>
+            )}
           </div>
         </div>
         <div className="flex-1 p-6 flex items-center justify-center">
@@ -86,25 +121,44 @@ export default function EssayReviewFeedback({
   return (
     <div className="w-full h-full flex flex-col overflow-hidden bg-white">
       <div className="px-6 py-4 border-b border-gray-200">
-        <div className="flex items-center justify-between">
+        <div className="flex  items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-secondary/10">
               <FileText className="w-5 h-5 text-secondary" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-gray-900">Essay Review</h2>
               <p className="text-xs text-gray-500 mt-0.5">
-                AI-powered feedback
+                AI-powered feedbacks
               </p>
             </div>
           </div>
-          <Button
-            onClick={clearAllFeedback}
-            className="flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors duration-200"
-            iconStart={<RefreshCw className="w-3.5 h-3.5" />}
-          >
-            Clear Feedback
-          </Button>
+          <div className="flex items-center gap-2">
+            {onGenerateFeedback && (
+              <Button
+                onClick={onGenerateFeedback}
+                disabled={isLoadingFeedback}
+                className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-white bg-secondary hover:bg-secondary/90 rounded-lg transition-colors duration-200"
+                iconStart={
+                  isLoadingFeedback ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Sparkles className="w-4 h-4" />
+                  )
+                }
+              >
+                {isLoadingFeedback ? "Analyzing..." : "Analyze Essay"}
+              </Button>
+            )}
+            {feedback && (
+              <Button
+                onClick={clearAllFeedback}
+                className="flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors duration-200"
+                iconStart={<RefreshCw className="w-3.5 h-3.5" />}
+              >
+                Clear Feedback
+              </Button>
+            )}
+          </div>
         </div>
       </div>
 
@@ -179,10 +233,7 @@ export default function EssayReviewFeedback({
               </div>
               <div className="space-y-6">
                 {feedback.improvements.map((improvement, index) => (
-                  <div
-                    key={index}
-                    className="border-l-4 border-gray-300 pl-6 space-y-4"
-                  >
+                  <div key={index} className="border-l-4  pl-6 space-y-4">
                     <h4 className="text-base font-medium text-gray-900">
                       {improvement.issue}
                     </h4>

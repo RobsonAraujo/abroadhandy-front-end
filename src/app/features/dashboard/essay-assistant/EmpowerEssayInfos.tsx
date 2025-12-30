@@ -24,7 +24,7 @@ export default function EmpowerEssayInfos({
   onUniversityChange,
   onEssayPromptChange,
 }: EmpowerEssayInfosProps) {
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   if (!isExpanded) {
     return (

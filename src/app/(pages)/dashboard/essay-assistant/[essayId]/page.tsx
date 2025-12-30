@@ -7,11 +7,9 @@ import { Essay } from "../page";
 import EssayEditor from "@/app/components/essay-editor/EssayEditor";
 import { EditorState } from "lexical";
 import EssayReview from "@/app/features/dashboard/essay-assistant/EssayReview";
-import GetFeedbackButton from "@/app/features/dashboard/essay-assistant/buttons/GetFeedbackButton";
 import { refinerService } from "@/app/services/essay-ai/refiner";
 import { RefinerFeedback } from "@/app/services/essay-ai/types";
 import { extractTextFromEditorState } from "@/app/utils/lexicalUtils";
-import EmpowerSwitch from "@/app/features/dashboard/essay-assistant/buttons/EmpowerSwitch";
 import EmpowerEssayInfos from "@/app/features/dashboard/essay-assistant/EmpowerEssayInfos";
 
 export default function EssayEdit({
@@ -29,7 +27,6 @@ export default function EssayEdit({
     useState<EditorState | null>(null);
   const [feedback, setFeedback] = useState<RefinerFeedback | null>(null);
   const [isLoadingFeedback, setIsLoadingFeedback] = useState(false);
-  const [isEmpowerEnabled, setIsEmpowerEnabled] = useState(false);
   const [university, setUniversity] = useState("");
   const [essayPrompt, setEssayPrompt] = useState("");
   const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -54,9 +51,6 @@ export default function EssayEdit({
         if (currentEssay) {
           setUniversity(currentEssay.university || "");
           setEssayPrompt(currentEssay.essay_prompt || "");
-          setIsEmpowerEnabled(
-            !!(currentEssay.university || currentEssay.essay_prompt)
-          );
         }
       } else {
         setEssay(null);
@@ -202,56 +196,18 @@ export default function EssayEdit({
   const handleUniversityChange = useCallback(
     (value: string) => {
       setUniversity(value);
-      if (isEmpowerEnabled) {
-        saveEmpowerValues(value, essayPrompt);
-      }
+      saveEmpowerValues(value, essayPrompt);
     },
-    [isEmpowerEnabled, essayPrompt, saveEmpowerValues]
+    [essayPrompt, saveEmpowerValues]
   );
 
   // Handle essay prompt change
   const handleEssayPromptChange = useCallback(
     (value: string) => {
       setEssayPrompt(value);
-      if (isEmpowerEnabled) {
-        saveEmpowerValues(university, value);
-      }
+      saveEmpowerValues(university, value);
     },
-    [isEmpowerEnabled, university, saveEmpowerValues]
-  );
-
-  // Handle empower toggle
-  const handleEmpowerToggle = useCallback(
-    (enabled: boolean) => {
-      setIsEmpowerEnabled(enabled);
-
-      if (enabled) {
-        // Save current values when enabling
-        saveEmpowerValues(university, essayPrompt);
-      } else {
-        // Clear values when disabling
-        if (essayId) {
-          const storedEssays = localStorage.getItem("essays");
-          const essays: Essay[] = storedEssays ? JSON.parse(storedEssays) : [];
-
-          const existingEssayIndex = essays.findIndex((e) => e.id === essayId);
-
-          if (existingEssayIndex >= 0) {
-            essays[existingEssayIndex] = {
-              ...essays[existingEssayIndex],
-              university: undefined,
-              essay_prompt: undefined,
-            };
-            localStorage.setItem("essays", JSON.stringify(essays));
-            const updatedEssay = essays.find((e) => e.id === essayId) || null;
-            setEssay(updatedEssay);
-          }
-        }
-        setUniversity("");
-        setEssayPrompt("");
-      }
-    },
-    [essayId, university, essayPrompt, saveEmpowerValues]
+    [university, saveEmpowerValues]
   );
 
   useEffect(() => {
@@ -290,32 +246,18 @@ export default function EssayEdit({
   return (
     <div className="min-h-full flex bg-gray-50 p-6">
       <div className="flex-2">
-        <div className="flex justify-end mt-4 mr-4 mb-4">
-          <EmpowerSwitch
-            checked={isEmpowerEnabled}
-            onChange={handleEmpowerToggle}
-          />
-
-          <GetFeedbackButton
-            onClick={handleGenerateFeedback}
-            isLoading={isLoadingFeedback}
-          />
-        </div>
-        {isEmpowerEnabled && (
-          <div className="empower-essay-fade-in">
-            <EmpowerEssayInfos
-              university={university}
-              essayPrompt={essayPrompt}
-              onUniversityChange={handleUniversityChange}
-              onEssayPromptChange={handleEssayPromptChange}
-            />
-          </div>
-        )}
+        <EmpowerEssayInfos
+          university={university}
+          essayPrompt={essayPrompt}
+          onUniversityChange={handleUniversityChange}
+          onEssayPromptChange={handleEssayPromptChange}
+        />
         <EssayEditor
           initialState={getInitialState()}
           onChange={handleEditorChange}
         />
       </div>
+
       <div className="flex-1 h-[78vh]">
         <EssayReview
           feedback={feedback}
@@ -327,6 +269,7 @@ export default function EssayEdit({
           }
           essayPrompt={essay?.essay_prompt || ""}
           school={essay?.university || ""}
+          onGenerateFeedback={handleGenerateFeedback}
         />
       </div>
     </div>
