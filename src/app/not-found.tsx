@@ -45,7 +45,7 @@ export default function NotFound() {
             </Button>
 
             <Button
-              href="/join"
+              href="/register"
               variant="secondary"
               size="lg"
               className="group h-16 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"

@@ -25,16 +25,14 @@ export default function Footer() {
                   href="/essay-ai"
                   className="text-gray-400 hover:text-white"
                 >
-                  Essay MBA
+                  EssayAI
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/mentors"
-                  className="text-gray-400 hover:text-white"
-                >
+                <span className="text-gray-500 cursor-not-allowed">
                   Find Mentors
-                </Link>
+                </span>
+                <SoonBadge />
               </li>
               <li>
                 <span className="text-gray-500 cursor-not-allowed">

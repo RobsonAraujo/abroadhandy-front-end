@@ -10,7 +10,7 @@ export default function HowItWorks() {
     <div className="min-h-screen">
       <HeroSection />
       <StudentStepsSection />
-      <MentorStepsSection />
+      {/* <MentorStepsSection /> */}
       <BenefitsSection />
       <Banner
         title="Ready to Refine Your Essays?"
@@ -22,8 +22,8 @@ export default function HowItWorks() {
           icon: <ArrowRight className="w-5 h-5" />,
         }}
         secondaryButton={{
-          href: "/mentors",
-          text: "Get Human Guidance",
+          href: "/register",
+          text: "Create Free Account",
           variant: "outline",
           className:
             "border-white text-white hover:bg-white hover:text-[#4F46E5]",

@@ -55,8 +55,8 @@ export default function Banner({
     icon: <ArrowRightIcon className="w-5 h-5" />,
   },
   secondaryButton = {
-    href: "/mentors",
-    text: "Get Human Guidance",
+    href: "/register",
+    text: "Create Free Account",
     variant: "outline",
     className: "border-white text-white hover:bg-white hover:text-secondary",
   },

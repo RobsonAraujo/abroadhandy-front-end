@@ -85,7 +85,7 @@ export default function EssayReviewFeedback({
 
   return (
     <div className="w-full h-full flex flex-col overflow-hidden bg-white">
-      <div className="px-6 py-5 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white">
+      <div className="px-6 py-4 border-b border-gray-200">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-secondary/10">

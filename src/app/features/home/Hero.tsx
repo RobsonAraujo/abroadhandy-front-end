@@ -10,25 +10,25 @@ export default function Hero() {
         <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
           <div>
             <p className="text-base font-semibold tracking-wider text-secondary uppercase">
-              Graduate application support
+              Complete Grad School Solution
             </p>
             <h1 className="mt-4 text-4xl font-bold text-black lg:mt-8 sm:text-6xl xl:text-8xl">
               Grad apps, simplified
             </h1>
             <p className="mt-4 text-base text-black lg:mt-8 sm:text-xl">
-              Get into your dream graduate program worldwide with AI-powered
-              essay assistance and expert mentorship. MBA • Master&apos;s • PhD
-              • Medical School
+              Everything you need for successful graduate applications
+              worldwide. AI-powered essays, expert mentorship, and end-to-end
+              guidance.
             </p>
 
             <Button
-              href="/essay-ai"
+              href="/register"
               variant="primary"
               size="lg"
               className="mt-8 lg:mt-16"
               iconEnd={<ArrowRightIcon className="w-6 h-6" />}
             >
-              Start Your Grad Journey
+              Begin Your Application
             </Button>
 
             <p className="mt-5 text-gray-600">

@@ -32,7 +32,7 @@ export default function StudentStepsSection() {
       description:
         "Connect with expert mentors from your target programs for personalized guidance and one-on-one support.",
       icon: <Users className="w-8 h-8 text-[#4F46E5]" />,
-      status: "Available Now",
+      status: "Coming Soon",
     },
   ];
 
@@ -44,7 +44,9 @@ export default function StudentStepsSection() {
             Your Complete Grad School Journey
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            From test preparation to essay refinement to expert guidance - we support you through every step of your graduate school application process.
+            From test preparation to essay refinement to expert guidance - we
+            support you through every step of your graduate school application
+            process.
           </p>
         </div>
 
@@ -63,11 +65,13 @@ export default function StudentStepsSection() {
               <p className="text-gray-600 leading-relaxed mb-3">
                 {step.description}
               </p>
-              <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-                step.status === "Available Now" 
-                  ? "bg-green-100 text-green-800" 
-                  : "bg-orange-100 text-orange-800"
-              }`}>
+              <span
+                className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
+                  step.status === "Available Now"
+                    ? "bg-green-100 text-green-800"
+                    : "bg-orange-100 text-orange-800"
+                }`}
+              >
                 {step.status}
               </span>
             </div>

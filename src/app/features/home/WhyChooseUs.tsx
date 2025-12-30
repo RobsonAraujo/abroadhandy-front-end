@@ -3,28 +3,28 @@ import { Bot, Users, Globe, BookOpen } from "lucide-react";
 export default function WhyChooseUs() {
   const features = [
     {
-      title: "AI Essay Assistant",
+      title: "AI Writing Assistant",
       description:
-        "Get AI-powered suggestions and feedback for your personal statements, essays, and application materials. Perfect for MBA, Master's, PhD applications.",
-      icon: <Bot className="w-7 h-7 text-[#4F46E5]" />,
+        "Advanced AI that helps you craft compelling essays, personal statements, and application materials tailored to your target programs and schools.",
+      icon: <Bot className="w-7 h-7 text-secondary" />,
     },
     {
-      title: "Human Touch Available",
+      title: "Expert Mentorship",
       description:
-        "When you need that personal guidance, connect with experts from Harvard MBA, Stanford PhD, Oxford Master's, and other top programs.",
-      icon: <Users className="w-7 h-7 text-[#4F46E5]" />,
+        "Connect with successful alumni from top programs worldwide. Get personalized advice from Harvard MBA, Stanford PhD, and Oxford Master's graduates.",
+      icon: <Users className="w-7 h-7 text-secondary" />,
     },
     {
-      title: "Worldwide Programs",
+      title: "Global Applications",
       description:
-        "Whether you're applying to US, UK, Canada, Australia, or anywhere else - we support applications to graduate programs worldwide.",
-      icon: <Globe className="w-7 h-7 text-[#4F46E5]" />,
+        "Comprehensive support for applications to any graduate program worldwide - US, UK, Canada, Europe, Asia, Australia, and beyond.",
+      icon: <Globe className="w-7 h-7 text-secondary" />,
     },
     {
-      title: "Future Test Prep",
+      title: "Complete Test Prep",
       description:
-        "Coming soon: English test preparation for IELTS, TOEFL, Duolingo, plus GMAT and GRE prep to complete your grad school journey.",
-      icon: <BookOpen className="w-7 h-7 text-[#4F46E5]" />,
+        "Full preparation suite for IELTS, TOEFL, Duolingo, GMAT, and GRE. Master the tests that unlock your graduate school opportunities.",
+      icon: <BookOpen className="w-7 h-7 text-secondary" />,
     },
   ];
 
@@ -33,12 +33,12 @@ export default function WhyChooseUs() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 lg:mb-16 text-center">
           <h2 className="text-5xl font-bold text-black lg:text-6xl xl:text-7xl leading-tight mb-6">
-            Your All-in-One Grad School Platform
+            Why Top Students Choose Us
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Join thousands of graduate applicants who chose our comprehensive
-            platform for end-to-end support - from AI essays to test prep to
-            expert guidance.
+            Join thousands of successful graduate applicants who discovered our
+            unique combination of AI precision, human expertise, and proven
+            strategies that maximize admission chances worldwide.
           </p>
         </div>
 

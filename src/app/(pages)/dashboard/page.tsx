@@ -37,10 +37,10 @@ export default function Dashboard() {
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
           <h1 className="text-2xl font-semibold text-gray-900">
-            Welcome, {user.name?.split(` `)[0]}
+            Welcome back, {user.name?.split(` `)[0]}! 👋
           </h1>
           <p className="text-gray-600 mt-1">
-            Your gateway to university admissions success abroad.
+            Ready to continue your complete grad school application journey?
           </p>
         </div>
 
@@ -48,17 +48,17 @@ export default function Dashboard() {
           <Link href="/dashboard/essay-assistant">
             <ModernCard
               title="Essay Assistant"
-              description="Write and improve your application essays with AI-powered feedback"
+              description="AI-powered writing for essays, personal statements, and all application materials"
               icon={<FileText className="w-8 h-8" />}
               badge={<AvailableBadge />}
               number="01"
-              color="blue"
+              color="secondary"
             />
           </Link>
 
           <ModernCard
-            title="English Support"
-            description="IELTS, TOEFL, Duolingo preparation and practice tests"
+              title="English Test Prep"
+              description="Complete preparation for IELTS, TOEFL, and Duolingo with practice tests and strategies"
             icon={<Languages className="w-8 h-8" />}
             badge={<SoonBadge />}
             number="02"
@@ -67,8 +67,8 @@ export default function Dashboard() {
           />
 
           <ModernCard
-            title="Exam Prep"
-            description="GMAT, GRE test preparation with study materials"
+              title="Standardized Tests"
+              description="GMAT and GRE preparation with comprehensive study materials and practice exams"
             icon={<Target className="w-8 h-8" />}
             badge={<SoonBadge />}
             number="03"
@@ -77,8 +77,8 @@ export default function Dashboard() {
           />
 
           <ModernCard
-            title="Resume AI"
-            description="AI-powered resume optimization and enhancement"
+              title="Resume Builder"
+              description="AI-powered resume and CV optimization for graduate school applications"
             icon={<FileCheck className="w-8 h-8" />}
             badge={<SoonBadge />}
             number="04"
@@ -87,8 +87,8 @@ export default function Dashboard() {
           />
 
           <ModernCard
-            title="Mentor Connect"
-            description="Connect with experienced mentors for personalized guidance"
+              title="Mentor Network"
+              description="Connect with successful alumni from top graduate programs for personalized guidance"
             icon={<Users className="w-8 h-8" />}
             badge={<SoonBadge />}
             number="05"

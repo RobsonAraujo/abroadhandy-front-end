@@ -8,7 +8,7 @@ interface ModernCardProps {
   number?: string;
   disabled?: boolean;
   onClick?: () => void;
-  color?: "violet" | "blue" | "green" | "orange" | "purple";
+  color?: "violet" | "blue" | "green" | "orange" | "purple" | "secondary";
 }
 
 export default function ModernCard({
@@ -22,11 +22,12 @@ export default function ModernCard({
   color = "violet",
 }: ModernCardProps) {
   const colorClasses = {
-    violet: "bg-violet-500",
-    blue: "bg-blue-500",
-    green: "bg-green-500",
-    orange: "bg-orange-500",
-    purple: "bg-purple-500",
+    violet: "bg-violet-600",
+    blue: "bg-blue-600",
+    green: "bg-green-600",
+    orange: "bg-orange-600",
+    purple: "bg-purple-600",
+    secondary: "bg-secondary",
   };
 
   return (

@@ -13,16 +13,16 @@ export const MENU_ITEMS: MenuItem[] = [
     hasIcon: true,
     isHighlighted: true,
   },
-  {
-    href: "/mentors",
-    label: "Find Mentors",
-  },
+  // {
+  //   href: "/mentors",
+  //   label: "Find Mentors",
+  // },
   {
     href: "/how-it-works",
     label: "How It Works",
   },
   {
-    href: "/join",
+    href: "/register",
     label: "Get Started",
     isCTA: true,
   },

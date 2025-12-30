@@ -19,26 +19,28 @@ export default function BecomeAMentorSection() {
               </h2>
 
               <p className="text-sm text-black mb-8 leading-relaxed">
-                Share your graduate school expertise with aspiring students. Help them with essays, applications, and get paid for your knowledge.
+                Share your graduate school success story and expertise. Guide
+                aspiring students through their complete application journey and
+                earn while making an impact.
               </p>
 
               <div className="space-y-3 mb-8">
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-black rounded-full mr-4"></div>
-                  <span className="text-black font-medium text-2xl text-bold">
-                    Help grad applicants
+                  <span className="text-black font-medium">
+                    Guide complete applications
                   </span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-black rounded-full mr-4"></div>
-                  <span className="text-black font-medium text-2xl ">
-                    Share your expertise
+                  <span className="text-black font-medium">
+                    Share your success story
                   </span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-black rounded-full mr-4"></div>
-                  <span className="text-black font-medium text-2xl">
-                    Earn from anywhere
+                  <span className="text-black font-medium">
+                    Earn while helping others
                   </span>
                 </div>
               </div>

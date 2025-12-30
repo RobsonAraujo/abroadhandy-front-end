@@ -1,30 +1,31 @@
-import { Users, Trophy, CheckCircle } from "lucide-react";
+import { Bot, Target, CheckCircle } from "lucide-react";
+import SoonBadge from "@/app/components/soon-badge/SoonBadge";
 
 export default function BenefitsSection() {
   const benefits = [
     {
-      title: "For Students",
+      title: "AI-Powered Essay Writing",
       items: [
-        "Personalized guidance from successful students",
-        "Access to insider knowledge and strategies",
-        "Essay reviews and feedback",
-        "Interview preparation and practice",
-        "Application timeline and planning",
-        "University-specific insights",
+        "Advanced AI analyzes your essays for content, structure, and impact",
+        "Personalized suggestions to strengthen your arguments and storytelling",
+        "Real-time feedback on grammar, style, and admissions appeal",
+        "AI-powered content evaluation and improvement recommendations",
+        "Instant analysis of essay effectiveness and admissions potential",
+        "Continuous optimization suggestions throughout your writing process",
       ],
-      icon: <Users className="w-6 h-6 text-[#4F46E5]" />,
+      icon: <Bot className="w-6 h-6 text-secondary" />,
     },
     {
-      title: "For Mentors",
+      title: "Comprehensive Application Support",
       items: [
-        "Flexible schedule and remote work",
-        "Earn money while helping others",
-        "Build your professional network",
-        "Develop teaching and communication skills",
-        "Gain leadership experience",
-        "Make a real impact on students' futures",
+        "Expert mentorship from successful graduate students and alumni",
+        "Test preparation for IELTS, TOEFL, Duolingo, GMAT, and GRE",
+        "Application strategy and timeline planning",
+        "University-specific insights and admissions trends",
+        "Interview preparation and mock sessions",
+        "Resume optimization powered by AI analysis",
       ],
-      icon: <Trophy className="w-6 h-6 text-[#4F46E5]" />,
+      icon: <Target className="w-6 h-6 text-secondary" />,
     },
   ];
 
@@ -33,11 +34,12 @@ export default function BenefitsSection() {
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-black lg:text-4xl mb-4">
-            Why Choose AbroadHandy?
+            Powerful Features That Drive Success
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            We provide value for both students and mentors through our carefully
-            designed platform.
+            Our AI-powered platform combines cutting-edge technology with human
+            expertise to maximize your graduate school admission chances
+            worldwide.
           </p>
         </div>
 
@@ -51,9 +53,14 @@ export default function BenefitsSection() {
                 <div className="bg-gray-100 rounded-full flex justify-center items-center w-12 h-12 mr-4">
                   {benefit.icon}
                 </div>
-                <h3 className="text-2xl font-bold text-black">
-                  {benefit.title}
-                </h3>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-2xl font-bold text-black">
+                    {benefit.title}
+                  </h3>
+                  {benefit.title === "Comprehensive Application Support" && (
+                    <SoonBadge />
+                  )}
+                </div>
               </div>
               <ul className="space-y-3">
                 {benefit.items.map((item, itemIndex) => (
