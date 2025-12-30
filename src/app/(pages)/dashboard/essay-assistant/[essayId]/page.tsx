@@ -11,7 +11,6 @@ import GetFeedbackButton from "@/app/features/dashboard/essay-assistant/buttons/
 import { refinerService } from "@/app/services/essay-ai/refiner";
 import { RefinerFeedback } from "@/app/services/essay-ai/types";
 import { extractTextFromEditorState } from "@/app/utils/lexicalUtils";
-import { Button } from "@/app/components/ui/button";
 import EmpowerSwitch from "@/app/features/dashboard/essay-assistant/buttons/EmpowerSwitch";
 import EmpowerEssayInfos from "@/app/features/dashboard/essay-assistant/EmpowerEssayInfos";
 
@@ -321,6 +320,13 @@ export default function EssayEdit({
         <EssayReview
           feedback={feedback}
           isLoadingFeedback={isLoadingFeedback}
+          essay={
+            currentEditorState
+              ? extractTextFromEditorState(currentEditorState)
+              : ""
+          }
+          essayPrompt={essay?.essay_prompt || ""}
+          school={essay?.university || ""}
         />
       </div>
     </div>

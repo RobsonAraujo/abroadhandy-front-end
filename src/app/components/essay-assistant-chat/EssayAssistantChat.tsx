@@ -1,27 +1,42 @@
 "use client";
 
-import { Bot, Send, User, MessageCircle } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
+import { Bot, Send, User, MessageCircle, Info } from "lucide-react";
+import { useState, useRef, useEffect, Dispatch, SetStateAction } from "react";
 import { Button } from "../ui/button";
+import { refinerService } from "@/app/services/essay-ai/refiner";
 
-enum role {
+export enum ChatRole {
   USER = "user",
   ASSISTANT = "assistant",
 }
-interface Message {
+
+export interface ChatMessage {
   id: string;
-  role: role;
+  role: ChatRole;
   content: string;
 }
 
-export default function EssayAssistantChat() {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "1",
-      role: role.ASSISTANT,
-      content: "Hello! I'm here to help you with your essay. Ask me anything!",
-    },
-  ]);
+export const INITIAL_CHAT_MESSAGE: ChatMessage = {
+  id: "1",
+  role: ChatRole.ASSISTANT,
+  content: "Hello! I'm here to help you with your essay. Ask me anything!",
+};
+
+interface EssayAssistantChatProps {
+  essay: string;
+  essayPrompt: string;
+  school: string;
+  messages: ChatMessage[];
+  setMessages: Dispatch<SetStateAction<ChatMessage[]>>;
+}
+
+export default function EssayAssistantChat({
+  essay,
+  essayPrompt,
+  school,
+  messages,
+  setMessages,
+}: EssayAssistantChatProps) {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -37,27 +52,43 @@ export default function EssayAssistantChat() {
   const handleSend = async () => {
     if (!inputValue.trim() || isLoading) return;
 
-    const userMessage: Message = {
+    const userMessage: ChatMessage = {
       id: Date.now().toString(),
-      role: role.USER,
+      role: ChatRole.USER,
       content: inputValue,
     };
 
     setMessages((prev) => [...prev, userMessage]);
+    const question = inputValue;
     setInputValue("");
     setIsLoading(true);
 
-    // Simulate bot response (replace with actual API call)
-    setTimeout(() => {
-      const botMessage: Message = {
+    try {
+      const response = await refinerService.getfeedback({
+        essay,
+        essay_prompt: essayPrompt,
+        question,
+        school,
+      });
+
+      const botMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
-        role: role.ASSISTANT,
-        content:
-          "I understand your question. This is a placeholder response. In the future, this will connect to the AI assistant API.",
+        role: ChatRole.ASSISTANT,
+        content: response.feedback.answer,
       };
       setMessages((prev) => [...prev, botMessage]);
+    } catch (error) {
+      console.error("Error getting AI response:", error);
+      const errorMessage: ChatMessage = {
+        id: (Date.now() + 1).toString(),
+        role: ChatRole.ASSISTANT,
+        content:
+          "Sorry, I encountered an error processing your question. Please try again.",
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -77,6 +108,18 @@ export default function EssayAssistantChat() {
       </div>
 
       <div className="border-b border-gray-200"></div>
+
+      {/* Context Warning */}
+      <div className="px-4 py-3 bg-amber-50 border-b border-amber-100">
+        <div className="flex items-start gap-2">
+          <Info className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+          <p className="text-xs text-amber-700">
+            Each question is answered independently. For best results, make your
+            questions complete and specific — the AI doesn&apos;t remember
+            previous messages.
+          </p>
+        </div>
+      </div>
 
       {/* Messages Area */}
       <div className="flex-1 overflow-y-auto p-6 space-y-4">

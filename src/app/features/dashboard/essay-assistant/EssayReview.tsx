@@ -1,4 +1,7 @@
-import EssayAssistantChat from "@/app/components/essay-assistant-chat/EssayAssistantChat";
+import EssayAssistantChat, {
+  ChatMessage,
+  INITIAL_CHAT_MESSAGE,
+} from "@/app/components/essay-assistant-chat/EssayAssistantChat";
 import EssayReviewFeedback from "@/app/components/essay-review-feedback/EssayReviewFeedback";
 import LoadingFeedback from "@/app/components/essay-review-feedback/LoadingFeedback";
 import { useState } from "react";
@@ -14,13 +17,22 @@ enum ReviewView {
 interface EssayReviewProps {
   feedback?: RefinerFeedback | null;
   isLoadingFeedback?: boolean;
+  essay?: string;
+  essayPrompt?: string;
+  school?: string;
 }
 
 export default function EssayReview({
   feedback,
   isLoadingFeedback = false,
+  essay = "",
+  essayPrompt = "",
+  school = "",
 }: EssayReviewProps) {
   const [currentView, setCurrentView] = useState<ReviewView>(ReviewView.REVIEW);
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([
+    INITIAL_CHAT_MESSAGE,
+  ]);
 
   return (
     <div className="relative w-full h-full m-2 bg-white rounded-2xl border-2 border-gray-100 overflow-hidden">
@@ -52,7 +64,13 @@ export default function EssayReview({
             <EssayReviewFeedback feedback={feedback || undefined} />
           )
         ) : (
-          <EssayAssistantChat />
+          <EssayAssistantChat
+            essay={essay}
+            essayPrompt={essayPrompt}
+            school={school}
+            messages={chatMessages}
+            setMessages={setChatMessages}
+          />
         )}
       </div>
     </div>

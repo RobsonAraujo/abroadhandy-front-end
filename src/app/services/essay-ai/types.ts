@@ -34,6 +34,7 @@ export interface GrammarCorrection {
 
 export interface RefinerFeedback {
   overall_impression: string;
+  answer: string;
   strengths: string[];
   improvements: Improvement[];
   quick_wins: string[];
