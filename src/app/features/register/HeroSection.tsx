@@ -5,7 +5,7 @@ export default function HeroSection() {
     {
       icon: <Bot className="w-6 h-6 text-[#4F46E5]" />,
       title: "AI Essay Assistant",
-      description: "Get intelligent writing help for all your grad applications",
+      description: "Get intelligent feedback and suggestions for all your grad applications",
     },
     {
       icon: <Target className="w-6 h-6 text-[#4F46E5]" />,
@@ -32,7 +32,7 @@ export default function HeroSection() {
           <span className="text-secondary"> Grad School Success</span>
         </h1>
         <p className="text-lg text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0">
-          Access our comprehensive platform with AI-powered essays, test preparation, and expert mentorship. Everything you need for graduate school success.
+          Access our comprehensive platform with AI-powered essay feedback, test preparation, and expert mentorship. Everything you need for graduate school success.
         </p>
       </div>
 

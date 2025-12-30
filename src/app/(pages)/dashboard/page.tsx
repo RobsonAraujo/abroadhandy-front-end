@@ -48,7 +48,7 @@ export default function Dashboard() {
           <Link href="/dashboard/essay-assistant">
             <ModernCard
               title="Essay Assistant"
-              description="AI-powered writing for essays, personal statements, and all application materials"
+              description="AI-powered feedback and suggestions for essays, personal statements, and all application materials"
               icon={<FileText className="w-8 h-8" />}
               badge={<AvailableBadge />}
               number="01"
@@ -57,8 +57,8 @@ export default function Dashboard() {
           </Link>
 
           <ModernCard
-              title="English Test Prep"
-              description="Complete preparation for IELTS, TOEFL, and Duolingo with practice tests and strategies"
+            title="English Test Prep"
+            description="Complete preparation for IELTS, TOEFL, and Duolingo with practice tests and strategies"
             icon={<Languages className="w-8 h-8" />}
             badge={<SoonBadge />}
             number="02"
@@ -67,8 +67,8 @@ export default function Dashboard() {
           />
 
           <ModernCard
-              title="Standardized Tests"
-              description="GMAT and GRE preparation with comprehensive study materials and practice exams"
+            title="Standardized Tests"
+            description="GMAT and GRE preparation with comprehensive study materials and practice exams"
             icon={<Target className="w-8 h-8" />}
             badge={<SoonBadge />}
             number="03"
@@ -77,8 +77,8 @@ export default function Dashboard() {
           />
 
           <ModernCard
-              title="Resume Builder"
-              description="AI-powered resume and CV optimization for graduate school applications"
+            title="Resume Builder"
+            description="AI-powered resume and CV optimization for graduate school applications"
             icon={<FileCheck className="w-8 h-8" />}
             badge={<SoonBadge />}
             number="04"
@@ -87,8 +87,8 @@ export default function Dashboard() {
           />
 
           <ModernCard
-              title="Mentor Network"
-              description="Connect with successful alumni from top graduate programs for personalized guidance"
+            title="Mentor Network"
+            description="Connect with successful alumni from top graduate programs for personalized guidance"
             icon={<Users className="w-8 h-8" />}
             badge={<SoonBadge />}
             number="05"

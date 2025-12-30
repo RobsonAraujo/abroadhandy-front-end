@@ -4,8 +4,8 @@ export default function HeroSection() {
   const features = [
     {
       icon: <Bot className="w-6 h-6 text-[#4F46E5]" />,
-      title: "AI-Powered Essays",
-      description: "Get intelligent writing assistance for all your applications",
+      title: "AI Essay Feedback",
+      description: "Get intelligent feedback and suggestions for all your applications",
     },
     {
       icon: <Target className="w-6 h-6 text-[#4F46E5]" />,
@@ -32,7 +32,7 @@ export default function HeroSection() {
           <span className="text-secondary"> AbroadHandy</span>
         </h1>
         <p className="text-lg text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0">
-          Continue your graduate school journey. Access AI-powered essay assistance, test prep, and expert mentorship all in one comprehensive platform.
+          Continue your graduate school journey. Access AI-powered essay feedback, test prep, and expert mentorship all in one comprehensive platform.
         </p>
       </div>
 

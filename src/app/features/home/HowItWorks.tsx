@@ -7,7 +7,7 @@ export default function HowItWorks() {
       number: 1,
       title: "AI Writing & Strategy",
       description:
-        "Start with our AI assistant for essays, personal statements, and application materials. Get intelligent feedback, content suggestions, and strategic guidance tailored to your target schools.",
+        "Start with our AI assistant for essays, personal statements, and application materials. Get intelligent feedback, content suggestions, and strategic guidance—all designed to help you improve your own writing.",
       bgColor: "bg-secondary",
       textColor: "text-white",
     },

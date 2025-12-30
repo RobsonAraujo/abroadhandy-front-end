@@ -4,14 +4,14 @@ import SoonBadge from "@/app/components/soon-badge/SoonBadge";
 export default function BenefitsSection() {
   const benefits = [
     {
-      title: "AI-Powered Essay Writing",
+      title: "AI-Powered Essay Feedback",
       items: [
         "Advanced AI analyzes your essays for content, structure, and impact",
         "Personalized suggestions to strengthen your arguments and storytelling",
         "Real-time feedback on grammar, style, and admissions appeal",
         "AI-powered content evaluation and improvement recommendations",
         "Instant analysis of essay effectiveness and admissions potential",
-        "Continuous optimization suggestions throughout your writing process",
+        "Continuous optimization suggestions to help you improve your writing",
       ],
       icon: <Bot className="w-6 h-6 text-secondary" />,
     },

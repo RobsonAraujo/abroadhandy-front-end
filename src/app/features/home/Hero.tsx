@@ -13,12 +13,12 @@ export default function Hero() {
               Complete Grad School Solution
             </p>
             <h1 className="mt-4 text-4xl font-bold text-black lg:mt-8 sm:text-6xl xl:text-8xl">
-              Grad apps, simplified
+              Grad school applications, simplified
             </h1>
             <p className="mt-4 text-base text-black lg:mt-8 sm:text-xl">
               Everything you need for successful graduate applications
-              worldwide. AI-powered essays, expert mentorship, and end-to-end
-              guidance.
+              worldwide. AI-powered essay feedback, expert mentorship, and
+              end-to-end guidance.
             </p>
 
             <Button

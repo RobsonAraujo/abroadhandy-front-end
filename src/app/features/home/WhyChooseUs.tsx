@@ -5,7 +5,7 @@ export default function WhyChooseUs() {
     {
       title: "AI Writing Assistant",
       description:
-        "Advanced AI that helps you craft compelling essays, personal statements, and application materials tailored to your target programs and schools.",
+        "Advanced AI that provides feedback and suggestions to help you refine your essays, personal statements, and application materials tailored to your target programs and schools.",
       icon: <Bot className="w-7 h-7 text-secondary" />,
     },
     {

@@ -7,7 +7,7 @@ export default function LearnBanner() {
             Your complete grad school success platform!
           </h2>
           <p className="text-lg text-black max-w-3xl mx-auto">
-            From AI-powered essays to test prep and expert guidance - everything
+            From AI-powered essay feedback to test prep and expert guidance - everything
             you need to get into your dream program, all in one place.
           </p>
         </div>

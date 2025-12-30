@@ -22,7 +22,7 @@ export default function StudentStepsSection() {
       step: "3",
       title: "EssayAI - Refine Your Essays",
       description:
-        "Use our AI-powered platform to craft compelling personal statements and essays that stand out to admissions committees.",
+        "Use our AI-powered platform to refine your personal statements and essays with intelligent feedback and suggestions.",
       icon: <PenTool className="w-8 h-8 text-[#4F46E5]" />,
       status: "Available Now",
     },

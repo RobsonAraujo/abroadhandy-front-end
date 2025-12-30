@@ -11,7 +11,7 @@ export default function HeroSection() {
           </h1>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Our comprehensive platform provides end-to-end support for graduate
-            school applications. From AI-powered essay assistance to test prep
+            school applications. From AI-powered essay feedback to test prep
             and expert guidance - we&apos;re your complete grad school
             consultancy.
           </p>

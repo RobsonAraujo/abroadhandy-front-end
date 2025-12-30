@@ -66,7 +66,7 @@ export default function EssayAIPage() {
             <AnimatedTitle />
 
             <p className="text-lg lg:text-xl text-gray-700 max-w-2xl mx-auto mb-10 leading-relaxed">
-              Transform your application essays with our cutting-edge AI tools.
+              Improve your application essays with our ethical AI tools that provide suggestions and feedback.
               Choose your path to admission success.
             </p>
 

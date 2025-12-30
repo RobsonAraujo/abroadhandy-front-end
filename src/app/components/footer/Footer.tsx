@@ -12,7 +12,7 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">AbroadHandy</h3>
             <p className="text-gray-400 mb-4">
               Your one-stop solution for graduate school applications.
-              AI-powered essay assistance and expert mentorship for MBA,
+              AI-powered essay feedback and expert mentorship for MBA,
               Master&apos;s, PhD, and Medical School programs worldwide.
             </p>
           </div>
