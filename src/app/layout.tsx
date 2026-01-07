@@ -23,6 +23,11 @@ export const metadata: Metadata = {
   },
   description:
     "Connect with top students from leading universities for your university applications abroad. Receive personalized guidance and maximize your admission chances.",
+  icons: {
+    icon: "/logo.svg",
+    shortcut: "/logo.svg",
+    apple: "/logo-500x500.png",
+  },
 };
 
 export default function RootLayout({
