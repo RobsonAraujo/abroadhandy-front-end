@@ -7,6 +7,7 @@ import StrategistLoading from "./StrategistLoading";
 import StrategistResults from "./StrategistResults";
 import { questions } from "./questions";
 import { ArrowRight, BadgeCheck, Check, Sparkles } from "lucide-react";
+import { sendGAEvent } from '@next/third-parties/google';
 
 enum ViewState {
   FORM,
@@ -35,6 +36,15 @@ export default function Strategist() {
 
   const handleNext = async () => {
     if (isLastStep) {
+      // Track "Get Essay Suggestions" button click
+      sendGAEvent('event', 'buttonClicked', {
+        button_name: "Get Essay Suggestions",
+        page: "essay_ai",
+        location: "strategist",
+        step: currentStep + 1,
+        total_steps: totalSteps,
+      });
+
       setViewState(ViewState.LOADING);
       setError(null);
       try {
@@ -46,6 +56,15 @@ export default function Strategist() {
         setViewState(ViewState.FORM);
       }
     } else {
+      // Track "Continue" button click
+      sendGAEvent('event', 'buttonClicked', {
+        button_name: "Continue",
+        page: "essay_ai",
+        location: "strategist",
+        step: currentStep + 1,
+        total_steps: totalSteps,
+      });
+
       setCurrentStep((prev) => prev + 1);
     }
   };

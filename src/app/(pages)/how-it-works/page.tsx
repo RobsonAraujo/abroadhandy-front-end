@@ -13,6 +13,7 @@ export default function HowItWorks() {
       {/* <MentorStepsSection /> */}
       <BenefitsSection />
       <Banner
+        page="how-it-works"
         title="Ready to Refine Your Essays?"
         description="Join thousands of graduate applicants using our comprehensive AI platform for end-to-end grad school success."
         primaryButton={{

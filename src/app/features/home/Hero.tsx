@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/app/components/ui/button";
 import ArrowRightIcon from "@/app/icons/ArrowRightIcon";
+import { sendGAEvent } from '@next/third-parties/google';
 
 export default function Hero() {
   return (
@@ -31,6 +34,14 @@ export default function Hero() {
                 size="lg"
                 className="group"
                 iconEnd={<ArrowRightIcon className="w-6 h-6 transition-transform group-hover:translate-x-1" />}
+                onClick={() =>
+                  sendGAEvent('event', 'buttonClicked', {
+                    button_name: "Try EssayAI Free",
+                    page: "home",
+                    location: "hero",
+                    destination: "/essay-ai",
+                  })
+                }
               >
                 Try EssayAI Free
               </Button>
@@ -39,6 +50,14 @@ export default function Hero() {
                 variant="outline"
                 size="lg"
                 className="border-black text-black hover:bg-black hover:text-white"
+                onClick={() =>
+                  sendGAEvent('event', 'buttonClicked', {
+                    button_name: "Create Account",
+                    page: "home",
+                    location: "hero",
+                    destination: "/register",
+                  })
+                }
               >
                 Create Account
               </Button>

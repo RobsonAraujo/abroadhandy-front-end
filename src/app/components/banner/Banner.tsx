@@ -1,8 +1,12 @@
+"use client";
+
 import { ReactNode } from "react";
 import { Button } from "@/app/components/ui/button";
 import ArrowRightIcon from "@/app/icons/ArrowRightIcon";
+import { sendGAEvent } from '@next/third-parties/google';
 
 export interface BannerProps {
+  page: string;
   title?: string;
   description?: string;
   primaryButton?: {
@@ -46,6 +50,7 @@ export interface BannerProps {
 }
 
 export default function Banner({
+  page ,
   title = "Ready to Refine Your Essays?",
   description = "Join thousands of graduate applicants using our comprehensive AI platform for complete grad school success.",
   primaryButton = {
@@ -250,6 +255,15 @@ export default function Banner({
               variant={finalPrimaryButton.variant}
               size="lg"
               iconEnd={finalPrimaryButton.icon}
+              onClick={() =>
+                sendGAEvent('event', 'buttonClicked', {
+                  button_name: finalPrimaryButton.text,
+                  page: "home",
+                  location: "bottom_banner",
+                  button_type: "primary",
+                  destination: finalPrimaryButton.href,
+                })
+              }
             >
               {finalPrimaryButton.text}
             </Button>
@@ -259,6 +273,15 @@ export default function Banner({
                 variant={finalSecondaryButton.variant}
                 size="lg"
                 className={finalSecondaryButton.className}
+                onClick={() =>
+                  sendGAEvent('event', 'buttonClicked', {
+                    button_name: finalSecondaryButton.text,
+                    page,
+                    location: "bottom_banner",
+                    button_type: "secondary",
+                    destination: finalSecondaryButton.href,
+                  })
+                }
               >
                 {finalSecondaryButton.text}
               </Button>

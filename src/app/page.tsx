@@ -42,7 +42,7 @@ export default function Home() {
       {/* <LearnBanner /> */}
       {/* <BecomeAMentorSection /> */}
       {/* <WhyChooseUs /> */}
-      <Banner />
+      <Banner page="home"/>
       {/* <StickyCTA /> */}
 
     </>

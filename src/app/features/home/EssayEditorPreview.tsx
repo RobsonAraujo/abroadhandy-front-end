@@ -2,9 +2,10 @@
 
 import { Button } from "@/app/components/ui/button";
 import { ArrowRight } from "lucide-react";
-
+import { sendGAEvent } from '@next/third-parties/google';
 
 export default function EssayEditorPreview() {
+
   return (
     <section className="py-16 lg:py-24 bg-white">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -107,6 +108,14 @@ export default function EssayEditorPreview() {
               variant="secondary"
               size="lg"
               iconEnd={<ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />}
+              onClick={() =>
+                sendGAEvent('event', 'buttonClicked', {
+                  button_name: "Try EssayAI Free Now",
+                  page: "home",
+                  location: "essay_preview_section",
+                  destination: "/essay-ai",
+                })
+              }
             >
               Try EssayAI Free Now
             </Button>

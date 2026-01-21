@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/app/components/ui/button";
 import { X, Sparkles } from "lucide-react";
+import { sendGAEvent } from '@next/third-parties/google';
 
 export default function StickyCTA() {
   const [isVisible, setIsVisible] = useState(false);
@@ -12,8 +13,12 @@ export default function StickyCTA() {
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      if (scrollY > 300 && !isDismissed) {
+      if (scrollY > 300 && !isDismissed && !isVisible) {
         setIsVisible(true);
+        sendGAEvent('event', 'sticky_cta_show', {
+          page: "home",
+          location: "sticky_banner",
+        });
       } else if (scrollY <= 300) {
         setIsVisible(false);
       }
@@ -34,6 +39,10 @@ export default function StickyCTA() {
     setIsVisible(false);
     setIsDismissed(true);
     localStorage.setItem("sticky-cta-dismissed", "true");
+    sendGAEvent('event', 'sticky_cta_dismiss', {
+      page: "home",
+      location: "sticky_banner",
+    });
   };
 
   if (!isVisible || isDismissed) {
@@ -61,6 +70,13 @@ export default function StickyCTA() {
               variant="white"
               size="lg"
               className="whitespace-nowrap font-semibold shadow-lg hover:shadow-xl transition-all"
+              onClick={() =>
+                sendGAEvent('event', 'sticky_cta_click', {
+                  page: "home",
+                  location: "sticky_banner",
+                  destination: "/essay-ai",
+                })
+              }
             >
               Try Free Now →
             </Button>

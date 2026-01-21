@@ -6,6 +6,7 @@ import Strategist from "@/app/features/essay-ai/strategist/Strategist";
 import AnimatedTitle from "@/app/features/essay-ai/AnimatedTitle";
 import { Button } from "@/app/components/ui/button";
 import { Users, TrendingUp, Bot } from "lucide-react";
+import { sendGAEvent } from '@next/third-parties/google';
 
 enum ToolType {
   STRATEGIST,
@@ -152,6 +153,14 @@ export default function EssayAIPage() {
                       variant="secondary"
                       size="lg"
                       className="w-full sm:w-auto"
+                      onClick={() =>
+                        sendGAEvent('event', 'buttonClicked', {
+                          button_name: "Log in",
+                          page: "essay_ai",
+                          location: "assistant_tab",
+                          destination: "/login",
+                        })
+                      }
                     >
                       <Link href="/login">Log in</Link>
                     </Button>
