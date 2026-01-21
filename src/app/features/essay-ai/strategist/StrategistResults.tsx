@@ -4,6 +4,7 @@ import { Button } from "@/app/components/ui/button";
 import { EssayAngle } from "@/app/services/essay-ai";
 import { BookCheck, Download, RotateCcw } from "lucide-react";
 import Link from "next/link";
+import { sendGAEvent } from '@next/third-parties/google';
 
 interface StrategistResultsProps {
   angles: EssayAngle[];
@@ -95,7 +96,18 @@ export default function StrategistResults({
           Start Over
         </Button>
         <Link href="/dashboard/essay-assistant">
-          <Button variant="secondary" iconStart={<BookCheck />}>
+          <Button 
+            variant="secondary" 
+            iconStart={<BookCheck />}
+            onClick={() =>
+              sendGAEvent('event', 'buttonClicked', {
+                button_name: "Start Writing",
+                page: "essay_ai",
+                location: "strategist_results",
+                destination: "/dashboard/essay-assistant",
+              })
+            }
+          >
             Start Writing
           </Button>
         </Link>
