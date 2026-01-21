@@ -4,12 +4,13 @@ import { useAuth } from "./contexts/AuthContext";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Hero from "./features/home/Hero";
+import EssayEditorPreview from "./features/home/EssayEditorPreview";
 import HowItWorks from "./features/home/HowItWorks";
 import LearnBanner from "./features/home/LearnBanner";
 import Banner from "./components/banner/Banner";
 import BecomeAMentorSection from "./features/home/BecomeAMentorSection";
 import WhyChooseUs from "./features/home/WhyChooseUs";
-import MockLoginButton from "./components/dev/MockLoginButton";
+// import StickyCTA from "./components/sticky-cta/StickyCTA";
 
 export default function Home() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -36,12 +37,14 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <EssayEditorPreview />
       <HowItWorks />
-      <LearnBanner />
-      <BecomeAMentorSection />
-      <WhyChooseUs />
+      {/* <LearnBanner /> */}
+      {/* <BecomeAMentorSection /> */}
+      {/* <WhyChooseUs /> */}
       <Banner />
-      {/* <MockLoginButton /> */}
+      {/* <StickyCTA /> */}
+
     </>
   );
 }

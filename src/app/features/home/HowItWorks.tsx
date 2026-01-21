@@ -41,7 +41,7 @@ export default function HowItWorks() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {steps.map((step) => (
             <div key={step.number} className="relative">
-              {step.number === 2 && (
+              {step.number !== 1 && (
                 <div className="absolute top-[-10px] left-[87%]">
                   <SoonBadge />
                 </div>
