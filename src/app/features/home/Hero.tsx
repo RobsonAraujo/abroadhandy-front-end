@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/app/components/ui/button";
 import ArrowRightIcon from "@/app/icons/ArrowRightIcon";
 import { sendGAEvent } from '@next/third-parties/google';
+import HeroEditorPreview from "./HeroEditorPreview";
 
 export default function Hero() {
   return (
@@ -80,14 +80,7 @@ export default function Hero() {
           </div>
 
           <div>
-            <Image
-              className="w-full"
-              src="/hero-image.png"
-              alt="Graduate students getting AI-powered essay assistance and mentorship for grad school applications"
-              width={600}
-              height={400}
-              priority
-            />
+            <HeroEditorPreview />
           </div>
         </div>
       </div>
