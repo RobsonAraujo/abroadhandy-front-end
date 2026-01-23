@@ -4,7 +4,7 @@ import { useAuth } from "./contexts/AuthContext";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Hero from "./features/home/Hero";
-import EssayEditorPreview from "./features/home/EssayEditorPreview";
+import UniversityLogos from "./features/home/UniversityLogos";
 import HowItWorks from "./features/home/HowItWorks";
 import LearnBanner from "./features/home/LearnBanner";
 import Banner from "./components/banner/Banner";
@@ -37,7 +37,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <EssayEditorPreview />
+      <UniversityLogos />
       <HowItWorks />
       {/* <LearnBanner /> */}
       {/* <BecomeAMentorSection /> */}

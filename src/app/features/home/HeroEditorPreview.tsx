@@ -29,7 +29,7 @@ export default function HeroEditorPreview() {
     ];
 
     const timeouts = timeline.map(({ delay, action }) =>
-      setTimeout(action, delay)
+      setTimeout(action, delay),
     );
 
     return () => {
@@ -73,9 +73,7 @@ export default function HeroEditorPreview() {
             >
               <span
                 className={`font-semibold transition-all duration-300 ${
-                  showHighlight1
-                    ? "bg-yellow-200 px-1 rounded relative"
-                    : ""
+                  showHighlight1 ? "bg-yellow-200 px-1 rounded relative" : ""
                 }`}
               >
                 My passion for computer science
@@ -89,15 +87,17 @@ export default function HeroEditorPreview() {
               }`}
               style={{ transitionDelay: "0.3s" }}
             >
-              During my undergraduate studies, I developed several projects
-              that combined theoretical knowledge with practical applications.
+              During my undergraduate studies, I developed several projects that
+              combined theoretical knowledge with practical applications.
             </p>
 
             {/* Improved Text (appears after suggestion) */}
             {showImprovedText && (
               <div className="mb-3 animate-fade-in">
                 <p className="text-base text-gray-700 leading-relaxed">
-                  <span className="font-semibold">My passion for computer science</span>{" "}
+                  <span className="font-semibold">
+                    My passion for computer science
+                  </span>{" "}
                   began in high school when I first discovered the power of
                   algorithms to solve complex problems.{" "}
                   <span className="text-secondary font-medium">
@@ -149,7 +149,9 @@ export default function HeroEditorPreview() {
           <div className="absolute bottom-4 right-4 flex items-center gap-2 text-xs text-gray-500">
             <div className="flex items-center gap-1.5 px-2 py-1 bg-secondary/10 rounded-full">
               <div className="w-2 h-2 bg-secondary rounded-full animate-pulse"></div>
-              <span className="text-secondary font-medium">AI Analyzing...</span>
+              <span className="text-secondary font-medium">
+                AI Analyzing...
+              </span>
             </div>
           </div>
         </div>
@@ -158,10 +160,12 @@ export default function HeroEditorPreview() {
       {/* Floating Stats (optional enhancement) */}
       {showSuccessBadge && (
         <div className="absolute -right-2 lg:-right-4 top-1/2 transform -translate-y-1/2 hidden xl:block">
-          <div className="bg-white rounded-xl shadow-lg p-3 lg:p-4 border border-gray-200 animate-slide-in-right">
+          <div className="bg-secondary rounded-xl shadow-lg p-3 lg:p-4 border border-gray-200 animate-slide-in-right">
             <div className="text-center">
-              <div className="text-xl lg:text-2xl font-bold text-secondary mb-1">95%</div>
-              <div className="text-xs text-gray-600">User Satisfaction</div>
+              <div className="text-xl lg:text-2xl font-bold text-white mb-1">
+                95%
+              </div>
+              <div className="text-xs text-white">User Satisfaction</div>
             </div>
           </div>
         </div>
