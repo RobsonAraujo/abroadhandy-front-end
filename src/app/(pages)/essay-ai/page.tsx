@@ -1,25 +1,148 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import Strategist from "@/app/features/essay-ai/strategist/Strategist";
+import { useState, useEffect, useCallback, useRef } from "react";
 import AnimatedTitle from "@/app/features/essay-ai/AnimatedTitle";
 import { Button } from "@/app/components/ui/button";
-import { Users, TrendingUp, Bot } from "lucide-react";
+import { Users, TrendingUp, Bot, Sparkles } from "lucide-react";
 import { sendGAEvent } from '@next/third-parties/google';
+import EssayEditor from "@/app/components/essay-editor/EssayEditor";
+import { EditorState } from "lexical";
+import { extractTextFromEditorState } from "@/app/utils/lexicalUtils";
+import { refinerService } from "@/app/services/essay-ai/refiner";
+import { RefinerFeedback } from "@/app/services/essay-ai/types";
+import EmpowerEssayInfos from "@/app/features/dashboard/essay-assistant/EmpowerEssayInfos";
+import EssayReviewModal from "@/app/components/essay-review-modal/EssayReviewModal";
+import LoginPrompt from "@/app/components/essay-ai/LoginPrompt";
+import { useFeedbackLimit } from "@/app/hooks/useFeedbackLimit";
 
-enum ToolType {
-  STRATEGIST,
-  ASSISTANT,
-}
+const EDITOR_STATE_KEY = "essay-ai-editor-state";
+const UNIVERSITY_KEY = "essay-ai-university";
+const ESSAY_PROMPT_KEY = "essay-ai-essay-prompt";
 
 export default function EssayAIPage() {
-  const [selectedTool, setSelectedTool] = useState<ToolType>(
-    ToolType.STRATEGIST
-  );
+  const [currentEditorState, setCurrentEditorState] = useState<EditorState | null>(null);
+  const [feedback, setFeedback] = useState<RefinerFeedback | null>(null);
+  const [isLoadingFeedback, setIsLoadingFeedback] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [university, setUniversity] = useState("");
+  const [essayPrompt, setEssayPrompt] = useState("");
+  const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const {
+    remainingChecks,
+    canGenerateFeedback,
+    incrementFeedback,
+    maxFreeChecks,
+  } = useFeedbackLimit();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedUniversity = localStorage.getItem(UNIVERSITY_KEY);
+      const savedPrompt = localStorage.getItem(ESSAY_PROMPT_KEY);
+
+      if (savedUniversity) setUniversity(savedUniversity);
+      if (savedPrompt) setEssayPrompt(savedPrompt);
+    }
+  }, []);
+
+  const handleEditorChange = useCallback((editorState: EditorState) => {
+    setCurrentEditorState(editorState);
+
+    if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
+
+    saveTimeoutRef.current = setTimeout(() => {
+      try {
+        const editorStateJSON = editorState.toJSON();
+        localStorage.setItem(EDITOR_STATE_KEY, JSON.stringify(editorStateJSON));
+      } catch (error) {
+        console.error("Error saving editor state:", error);
+      }
+    }, 500);
+  }, []);
+
+  const handleGenerateFeedback = useCallback(async () => {
+    if (isLoadingFeedback || !canGenerateFeedback) return;
+
+    if (!currentEditorState) {
+      alert("Please write some content in the editor first.");
+      return;
+    }
+
+    const essayText = extractTextFromEditorState(currentEditorState);
+
+    if (!essayText.trim()) {
+      alert("Please write some content in the editor first.");
+      return;
+    }
+
+    try {
+      setIsLoadingFeedback(true);
+      setFeedback(null);
+      setIsModalOpen(true);
+
+      const response = await refinerService.getfeedback({
+        essay: essayText,
+        essay_prompt: essayPrompt,
+        question: "",
+        school: university,
+      });
+
+      setFeedback(response.feedback);
+      incrementFeedback();
+
+      sendGAEvent('event', 'buttonClicked', {
+        button_name: "Get Feedback",
+        page: "essay_ai",
+        location: "essay_editor",
+        remaining_checks: remainingChecks - 1,
+      });
+    } catch (error) {
+      console.error("Error generating feedback:", error);
+      alert("Failed to generate feedback. Please try again.");
+    } finally {
+      setIsLoadingFeedback(false);
+    }
+  }, [
+    currentEditorState,
+    essayPrompt,
+    university,
+    isLoadingFeedback,
+    canGenerateFeedback,
+    incrementFeedback,
+    remainingChecks,
+  ]);
+
+  const handleUniversityChange = useCallback((value: string) => {
+    setUniversity(value);
+    localStorage.setItem(UNIVERSITY_KEY, value);
+  }, []);
+
+  const handleEssayPromptChange = useCallback((value: string) => {
+    setEssayPrompt(value);
+    localStorage.setItem(ESSAY_PROMPT_KEY, value);
+  }, []);
+
+  const getInitialState = () => {
+    if (typeof window === "undefined") return undefined;
+
+    const savedState = localStorage.getItem(EDITOR_STATE_KEY);
+    if (!savedState) return undefined;
+
+    try {
+      return JSON.parse(savedState);
+    } catch {
+      return undefined;
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
+    };
+  }, []);
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden bg-gray-50">
       <section className="py-12 lg:py-16 relative z-10">
         <div className="px-4 mx-auto max-w-6xl sm:px-6 lg:px-8">
           {/* Stats Bar */}
@@ -66,111 +189,86 @@ export default function EssayAIPage() {
 
             <AnimatedTitle />
 
-            <p className="text-lg lg:text-xl text-gray-700 max-w-2xl mx-auto mb-10 leading-relaxed">
+            <p className="text-lg lg:text-xl text-gray-700 max-w-2xl mx-auto mb-6 leading-relaxed">
               Improve your application essays with our ethical AI tools that provide suggestions and feedback.
-              Choose your path to admission success.
             </p>
 
-            <div className="max-w-lg mx-auto justify-center mb-8">
-              <div className="relative flex flex-wrap rounded-lg bg-gray-100 p-1 shadow-[0_0_0_1px_rgba(0,0,0,0.06)] text-sm">
-                <label className="flex-1 text-center">
-                  <input
-                    type="radio"
-                    name="tool"
-                    className="sr-only"
-                    checked={selectedTool === ToolType.STRATEGIST}
-                    onChange={() => setSelectedTool(ToolType.STRATEGIST)}
-                  />
-                  <span
-                    className={`flex cursor-pointer items-center justify-center rounded-lg px-6 py-2.5 transition-all duration-150 ease-in-out
-                      ${
-                        selectedTool === ToolType.STRATEGIST
-                          ? "bg-white font-semibold text-slate-700 shadow-sm"
-                          : "text-slate-500 hover:text-slate-700"
-                      }`}
-                  >
-                    The Strategist
-                  </span>
-                </label>
-                <label className="flex-1 text-center">
-                  <input
-                    type="radio"
-                    name="tool"
-                    className="sr-only"
-                    checked={selectedTool === ToolType.ASSISTANT}
-                    onChange={() => setSelectedTool(ToolType.ASSISTANT)}
-                  />
-                  <span
-                    className={`flex cursor-pointer items-center justify-center rounded-lg px-6 py-2.5 transition-all duration-150 ease-in-out
-                      ${
-                        selectedTool === ToolType.ASSISTANT
-                          ? "bg-white font-semibold text-slate-700 shadow-sm"
-                          : "text-slate-500 hover:text-slate-700"
-                      }`}
-                  >
-                    The Essay Assistant
-                  </span>
-                </label>
+            {!canGenerateFeedback ? (
+              <div className="mb-6">
+                <LoginPrompt maxFreeChecks={maxFreeChecks} />
               </div>
-            </div>
+            ) : remainingChecks < maxFreeChecks ? (
+              <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-medium border border-blue-200">
+                <Sparkles className="w-4 h-4" />
+                <span>
+                  {remainingChecks} free feedback{remainingChecks !== 1 ? "s" : ""} remaining
+                </span>
+              </div>
+            ) : null}
           </div>
 
-          <div className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/20 shadow-2xl p-8 lg:p-12 relative overflow-hidden">
+          {/* Editor Section */}
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/20 shadow-2xl p-6 lg:p-8 relative overflow-hidden max-w-5xl mx-auto">
             {/* Content Background Pattern */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-secondary/5 to-transparent rounded-full blur-xl"></div>
             <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-purple-400/5 to-transparent rounded-full blur-xl"></div>
 
             <div className="relative z-10">
-              {selectedTool === ToolType.STRATEGIST ? (
-                <Strategist />
-              ) : (
-                <div className="flex flex-col items-center justify-center py-12 px-4">
-                  <div className="max-w-md w-full text-center">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary/10 mb-6">
-                      <svg
-                        className="w-8 h-8 text-secondary"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                        />
-                      </svg>
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                      Please log in to continue
-                    </h3>
-                    <p className="text-gray-600 text-lg leading-relaxed mb-8">
-                      This tool will be{" "}
-                      <span className="font-semibold text-secondary">free</span>{" "}
-                      when you are logged in.
-                    </p>
-                    <Button
-                      variant="secondary"
-                      size="lg"
-                      className="w-full sm:w-auto"
-                      onClick={() =>
-                        sendGAEvent('event', 'buttonClicked', {
-                          button_name: "Log in",
-                          page: "essay_ai",
-                          location: "assistant_tab",
-                          destination: "/login",
-                        })
-                      }
-                    >
-                      <Link href="/login">Log in</Link>
-                    </Button>
-                  </div>
+              {/* EmpowerEssayInfos */}
+              <EmpowerEssayInfos
+                university={university}
+                essayPrompt={essayPrompt}
+                onUniversityChange={handleUniversityChange}
+                onEssayPromptChange={handleEssayPromptChange}
+              />
+
+              {/* Essay Editor */}
+              <EssayEditor
+                initialState={getInitialState()}
+                onChange={handleEditorChange}
+              />
+
+              {/* Get Feedback Button */}
+              {canGenerateFeedback && (
+                <div className="mt-6 flex justify-center">
+                  <Button
+                    variant="secondary"
+                    size="lg"
+                    onClick={handleGenerateFeedback}
+                    disabled={isLoadingFeedback}
+                    className="group"
+                    iconStart={
+                      isLoadingFeedback ? (
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      ) : (
+                        <Sparkles className="w-5 h-5" />
+                      )
+                    }
+                  >
+                    {isLoadingFeedback ? "Generating Feedback..." : "Get Feedback"}
+                  </Button>
                 </div>
               )}
             </div>
           </div>
         </div>
       </section>
+
+      {/* Review Modal */}
+      <EssayReviewModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        feedback={feedback}
+        isLoadingFeedback={isLoadingFeedback}
+        essay={
+          currentEditorState
+            ? extractTextFromEditorState(currentEditorState)
+            : ""
+        }
+        essayPrompt={essayPrompt}
+        school={university}
+        onGenerateFeedback={handleGenerateFeedback}
+      />
     </div>
   );
 }
