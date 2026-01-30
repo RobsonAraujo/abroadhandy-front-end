@@ -23,21 +23,19 @@ export default function CoursePath({ nodes, basePath }: CoursePathProps) {
           const isActive = !node.locked;
           const isCompleted = false; // TODO: track completion
           const href =
-            node.slug && isActive
-              ? `${basePath}/${node.slug}`
-              : undefined;
+            node.slug && isActive ? `${basePath}/${node.slug}` : undefined;
 
           return (
             <div key={node.id} className="relative flex items-start gap-4">
               {/* Circle node */}
               <div className="relative z-10 flex-shrink-0">
                 <div
-                  className={`flex h-16 w-16 items-center justify-center rounded-full border-4 border-white shadow-lg transition-all sm:h-20 sm:w-20 ${
+                  className={`flex h-16 w-16 items-center justify-center rounded-full  shadow-lg transition-all sm:h-20 sm:w-20 ${
                     isCompleted
                       ? "bg-green-500"
                       : isActive
-                        ? "bg-secondary"
-                        : "bg-gray-300"
+                        ? "bg-gradient-to-br from-slate-900 via-slate-800 to-black  ring-2 ring-cyan-400 "
+                        : "bg-gray-300 border-4 border-white"
                   }`}
                 >
                   {isCompleted ? (
@@ -57,7 +55,7 @@ export default function CoursePath({ nodes, basePath }: CoursePathProps) {
                 {href ? (
                   <Link
                     href={href}
-                    className="block rounded-2xl border-2 border-gray-200 bg-white p-5 shadow-md transition-all hover:border-secondary hover:shadow-lg sm:p-6"
+                    className="block rounded-2xl border-2 border-gray-200 bg-white p-5 shadow-md transition-all hover:border-cyan-400 hover:shadow-lg sm:p-6"
                     aria-label={`Go to ${node.title}`}
                   >
                     <div className="flex items-start justify-between gap-4">
@@ -73,7 +71,7 @@ export default function CoursePath({ nodes, basePath }: CoursePathProps) {
                       </div>
                       {isActive && (
                         <div className="flex-shrink-0">
-                          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-secondary text-white sm:h-10 sm:w-10">
+                          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-slate-900 via-slate-800 to-black  text-white sm:h-10 sm:w-10">
                             <svg
                               className="h-5 w-5 sm:h-6 sm:w-6"
                               fill="none"

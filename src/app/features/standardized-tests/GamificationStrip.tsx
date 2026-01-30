@@ -23,7 +23,7 @@ export default function GamificationStrip({
       <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
         {/* Left: Character + Level */}
         <div className="flex items-center gap-4">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-secondary text-white shadow-md sm:h-20 sm:w-20">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-slate-900 via-slate-800 to-black  ring-2 ring-cyan-400 text-white shadow-md sm:h-20 sm:w-20">
             <svg
               className="h-8 w-8 sm:h-10 sm:w-10"
               viewBox="0 0 24 24"
@@ -39,7 +39,7 @@ export default function GamificationStrip({
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="rounded-full bg-secondary px-4 py-1.5 text-sm font-bold text-white">
+              <span className="rounded-full bg-gradient-to-br from-slate-900 via-slate-800 to-black  ring-2 ring-cyan-400  px-4 py-1.5 text-sm font-bold text-white">
                 Level {level}
               </span>
             </div>
@@ -49,9 +49,11 @@ export default function GamificationStrip({
 
         {/* Center: XP and Streak */}
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2">
-            <span className="text-lg">⭐</span>
-            <span className="text-sm font-bold text-gray-900">{xp} XP</span>
+          <div className="relative inline-flex items-center gap-2 rounded-xl bg-gradient-to-br from-slate-900 via-slate-800 to-black px-4 py-2 ring-2 ring-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.6)]">
+            <span className="text-lg text-cyan-300">💠</span>
+            <span className="text-sm font-bold tracking-wide text-cyan-200">
+              +{xp} XP
+            </span>
           </div>
           {streak > 0 && (
             <div className="flex items-center gap-2 rounded-lg bg-orange-500 px-4 py-2">
@@ -78,7 +80,7 @@ export default function GamificationStrip({
             aria-label={`Course progress: ${currentStep} of ${totalSteps} steps`}
           >
             <div
-              className="h-full rounded-full bg-secondary transition-all duration-300"
+              className="h-full rounded-full bg-gradient-to-br from-slate-900 via-slate-800 to-black  transition-all duration-300"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
