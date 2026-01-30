@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Lock } from "lucide-react";
+import { Lock, CheckCircle2 } from "lucide-react";
 import type { PathNode } from "./curriculum";
 
 interface CoursePathProps {
@@ -11,87 +11,114 @@ interface CoursePathProps {
 
 export default function CoursePath({ nodes, basePath }: CoursePathProps) {
   return (
-    <div className="relative pl-5 sm:pl-6">
-      {/* Vertical line connector - aligned with circle centers */}
+    <div className="relative w-full">
+      {/* Vertical line connector */}
       <div
-        className="absolute left-5 top-5 bottom-5 w-px bg-gray-200 sm:left-6"
+        className="absolute left-8 top-8 bottom-8 w-1 rounded-full bg-gray-200 sm:left-10"
         aria-hidden
       />
 
-      <ul className="relative flex flex-col gap-0">
+      <div className="space-y-6">
         {nodes.map((node, index) => {
           const isActive = !node.locked;
+          const isCompleted = false; // TODO: track completion
           const href =
             node.slug && isActive
               ? `${basePath}/${node.slug}`
               : undefined;
 
-          const nodeContent = (
-            <>
-              <div
-                className={`relative z-10 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 sm:h-12 sm:w-12 ${
-                  isActive
-                    ? "border-secondary bg-secondary text-white"
-                    : "border-gray-300 bg-gray-100 text-gray-400"
-                }`}
-              >
-                {node.locked ? (
-                  <Lock className="h-4 w-4 sm:h-5 sm:w-5" />
-                ) : (
-                  <span className="text-sm font-semibold sm:text-base">
-                    {index + 1}
-                  </span>
-                )}
-              </div>
-              <div className="min-w-0 flex-1 pt-0.5">
-                <p
-                  className={`font-medium ${
-                    isActive ? "text-gray-900" : "text-gray-500"
+          return (
+            <div key={node.id} className="relative flex items-start gap-4">
+              {/* Circle node */}
+              <div className="relative z-10 flex-shrink-0">
+                <div
+                  className={`flex h-16 w-16 items-center justify-center rounded-full border-4 border-white shadow-lg transition-all sm:h-20 sm:w-20 ${
+                    isCompleted
+                      ? "bg-green-500"
+                      : isActive
+                        ? "bg-secondary"
+                        : "bg-gray-300"
                   }`}
                 >
-                  {node.title}
-                </p>
-                {node.subtitle && (
-                  <p className="mt-0.5 text-sm text-gray-500">
-                    {node.subtitle}
-                  </p>
-                )}
-                {node.locked && (
-                  <p className="mt-1 text-xs text-gray-400">
-                    Complete previous step
-                  </p>
+                  {isCompleted ? (
+                    <CheckCircle2 className="h-8 w-8 text-white sm:h-10 sm:w-10" />
+                  ) : isActive ? (
+                    <span className="text-xl font-bold text-white sm:text-2xl">
+                      {index + 1}
+                    </span>
+                  ) : (
+                    <Lock className="h-6 w-6 text-gray-500 sm:h-7 sm:w-7" />
+                  )}
+                </div>
+              </div>
+
+              {/* Content card */}
+              <div className="flex-1 pt-1">
+                {href ? (
+                  <Link
+                    href={href}
+                    className="block rounded-2xl border-2 border-gray-200 bg-white p-5 shadow-md transition-all hover:border-secondary hover:shadow-lg sm:p-6"
+                    aria-label={`Go to ${node.title}`}
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-1">
+                        {node.subtitle && (
+                          <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                            {node.subtitle}
+                          </p>
+                        )}
+                        <h3 className="text-lg font-bold text-gray-900 sm:text-xl">
+                          {node.title}
+                        </h3>
+                      </div>
+                      {isActive && (
+                        <div className="flex-shrink-0">
+                          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-secondary text-white sm:h-10 sm:w-10">
+                            <svg
+                              className="h-5 w-5 sm:h-6 sm:w-6"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9 5l7 7-7 7"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </Link>
+                ) : (
+                  <div
+                    className="block rounded-2xl border-2 border-gray-200 bg-gray-50 p-5 opacity-60 sm:p-6"
+                    aria-disabled="true"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-1">
+                        {node.subtitle && (
+                          <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-gray-400">
+                            {node.subtitle}
+                          </p>
+                        )}
+                        <h3 className="text-lg font-bold text-gray-500 sm:text-xl">
+                          {node.title}
+                        </h3>
+                        <p className="mt-2 text-sm text-gray-400">
+                          Complete previous step to unlock
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 )}
               </div>
-            </>
-          );
-
-          return (
-            <li
-              key={node.id}
-              className={`flex items-start gap-4 py-4 sm:gap-5 sm:py-5 ${
-                node.locked ? "opacity-60" : ""
-              }`}
-            >
-              {href ? (
-                <Link
-                  href={href}
-                  className="flex w-full items-start gap-4 rounded-lg transition-colors hover:bg-gray-50 sm:gap-5 sm:px-3 sm:py-1 sm:-my-1"
-                  aria-label={`Go to ${node.title}`}
-                >
-                  {nodeContent}
-                </Link>
-              ) : (
-                <div
-                  className="flex w-full cursor-not-allowed items-start gap-4 sm:gap-5"
-                  aria-disabled="true"
-                >
-                  {nodeContent}
-                </div>
-              )}
-            </li>
+            </div>
           );
         })}
-      </ul>
+      </div>
     </div>
   );
 }

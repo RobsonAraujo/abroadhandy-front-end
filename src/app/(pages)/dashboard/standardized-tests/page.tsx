@@ -37,31 +37,38 @@ export default function StandardizedTestsPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
         <Link
           href="/dashboard"
-          className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
+          className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to Dashboard
         </Link>
 
-        <h1 className="mb-1 text-2xl font-semibold text-gray-900">
-          GMAT Quant Foundations
-        </h1>
-        <p className="mb-8 text-gray-600">
-          Step-by-step path from diagnostic to score optimization.
-        </p>
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="mb-2 text-3xl font-bold text-gray-900 sm:text-4xl">
+            GMAT Quant Foundations
+          </h1>
+          <p className="text-lg text-gray-600">
+            Master GMAT Quant step by step. Complete each lesson to unlock the next.
+          </p>
+        </div>
 
+        {/* Gamification Strip */}
         <div className="mb-10">
           <GamificationStrip
             currentStep={0}
             totalSteps={GMAT_QUANT_PATH.length}
             level={1}
+            xp={0}
+            streak={0}
           />
         </div>
 
-        <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+        {/* Course Path */}
+        <div className="rounded-2xl bg-white p-6 shadow-sm sm:p-8">
           <CoursePath nodes={GMAT_QUANT_PATH} basePath={BASE_PATH} />
         </div>
       </div>

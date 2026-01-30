@@ -4,56 +4,73 @@ interface GamificationStripProps {
   currentStep?: number;
   totalSteps?: number;
   level?: number;
+  xp?: number;
+  streak?: number;
 }
 
 export default function GamificationStrip({
   currentStep = 0,
   totalSteps = 9,
   level = 1,
+  xp = 0,
+  streak = 0,
 }: GamificationStripProps) {
   const progressPercent =
     totalSteps > 0 ? Math.min(100, (currentStep / totalSteps) * 100) : 0;
 
   return (
-    <div className="w-full rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-        {/* Character / avatar */}
-        <div
-          className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-secondary/15 text-secondary"
-          aria-hidden
-        >
-          <svg
-            className="h-8 w-8"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M12 2L2 7l10 5 10-5-10-5z" />
-            <path d="M2 17l10 5 10-5" />
-          </svg>
+    <div className="w-full rounded-2xl border-2 border-gray-200 bg-white p-6 shadow-sm">
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+        {/* Left: Character + Level */}
+        <div className="flex items-center gap-4">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-secondary text-white shadow-md sm:h-20 sm:w-20">
+            <svg
+              className="h-8 w-8 sm:h-10 sm:w-10"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+            </svg>
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="rounded-full bg-secondary px-4 py-1.5 text-sm font-bold text-white">
+                Level {level}
+              </span>
+            </div>
+            <p className="mt-1 text-sm text-gray-600">Beginner</p>
+          </div>
         </div>
 
-        {/* Level badge */}
-        <div className="flex items-center gap-2">
-          <span className="rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700">
-            Level {level}
-          </span>
-          <span className="text-sm text-gray-500">Beginner</span>
+        {/* Center: XP and Streak */}
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2">
+            <span className="text-lg">⭐</span>
+            <span className="text-sm font-bold text-gray-900">{xp} XP</span>
+          </div>
+          {streak > 0 && (
+            <div className="flex items-center gap-2 rounded-lg bg-orange-500 px-4 py-2">
+              <span className="text-lg">🔥</span>
+              <span className="text-sm font-bold text-white">{streak}</span>
+            </div>
+          )}
         </div>
 
-        {/* Progress bar */}
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center justify-between gap-2 text-sm">
-            <span className="text-gray-600">Course progress</span>
-            <span className="font-medium text-gray-700">
-              {currentStep} / {totalSteps}
+        {/* Right: Progress */}
+        <div className="min-w-0 flex-1 sm:max-w-xs">
+          <div className="mb-2 flex items-center justify-between text-sm">
+            <span className="font-medium text-gray-700">Progress</span>
+            <span className="font-bold text-secondary">
+              {currentStep}/{totalSteps}
             </span>
           </div>
           <div
-            className="mt-1.5 h-2 w-full overflow-hidden rounded-full bg-gray-200"
+            className="h-3 w-full overflow-hidden rounded-full bg-gray-200"
             role="progressbar"
             aria-valuenow={progressPercent}
             aria-valuemin={0}
