@@ -66,15 +66,16 @@ export default function Dashboard() {
             disabled={true}
           />
 
-          <ModernCard
-            title="Standardized Tests"
-            description="GMAT and GRE preparation with comprehensive study materials and practice exams"
-            icon={<Target className="w-8 h-8" />}
-            badge={<SoonBadge />}
-            number="03"
-            color="purple"
-            disabled={true}
-          />
+          <Link href="/dashboard/standardized-tests">
+            <ModernCard
+              title="Standardized Tests"
+              description="GMAT and GRE preparation with comprehensive study materials and practice exams"
+              icon={<Target className="w-8 h-8" />}
+              badge={<SoonBadge />}
+              number="03"
+              color="purple"
+            />
+          </Link>
 
           <ModernCard
             title="Resume Builder"
