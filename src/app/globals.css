@@ -1,16 +1,14 @@
 @import "tailwindcss";
 @import "../tailwind-theme.css";
 
-
-
 :root {
   --radius: 0.5rem;
   --background: #ffffff;
-  --foreground: #1E3C31;
+  --foreground: #1e3c31;
   --card: #ffffff;
-  --card-foreground: #1E3C31;
+  --card-foreground: #1e3c31;
   --popover: #ffffff;
-  --popover-foreground: #1E3C31;
+  --popover-foreground: #1e3c31;
   --primary: #f9cc14;
   --primary-foreground: #000000;
   --secondary: #2463eb;
@@ -67,14 +65,19 @@ body {
   animation: slide-in-right 0.3s ease-in-out;
 }
 
-
 @keyframes fadeIn {
-  0% { opacity: 0; transform: translateY(-5px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fade-in {
-  animation: fadeIn 1.0s ease-out forwards;
+  animation: fadeIn 1s ease-out forwards;
 }
 
 @keyframes fadeInSlideDown {
@@ -104,13 +107,16 @@ body {
 }
 
 /* Kawaii Range Slider for GMAT Score Input */
+input[type="range"].kawaii-range,
 [type="range"].kawaii-range {
   --base: #2463eb;
   --light: color-mix(in sRGB, var(--base) 60%, #fff);
   --lighter: color-mix(in sRGB, var(--base) 30%, #fff);
   --dark: color-mix(in sRGB, var(--base) 95%, #000);
   --transparent: color-mix(in sRGB, var(--base) 0%, #0000);
-  appearance: none;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
   font-size: 1em;
   width: 100%;
   height: 2em;
@@ -124,6 +130,7 @@ body {
   cursor: pointer;
 }
 
+input[type="range"].kawaii-range::-webkit-slider-runnable-track,
 [type="range"].kawaii-range::-webkit-slider-runnable-track {
   background:
     radial-gradient(
@@ -151,8 +158,10 @@ body {
   overflow: hidden;
 }
 
+input[type="range"].kawaii-range::-webkit-slider-thumb,
 [type="range"].kawaii-range::-webkit-slider-thumb {
-  appearance: none;
+  appearance: none !important;
+  -webkit-appearance: none !important;
   height: 2em;
   width: 2em;
   color: var(--lighter);
@@ -162,7 +171,8 @@ body {
       var(--light) calc(0.2em - 1px),
       transparent 0.2em
     ),
-    linear-gradient(90deg, transparent 0.75em, var(--base) 0) 0 0 / 100% 50% no-repeat;
+    linear-gradient(90deg, transparent 0.75em, var(--base) 0) 0 0 / 100% 50%
+      no-repeat;
   border-radius: 50%;
   box-shadow:
     inset -0.5em 0 0.5em -0.25em var(--base),
@@ -188,10 +198,12 @@ body {
   cursor: grab;
 }
 
+input[type="range"].kawaii-range:active::-webkit-slider-thumb,
 [type="range"].kawaii-range:active::-webkit-slider-thumb {
   cursor: grabbing;
 }
 
+input[type="range"].kawaii-range::-moz-range-track,
 [type="range"].kawaii-range::-moz-range-track {
   background:
     radial-gradient(
@@ -220,8 +232,10 @@ body {
   border: none;
 }
 
+input[type="range"].kawaii-range::-moz-range-thumb,
 [type="range"].kawaii-range::-moz-range-thumb {
-  appearance: none;
+  appearance: none !important;
+  -moz-appearance: none !important;
   height: 2em;
   width: 2em;
   border: 0;
@@ -259,6 +273,7 @@ body {
   cursor: grab;
 }
 
+input[type="range"].kawaii-range:active::-moz-range-thumb,
 [type="range"].kawaii-range:active::-moz-range-thumb {
   cursor: grabbing;
 }
