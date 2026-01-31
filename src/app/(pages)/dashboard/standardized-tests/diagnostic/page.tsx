@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ArrowLeft, CheckCircle2, ExternalLink } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import GMATScoreSlider from "@/app/components/standardized-tests/GMATScoreSlider";
+import ComingSoonModal from "@/app/components/standardized-tests/ComingSoonModal";
 
 export default function DiagnosticPage() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -16,6 +17,7 @@ export default function DiagnosticPage() {
   const [quantScore, setQuantScore] = useState(500);
   const [verbalScore, setVerbalScore] = useState(500);
   const [totalScore, setTotalScore] = useState(500);
+  const [showComingSoonModal, setShowComingSoonModal] = useState(false);
 
   const userNotAuthenticated = !isLoading && !isAuthenticated;
 
@@ -40,8 +42,8 @@ export default function DiagnosticPage() {
   const handleSubmit = () => {
     // TODO: Save scores and generate personalized plan
     console.log({ quantScore, verbalScore, totalScore });
-    // Navigate back to course path or show results
-    router.push("/dashboard/standardized-tests");
+    // Show coming soon modal instead of navigating
+    setShowComingSoonModal(true);
   };
 
   return (
@@ -223,6 +225,12 @@ export default function DiagnosticPage() {
           )}
         </div>
       </div>
+
+      <ComingSoonModal
+        isOpen={showComingSoonModal}
+        onClose={() => setShowComingSoonModal(false)}
+        daysUntilLaunch={5}
+      />
     </div>
   );
 }
