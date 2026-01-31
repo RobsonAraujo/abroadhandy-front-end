@@ -65,15 +65,15 @@ export default function DiagnosticPage() {
           </p>
         </div>
 
-        <div className="rounded-2xl border-2 border-gray-200 bg-white p-6 shadow-sm sm:p-8">
+        <div className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8">
           {hasTakenTest === null ? (
             // Initial question: Have you taken the test?
-            <div className="space-y-6">
+            <div className="space-y-5">
               <div>
-                <h2 className="mb-4 text-xl font-bold text-gray-900">
+                <h2 className="mb-3 text-lg font-bold text-gray-900">
                   Have you taken the GMAT Official Free Practice Test?
                 </h2>
-                <p className="mb-6 text-gray-600">
+                <p className="mb-5 text-sm text-gray-600">
                   We&apos;ll use your scores from Practice Test 1 or 2 to create
                   a personalized study plan tailored to your strengths and
                   weaknesses.
@@ -82,17 +82,17 @@ export default function DiagnosticPage() {
 
               <div className="flex flex-col gap-4 sm:flex-row">
                 <Button
-                  variant="secondary"
+                  variant="black"
                   size="lg"
-                  className="flex-1 bg-gradient-to-br from-slate-900 via-slate-800 to-black ring-2 ring-cyan-400 text-cyan-300 hover:ring-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.5)]"
+                  className="flex-1 bg-black  text-white hover:opacity-90"
                   onClick={() => setHasTakenTest(true)}
                 >
                   Yes, I have my scores
                 </Button>
                 <Button
-                  variant="outline"
+                  variant="ghost"
                   size="lg"
-                  className="flex-1 bg-gradient-to-br from-slate-900 via-slate-800 to-black ring-2 ring-cyan-400 text-cyan-300 hover:ring-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.5)]"
+                  className="flex-1 bg-transparent ring-1 ring-cyan-400 text-gray-700 hover:opacity-90"
                   onClick={() => setHasTakenTest(false)}
                 >
                   No, I haven&apos;t taken it yet
@@ -102,16 +102,16 @@ export default function DiagnosticPage() {
           ) : hasTakenTest === false ? (
             // Encourage to take the test
             <div className="space-y-6">
-              <div className="rounded-xl border-2 border-primary bg-primary/10 p-6">
+              <div className="rounded-xl border border-cyan-400/30 bg-cyan-50/50 p-6">
                 <div className="mb-4 flex items-start gap-4">
-                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-2 border-cyan-400 bg-black text-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.5)]">
-                    <CheckCircle2 className="h-6 w-6" />
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-cyan-400 bg-black text-white">
+                    <CheckCircle2 className="h-5 w-5" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="mb-2 text-xl font-bold text-gray-900">
+                    <h3 className="mb-2 text-lg font-bold text-gray-900">
                       Take the Free Official GMAT Practice Test
                     </h3>
-                    <p className="mb-4 text-gray-700">
+                    <p className="mb-4 text-sm text-gray-600">
                       The GMAT Official Starter Kit includes two free
                       full-length practice tests. It&apos;s easy, free, and
                       takes about 3 hours. This will give us accurate data to
@@ -121,7 +121,7 @@ export default function DiagnosticPage() {
                       href="https://www.mba.com/exam-prep/gmat-official-starter-kit"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-br from-slate-900 via-slate-800 to-black ring-2 ring-cyan-400 px-4 py-2 text-sm font-semibold text-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.5)] transition-all hover:ring-cyan-300 hover:shadow-[0_0_25px_rgba(34,211,238,0.7)]"
+                      className="inline-flex items-center gap-2 rounded-lg bg-black  px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-slate-900 hover:ring-cyan-300"
                     >
                       Get Free Practice Test
                       <ExternalLink className="h-4 w-4" />
@@ -136,9 +136,9 @@ export default function DiagnosticPage() {
                   your scores.
                 </p>
                 <Button
-                  variant="outline"
+                  variant="ghost"
                   onClick={() => setHasTakenTest(true)}
-                  className="bg-gradient-to-br from-slate-900 via-slate-800 to-black ring-2 ring-cyan-400 text-cyan-300 hover:ring-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.5)]"
+                  className="bg-black  text-white hover:bg-slate-900 "
                 >
                   I&apos;ve taken the test, enter my scores
                 </Button>
@@ -146,21 +146,21 @@ export default function DiagnosticPage() {
             </div>
           ) : (
             // Score input form
-            <div className="space-y-8">
+            <div className="space-y-6">
               <div>
-                <h2 className="mb-2 text-xl font-bold text-gray-900">
+                <h2 className="mb-2 text-lg font-bold text-gray-900">
                   Enter Your GMAT Scores
                 </h2>
-                <p className="text-gray-600">
+                <p className="text-sm text-gray-600">
                   Use your scores from the GMAT Official Practice Test 1 or 2.
                   GMAT scores range from 205 to 805.
                 </p>
               </div>
 
-              <div className="space-y-8">
+              <div className="space-y-6">
                 {/* Total Score */}
                 <div>
-                  <label className="mb-4 block text-lg font-semibold text-gray-900">
+                  <label className="mb-3 block text-base font-semibold text-gray-900">
                     Total Score
                   </label>
                   <GMATScoreSlider
@@ -174,7 +174,7 @@ export default function DiagnosticPage() {
 
                 {/* Quant Score */}
                 <div>
-                  <label className="mb-4 block text-lg font-semibold text-gray-900">
+                  <label className="mb-3 block text-base font-semibold text-gray-900">
                     Quantitative Score
                   </label>
                   <GMATScoreSlider
@@ -188,7 +188,7 @@ export default function DiagnosticPage() {
 
                 {/* Verbal Score */}
                 <div>
-                  <label className="mb-4 block text-lg font-semibold text-gray-900">
+                  <label className="mb-3 block text-base font-semibold text-gray-900">
                     Verbal Score
                   </label>
                   <GMATScoreSlider
@@ -201,19 +201,20 @@ export default function DiagnosticPage() {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-4 sm:flex-row sm:justify-end">
+              <div className="flex items-center justify-between">
                 <Button
-                  variant="outline"
+                  variant="ghost"
                   onClick={() => setHasTakenTest(null)}
-                  className="bg-gradient-to-br from-slate-900 via-slate-800 to-black ring-2 ring-cyan-400 text-cyan-300 hover:ring-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.5)]"
+                  className="text-muted-foreground hover:text-foreground"
                 >
-                  Back
+                  ← Back
                 </Button>
+
                 <Button
                   variant="secondary"
                   size="lg"
                   onClick={handleSubmit}
-                  className="bg-gradient-to-br from-slate-900 via-slate-800 to-black ring-2 ring-cyan-400 text-cyan-300 hover:ring-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.5)] hover:shadow-[0_0_25px_rgba(34,211,238,0.7)]"
+                  className="bg-black  text-white hover:bg-slate-900 hover:ring-cyan-300"
                 >
                   Generate My Personalized Plan
                 </Button>
