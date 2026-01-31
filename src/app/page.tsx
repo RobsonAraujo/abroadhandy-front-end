@@ -5,11 +5,12 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Hero from "./features/home/Hero";
 import UniversityLogos from "./features/home/UniversityLogos";
-import HowItWorks from "./features/home/HowItWorks";
-import LearnBanner from "./features/home/LearnBanner";
+import GMATCoursePreview from "./features/home/GMATCoursePreview";
 import Banner from "./components/banner/Banner";
-import BecomeAMentorSection from "./features/home/BecomeAMentorSection";
-import WhyChooseUs from "./features/home/WhyChooseUs";
+// import HowItWorks from "./features/home/HowItWorks";
+// import LearnBanner from "./features/home/LearnBanner";
+// import BecomeAMentorSection from "./features/home/BecomeAMentorSection";
+// import WhyChooseUs from "./features/home/WhyChooseUs";
 // import StickyCTA from "./components/sticky-cta/StickyCTA";
 
 export default function Home() {
@@ -38,13 +39,14 @@ export default function Home() {
     <>
       <Hero />
       <UniversityLogos />
-      <HowItWorks />
+      <GMATCoursePreview />
+      {/* <HowItWorks /> */}
       {/* <LearnBanner /> */}
+
       {/* <BecomeAMentorSection /> */}
       {/* <WhyChooseUs /> */}
-      <Banner page="home"/>
+      <Banner page="home" />
       {/* <StickyCTA /> */}
-
     </>
   );
 }
