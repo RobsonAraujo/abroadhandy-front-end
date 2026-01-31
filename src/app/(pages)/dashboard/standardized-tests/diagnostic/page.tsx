@@ -8,6 +8,7 @@ import { ArrowLeft, CheckCircle2, ExternalLink } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import GMATScoreSlider from "@/app/components/standardized-tests/GMATScoreSlider";
 import ComingSoonModal from "@/app/components/standardized-tests/ComingSoonModal";
+import { sendGAEvent } from "@next/third-parties/google";
 
 export default function DiagnosticPage() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -42,6 +43,15 @@ export default function DiagnosticPage() {
   const handleSubmit = () => {
     // TODO: Save scores and generate personalized plan
     console.log({ quantScore, verbalScore, totalScore });
+    
+    // Track button click
+    sendGAEvent("event", "buttonClicked", {
+      button_name: "Generate My Personalized Plan",
+      page: "standardized_tests",
+      location: "diagnostic",
+      destination: "coming_soon_modal",
+    });
+    
     // Show coming soon modal instead of navigating
     setShowComingSoonModal(true);
   };
