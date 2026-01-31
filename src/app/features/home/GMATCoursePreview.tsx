@@ -43,7 +43,7 @@ export default function GMATCoursePreview() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 text-secondary text-sm font-semibold mb-4">
             <Target className="w-4 h-4" />
-            <span>New Feature</span>
+            {/* <span>New Feature</span> */}
           </div>
           <h2 className="text-3xl font-bold text-gray-900 lg:text-4xl xl:text-5xl mb-4">
             Master GMAT Quant with Our
