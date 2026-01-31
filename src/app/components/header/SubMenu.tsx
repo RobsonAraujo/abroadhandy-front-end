@@ -19,6 +19,10 @@ export default function SubMenu() {
       label: "Essay Assistant",
       href: "/dashboard/essay-assistant",
     },
+    {
+      label: "GMAT Prep",
+      href: "/dashboard/standardized-tests",
+    },
   ];
 
   return (
@@ -26,7 +30,7 @@ export default function SubMenu() {
       <div className="px-4 mx-auto sm:px-6 lg:px-8">
         <nav className="flex space-x-8">
           {menuItems.map((item) => {
-            const isActive = pathname === item.href;
+            const isActive = pathname === item.href || (item.href === "/dashboard/standardized-tests" && pathname?.startsWith("/dashboard/standardized-tests"));
             return (
               <Link
                 key={item.href}

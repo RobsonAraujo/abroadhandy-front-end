@@ -167,6 +167,14 @@ export default function LoggedHeader({ user, onLogout }: LoggedHeaderProps) {
                       Essay Assistant
                     </Link>
 
+                    <Link
+                      href="/dashboard/standardized-tests"
+                      className="block px-3 py-3 text-base font-medium text-gray-900 transition-all duration-200 rounded-md hover:bg-gray-50"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      GMAT Prep
+                    </Link>
+
                     <button
                       onClick={() => {
                         onLogout();

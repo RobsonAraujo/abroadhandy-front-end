@@ -68,8 +68,8 @@ export default function Dashboard() {
 
           <Link href="/dashboard/standardized-tests">
             <ModernCard
-              title="Standardized Tests"
-              description="GMAT and GRE preparation with comprehensive study materials and practice exams"
+              title="GMAT Prep"
+              description="GMAT Quant preparation with comprehensive study materials and practice exams"
               icon={<Target className="w-8 h-8" />}
               badge={<AvailableBadge />}
               number="03"
