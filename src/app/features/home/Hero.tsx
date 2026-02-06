@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/app/components/ui/button";
 import ArrowRightIcon from "@/app/icons/ArrowRightIcon";
-import { sendGAEvent } from '@next/third-parties/google';
+import { sendGAEvent } from "@next/third-parties/google";
 import HeroEditorPreview from "./HeroEditorPreview";
 
 export default function Hero() {
@@ -16,40 +16,65 @@ export default function Hero() {
               <p className="text-base font-semibold tracking-wider text-secondary uppercase">
                 Complete Grad School Solution
               </p>
-            
             </div>
             <h1 className="mt-4 text-4xl font-bold text-black lg:mt-8 sm:text-6xl xl:text-8xl">
               Grad school applications, simplified
             </h1>
             <p className="mt-4 text-base text-black lg:mt-8 sm:text-xl">
-              <span className="font-semibold">AI-powered essay feedback</span> that improves your writing instantly. 
-
-              <span className="text-secondary font-medium"> Start free, no credit card required.</span>
+              <span className="font-semibold">AI-powered essay feedback</span>{" "}
+              that improves your writing instantly.
+              <span className="text-secondary font-medium">
+                {" "}
+                Start free, no credit card required.
+              </span>
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mt-8 lg:mt-16">
-              <Button
-                href="/essay-ai"
-                variant="primary"
-                size="lg"
-                className="group"
-                iconEnd={<ArrowRightIcon className="w-6 h-6 transition-transform group-hover:translate-x-1" />}
-                onClick={() =>
-                  sendGAEvent('event', 'buttonClicked', {
-                    button_name: "Try EssayAI Free",
-                    page: "home",
-                    location: "hero",
-                    destination: "/essay-ai",
-                  })
-                }
-              >
-                Try EssayAI Free
-              </Button>
-              <Button
+            <div className="flex flex-col gap-4 mt-8 lg:mt-16">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button
+                  href="/essay-ai"
+                  variant="primary"
+                  size="lg"
+                  className="group"
+                  iconEnd={
+                    <ArrowRightIcon className="w-6 h-6 transition-transform group-hover:translate-x-1" />
+                  }
+                  onClick={() =>
+                    sendGAEvent("event", "buttonClicked", {
+                      button_name: "Try EssayAI Free",
+                      page: "home",
+                      location: "hero",
+                      destination: "/essay-ai",
+                    })
+                  }
+                >
+                  Try EssayAI Free
+                </Button>
+                <Button
+                  href="/register"
+                  variant="outline"
+                  className="border-black text-black hover:bg-black hover:text-white w-full sm:w-auto"
+                  size="lg"
+                  iconEnd={
+                    <ArrowRightIcon className="w-6 h-6 transition-transform group-hover:translate-x-1" />
+                  }
+                  onClick={() =>
+                    sendGAEvent("event", "buttonClicked", {
+                      button_name: "Try GMAT Course",
+                      page: "home",
+                      location: "hero",
+                      destination: "/register",
+                    })
+                  }
+                >
+                  Try GMAT Course
+                </Button>
+              </div>
+              {/* <Button
                 href="/register"
                 variant="outline"
-                size="lg"
-                className="border-black text-black hover:bg-black hover:text-white"
+                size="default"
+                className="border-black text-black hover:bg-black hover:text-white w-full sm:w-auto"
                 onClick={() =>
                   sendGAEvent('event', 'buttonClicked', {
                     button_name: "Create Account",
@@ -60,11 +85,12 @@ export default function Hero() {
                 }
               >
                 Create Account
-              </Button>
+              </Button> */}
             </div>
 
             <p className="mt-6 text-sm text-gray-600">
-              ✨ No credit card required • Start improving your essays in seconds
+              ✨ No credit card required • Start improving your essays in
+              seconds
             </p>
 
             <p className="mt-5 text-gray-600">
